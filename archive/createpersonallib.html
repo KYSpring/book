@@ -1,0 +1,645 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>rollup搭建个人组件库 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../readings/" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    INTRODUCTION
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../react/">
+            
+                <a href="../react/">
+            
+                    
+                    RJC PRO
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    BLOG SHARE
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.3.1" data-path="createpersonallib.html">
+            
+                <a href="createpersonallib.html">
+            
+                    
+                    rollup搭建个人组件库
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../readings/">
+            
+                <a href="../readings/">
+            
+                    
+                    DO SOME READING
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="../readings/oneweb3book.html">
+            
+                <a href="../readings/oneweb3book.html">
+            
+                    
+                    【笔记】《一本书读懂Web3.0:区块链、NFT、云宇宙和DAO》
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >rollup搭建个人组件库</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="rollup&#x642D;&#x5EFA;&#x4E2A;&#x4EBA;&#x7EC4;&#x4EF6;&#x5E93;">Rollup&#x642D;&#x5EFA;&#x4E2A;&#x4EBA;&#x7EC4;&#x4EF6;&#x5E93;</h1>
+<h2 id="&#x9884;&#x671F;">&#x9884;&#x671F;</h2>
+<ul>
+<li>&#x652F;&#x6301;vue2, &#x8FDC;&#x671F;&#x652F;&#x6301;&#x591A;&#x6846;&#x67B6;</li>
+<li>&#x652F;&#x6301;tree-shaking(&#x662F;&#x5426;&#x9700;&#x8981;&#x4FDD;&#x6301;&#x76EE;&#x5F55;&#x7ED3;&#x6784;)</li>
+<li>&#x6309;&#x9700;&#x52A0;&#x8F7D;</li>
+</ul>
+<h2 id="&#x6784;&#x5EFA;&#x8BB0;&#x5F55;">&#x6784;&#x5EFA;&#x8BB0;&#x5F55;</h2>
+<h3 id="1&#x3001;&#x521D;&#x59CB;&#x5316;&#x7A7A;&#x9879;&#x76EE;">1&#x3001;&#x521D;&#x59CB;&#x5316;&#x7A7A;&#x9879;&#x76EE;</h3>
+<pre><code class="lang-bash">npm init
+</code></pre>
+<h3 id="2&#x3001;&#x6838;&#x5FC3;&#x8981;&#x7D20;&#xFF1A;rollup">2&#x3001;&#x6838;&#x5FC3;&#x8981;&#x7D20;&#xFF1A;rollup</h3>
+<h4 id="1-&#x6D41;&#x7A0B;&#xFF1A;">1) &#x6D41;&#x7A0B;&#xFF1A;</h4>
+<ul>
+<li>&#x5168;&#x5C40;&#x5B89;&#x88C5;rollup; </li>
+<li>&#x65B0;&#x5EFA;&#x5E76;&#x914D;&#x7F6E;rollup.config.js</li>
+<li>&#x914D;&#x7F6E;&#x547D;&#x4EE4;&#x884C;</li>
+<li>&#x7EC4;&#x4EF6;&#x4EE3;&#x7801;&#x7ED3;&#x6784;</li>
+</ul>
+<blockquote>
+<p>&#x914D;&#x7F6E;&#xFF1A;
+```javascript
+  // rollup.config.js
+export default {
+    // &#x6838;&#x5FC3;&#x9009;&#x9879;
+    input,     // &#x5FC5;&#x987B;
+    external,
+    plugins,</p>
+</blockquote>
+<pre><code>// &#x989D;&#x5916;&#x9009;&#x9879;
+onwarn,
+
+// danger zone
+acorn,
+context,
+moduleContext,
+legacy,
+
+output: {  // &#x5FC5;&#x987B; (&#x5982;&#x679C;&#x8981;&#x8F93;&#x51FA;&#x591A;&#x4E2A;&#xFF0C;&#x53EF;&#x4EE5;&#x662F;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;)
+  // &#x6838;&#x5FC3;&#x9009;&#x9879;
+  file,    // &#x5FC5;&#x987B;
+  format,  // &#x5FC5;&#x987B;
+  name,
+  globals,
+
+  // &#x989D;&#x5916;&#x9009;&#x9879;
+  paths,
+  banner,
+  footer,
+  intro,
+  outro,
+  sourcemap,
+  sourcemapFile,
+  interop,
+
+  // &#x9AD8;&#x5371;&#x9009;&#x9879;
+  exports,
+  amd,
+  indent,
+  strict
+},
+</code></pre><p>  };</p>
+<pre><code>
+#### 2&#xFF09;&#x95EE;&#x9898;&#xFF1A;
+  * export&#x683C;&#x5F0F;&#x4EE5;&#x53CA;&#x6253;&#x5305;&#x533A;&#x522B;
+  * &#x6253;&#x5305;format&#x683C;&#x5F0F;&#xFF1A;esm vs. cjs&#xFF0C;iife, umd&#x683C;&#x5F0F;
+```javascript
+// &#x539F;&#x59CB;&#x5165;&#x53E3;&#xFF1A;index.js
+import { sayHello } from &quot;./src/test&quot;;
+
+export default {
+    sayHello
+}
+</code></pre><pre><code class="lang-javascript"><span class="hljs-comment">// cjs&#x6253;&#x5305;&#x4EA7;&#x7269;&#xFF1A;bundle.cjs.js</span>
+<span class="hljs-meta">&apos;use strict&apos;</span>;
+
+<span class="hljs-keyword">const</span> sayHello = () =&gt; {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;hellow world&apos;</span>);
+};
+
+<span class="hljs-keyword">var</span> index = {
+    sayHello
+};
+
+<span class="hljs-built_in">module</span>.exports = index;
+</code></pre>
+<pre><code class="lang-javascript"><span class="hljs-comment">// esm&#x6253;&#x5305;&#x4EA7;&#x7269;&#xFF1A;bundle.esm.js</span>
+<span class="hljs-keyword">const</span> sayHello = () =&gt; {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;hellow world&apos;</span>);
+};
+
+<span class="hljs-keyword">var</span> index = {
+    sayHello
+};
+
+<span class="hljs-keyword">export</span> { index <span class="hljs-keyword">as</span> <span class="hljs-keyword">default</span> };
+</code></pre>
+<pre><code class="lang-javascript"><span class="hljs-comment">// iife&#x683C;&#x5F0F;&#x4EA7;&#x7269;</span>
+(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+<span class="hljs-meta">    &apos;use strict&apos;</span>;
+
+    <span class="hljs-keyword">const</span> sayHello = () =&gt; {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;hellow world&apos;</span>);
+    };
+
+    <span class="hljs-keyword">var</span> index = {
+        sayHello
+    };
+
+    <span class="hljs-keyword">return</span> index;
+
+})();
+</code></pre>
+<pre><code class="lang-javascript"><span class="hljs-comment">// umd&#x683C;&#x5F0F;&#x4EA7;&#x7269;</span>
+(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">global, factory</span>) </span>{
+    <span class="hljs-keyword">typeof</span> exports === <span class="hljs-string">&apos;object&apos;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> <span class="hljs-built_in">module</span> !== <span class="hljs-string">&apos;undefined&apos;</span> ? <span class="hljs-built_in">module</span>.exports = factory() :
+    <span class="hljs-keyword">typeof</span> define === <span class="hljs-string">&apos;function&apos;</span> &amp;&amp; define.amd ? define(factory) :
+    (global = <span class="hljs-keyword">typeof</span> globalThis !== <span class="hljs-string">&apos;undefined&apos;</span> ? globalThis : global || self, global.umdbundle = factory());
+})(<span class="hljs-keyword">this</span>, (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ <span class="hljs-string">&apos;use strict&apos;</span>;
+
+    <span class="hljs-keyword">const</span> sayHello = () =&gt; {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;hellow world&apos;</span>);
+    };
+
+    <span class="hljs-keyword">var</span> index = {
+        sayHello
+    };
+
+    <span class="hljs-keyword">return</span> index;
+
+}));
+</code></pre>
+<ul>
+<li>&#x6253;&#x5305;&#x51FA;&#x53E3;&#x914D;&#x7F6E;&#x591A;&#x4E2A;</li>
+</ul>
+<h3 id="3&#x3001;&#x6838;&#x5FC3;&#x8981;&#x7D20;&#xFF1A;&#x4EE3;&#x7801;&#x7EC4;&#x7EC7;&#x7ED3;&#x6784;">3&#x3001;&#x6838;&#x5FC3;&#x8981;&#x7D20;&#xFF1A;&#x4EE3;&#x7801;&#x7EC4;&#x7EC7;&#x7ED3;&#x6784;</h3>
+<p>&#x4ED6;&#x5C71;&#x4E4B;&#x77F3;&#xFF1A;element-ui&#xFF08;vue2&#x7248;&#x672C;&#xFF09;</p>
+<h4 id="1&#xFF09;element&#x5165;&#x53E3;&#x6587;&#x4EF6;&#x7ED3;&#x6784;&#xFF1A;indexjs">1&#xFF09;element&#x5165;&#x53E3;&#x6587;&#x4EF6;&#x7ED3;&#x6784;&#xFF1A;index.js</h4>
+<p>element-ui&#x5BF9;&#x7EC4;&#x4EF6;&#x91C7;&#x53D6;&#x4E86;&#x5168;&#x5C40;&#x5F15;&#x5165;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x5E76;&#x4E14;&#x652F;&#x6301;&#x4E86;&#x5BF9;ssr&#x573A;&#x666F;&#x7684;&#x517C;&#x5BB9;&#x6548;&#x679C;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> Dialog <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../packages/dialog/index.js&apos;</span>;
+
+<span class="hljs-keyword">const</span> components = [
+    Dialog,
+]
+
+<span class="hljs-keyword">const</span> install = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">Vue, opts = {}</span>) </span>{
+  locale.use(opts.locale);
+  locale.i18n(opts.i18n);
+
+  components.forEach(component =&gt; {
+    Vue.component(component.name, component);
+  });
+
+  Vue.use(InfiniteScroll);
+  Vue.use(Loading.directive);
+
+  Vue.prototype.$ELEMENT = {
+    size: opts.size || <span class="hljs-string">&apos;&apos;</span>,
+    zIndex: opts.zIndex || <span class="hljs-number">2000</span>
+  };
+
+  Vue.prototype.$loading = Loading.service;
+  Vue.prototype.$msgbox = MessageBox;
+  Vue.prototype.$alert = MessageBox.alert;
+  Vue.prototype.$confirm = MessageBox.confirm;
+  Vue.prototype.$prompt = MessageBox.prompt;
+  Vue.prototype.$notify = Notification;
+  Vue.prototype.$message = Message;
+};
+
+<span class="hljs-comment">/* istanbul ignore if */</span>
+<span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">window</span> !== <span class="hljs-string">&apos;undefined&apos;</span> &amp;&amp; <span class="hljs-built_in">window</span>.Vue) {
+  install(<span class="hljs-built_in">window</span>.Vue);
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  Dialog,
+}
+</code></pre>
+<h4 id="2&#xFF09;&#x7EC4;&#x4EF6;&#x76EE;&#x5F55;&#x7ED3;&#x6784;&#xFF1A;">2&#xFF09;&#x7EC4;&#x4EF6;&#x76EE;&#x5F55;&#x7ED3;&#x6784;&#xFF1A;</h4>
+<pre><code class="lang-markdown"><span class="hljs-emphasis">___</span> Dialog
+ |__ src 
+ |   |__ component.vue
+ |__ index.js
+</code></pre>
+<pre><code class="lang-javascript"><span class="hljs-comment">// index.js</span>
+
+<span class="hljs-keyword">import</span> ElDialog <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./src/component&apos;</span>;
+
+<span class="hljs-comment">/* istanbul ignore next */</span>
+ElDialog.install = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">Vue</span>) </span>{
+  Vue.component(ElDialog.name, ElDialog);
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> ElDialog;
+</code></pre>
+<p>&#x5176;&#x4E2D;&#x5BF9;&#x4E8E;&#x7EC4;&#x4EF6;&#x5B9A;&#x4E49;&#x4E86;install&#x51FD;&#x6570;&#xFF0C;&#x8FD9;&#x610F;&#x5473;&#x7740;&#x8BE5;&#x7EC4;&#x4EF6;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x63D2;&#x4EF6;&#x7684;&#x5F62;&#x5F0F;&#x5F15;&#x5165;&#x3002;
+<a href="https://v2.cn.vuejs.org/v2/guide/plugins.html" target="_blank">&#x53C2;&#x8003;</a></p>
+<p>&#x7B14;&#x8005;&#x6A21;&#x4EFF;element&#x7EC4;&#x4EF6;&#x5E93;&#x7ED3;&#x6784;&#x8FDB;&#x884C;&#x5982;&#x4E0B;&#x4EE3;&#x7801;&#x7EC4;&#x7EC7;:
+<img src="static/code_orgnization.png" style="width: 60%"></p>
+<p>&#x6B64;&#x65F6;&#x82E5;&#x5C1D;&#x8BD5;&#x6253;&#x5305;&#x4F1A;&#x51FA;&#x73B0;&#x5982;&#x4E0B;&#x9519;&#x8BEF;&#xFF1A;
+<img src="static/missing_plug_err.png" style="width: 100%"></p>
+<h3 id="4-&#x6838;&#x5FC3;&#x8981;&#x7D20;&#xFF1A;-rollup&#x63D2;&#x4EF6;">4. &#x6838;&#x5FC3;&#x8981;&#x7D20;&#xFF1A; rollup&#x63D2;&#x4EF6;</h3>
+<p><a href="https://github.com/rollup/awesome" target="_blank">&#x5B98;&#x65B9;&#x7EF4;&#x62A4;&#x7684;&#x63D2;&#x4EF6;&#x6E05;&#x5355;</a>
+&#x4F46;&#x4F3C;&#x4E4E;&#x8FD8;&#x662F;&#x4E0D;&#x591F;&#x5168;&#xFF1B;</p>
+<h4 id="1-&#x9700;&#x8981;&#x89E3;&#x6790;vue&#x6A21;&#x7248;&#x7684;&#x63D2;&#x4EF6;">1) &#x9700;&#x8981;&#x89E3;&#x6790;vue&#x6A21;&#x7248;&#x7684;&#x63D2;&#x4EF6;</h4>
+<p><a href="https://rollup-plugin-vue.vuejs.org/examples.html#component-library" target="_blank">&#x5B98;&#x65B9;demo</a></p>
+<pre><code class="lang-bash">npm install rollup-plugin-vue
+npm install @vue/compiler-sfc
+</code></pre>
+<h4 id="2-&#x9700;&#x8981;&#x89E3;&#x6790;scss&#x7684;&#x63D2;&#x4EF6;&#xFF1A;rollup-plugin-postcss">2) &#x9700;&#x8981;&#x89E3;&#x6790;scss&#x7684;&#x63D2;&#x4EF6;&#xFF1A;rollup-plugin-postcss</h4>
+<p> <a href="https://juejin.cn/post/6934698510436859912" target="_blank">css&#x63D2;&#x4EF6;&#x4F7F;&#x7528;&#x53C2;&#x8003;</a>
+ <a href="https://www.npmjs.com/package/rollup-plugin-postcss" target="_blank">post-css&#x63D2;&#x4EF6;</a></p>
+<pre><code class="lang-bash"> [!] (plugin postcss) Error: You need to install one of the following packages: <span class="hljs-string">&quot;sass&quot;</span>, <span class="hljs-string">&quot;node-sass&quot;</span> <span class="hljs-keyword">in</span> order to process SASS files
+</code></pre>
+<h3 id="5-&#x521D;&#x6B65;&#x53EF;&#x7528;&#x7684;rollup&#x914D;&#x7F6E;&#x6587;&#x4EF6;">5. &#x521D;&#x6B65;&#x53EF;&#x7528;&#x7684;rollup&#x914D;&#x7F6E;&#x6587;&#x4EF6;</h3>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> vue <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;rollup-plugin-vue&apos;</span> 
+<span class="hljs-keyword">import</span> postcss <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;rollup-plugin-postcss&apos;</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> [
+  <span class="hljs-comment">// ESM build to be used with webpack/rollup.</span>
+  {
+    input: <span class="hljs-string">&apos;index.js&apos;</span>,
+    output: {
+      format: <span class="hljs-string">&apos;esm&apos;</span>,
+      file: <span class="hljs-string">&apos;dist/springlib.esm.js&apos;</span>
+    },
+    plugins: [
+      vue(),
+      postcss({
+        plugins: []
+      })
+    ],
+    external:[<span class="hljs-string">&apos;vue&apos;</span>], <span class="hljs-comment">// &#x5176;&#x4E2D;&#x7684;&#x5305;&#x5C06;&#x4E0D;&#x4F1A;&#x6253;&#x8FDB;bundle&#x4E2D;</span>
+  },
+  <span class="hljs-comment">// SSR build.</span>
+  {
+    input: <span class="hljs-string">&apos;index.js&apos;</span>,
+    output: {
+      format: <span class="hljs-string">&apos;cjs&apos;</span>,
+      file: <span class="hljs-string">&apos;dist/springlib.ssr.js&apos;</span>
+    },
+    plugins: [
+      vue({ template: { optimizeSSR: <span class="hljs-literal">true</span> } }),
+      postcss({
+        plugins: []
+      })
+    ],
+    external:[<span class="hljs-string">&apos;vue&apos;</span>], <span class="hljs-comment">// &#x5176;&#x4E2D;&#x7684;&#x5305;&#x5C06;&#x4E0D;&#x4F1A;&#x6253;&#x8FDB;bundle&#x4E2D;</span>
+  },
+]
+</code></pre>
+<p>&#x4EA7;&#x7269;&#xFF1A;</p>
+<p><img src="static/product1.png" style="width: 60%"><br><br>
+<br></p>
+<h3 id="5-1-&#x3010;&#x914D;&#x7F6E;&#x4F18;&#x5316;&#x3011;&#x4FDD;&#x6301;&#x539F;&#x59CB;&#x76EE;&#x5F55;&#x7ED3;&#x6784;&#x4EE5;&#x652F;&#x6301;&#x6309;&#x9700;&#x52A0;&#x8F7D;&#xFF1A;">5-1. &#x3010;&#x914D;&#x7F6E;&#x4F18;&#x5316;&#x3011;&#x4FDD;&#x6301;&#x539F;&#x59CB;&#x76EE;&#x5F55;&#x7ED3;&#x6784;&#x4EE5;&#x652F;&#x6301;&#x6309;&#x9700;&#x52A0;&#x8F7D;&#xFF1A;</h3>
+<pre><code class="lang-javascript">  <span class="hljs-comment">// preseve module</span>
+  {
+    input: <span class="hljs-string">&apos;index.js&apos;</span>,
+    output: {
+      format: <span class="hljs-string">&apos;esm&apos;</span>,
+      dir: <span class="hljs-string">&apos;es/&apos;</span>,
+      sourcemap: <span class="hljs-literal">false</span>,
+      preserveModules: <span class="hljs-literal">true</span>,
+      preserveModulesRoot: <span class="hljs-string">&apos;src&apos;</span>,
+    },
+    plugins: [
+      vue(),
+      postcss({
+        plugins: []
+      })
+    ],
+    external:[<span class="hljs-string">&apos;vue&apos;</span>], <span class="hljs-comment">// &#x5176;&#x4E2D;&#x7684;&#x5305;&#x5C06;&#x4E0D;&#x4F1A;&#x6253;&#x8FDB;bundle&#x4E2D;</span>
+  },
+</code></pre>
+<p>&#x4EA7;&#x7269;&#xFF1A;&#x901A;&#x8FC7;&#x5982;&#x4E0A;&#x914D;&#x7F6E;&#x53EF;&#x4FDD;&#x6301;&#x539F;&#x59CB;&#x6A21;&#x5757;&#x7ED3;&#x6784;</p>
+<p><img src="static/product2.png" style="width: 60%">
+<br><br></p>
+<h3 id="6-&#x672C;&#x5730;&#x8C03;&#x8BD5;&#x7EC4;&#x4EF6;&#x5E93;&#xFF1A;&#x3010;&#x5F85;&#x5B8C;&#x6210;&#x3011;">6. &#x672C;&#x5730;&#x8C03;&#x8BD5;&#x7EC4;&#x4EF6;&#x5E93;&#xFF1A;&#x3010;&#x5F85;&#x5B8C;&#x6210;&#x3011;</h3>
+<p>1&#xFF09;&#x65B0;&#x5EFA;example&#x76EE;&#x5F55;&#xFF0C;&#x521D;&#x59CB;&#x5316;&#x4E00;&#x4E2A;vue2&#x9879;&#x76EE;&#xFF0C;&#x4F7F;&#x7528;<a href="https://github.com/vuejs/create-vue" target="_blank">&#x5B98;&#x65B9;&#x811A;&#x624B;&#x67B6;</a>&#x65B0;&#x5EFA;&#x5373;&#x53EF; &#x3002;</p>
+<blockquote>
+<p>&#x8BE5;&#x811A;&#x624B;&#x67B6;&#x4F1A;&#x57FA;&#x4E8E;vite&#x751F;&#x6210;&#x4E00;&#x4E2A;vue2&#x9879;&#x76EE; </p>
+<pre><code class="lang-bash"> npm create vue@2
+</code></pre>
+<p> &#x3010;&#x26A0;&#xFE0F;&#x6CE8;&#x610F;&#x3011;&#x6B64;&#x65F6;&#x9700;&#x8981;&#x5C06;example&#x76EE;&#x5F55;&#x6392;&#x9664;&#x5728;rollup&#x6253;&#x5305;&#x76EE;&#x5F55;&#x4E4B;&#x5916;&#x3002;&#x5728;external&#x9009;&#x9879;&#x4E2D;&#x6DFB;&#x52A0;example&#x5373;&#x53EF;</p>
+<pre><code class="lang-javascript">  external:[
+    <span class="hljs-string">&apos;vue&apos;</span>,
+    <span class="hljs-regexp">/node_modules/</span>,
+    path.resolve( __dirname, <span class="hljs-string">&apos;/example/&apos;</span> ),
+  ],
+</code></pre>
+</blockquote>
+<p>2&#xFF09;
+&#x5F15;&#x7528;&#x6253;&#x5305;&#x4EA7;&#x7269;&#x5E76;&#x8FD0;&#x884C;</p>
+<pre><code class="lang-javascript">
+
+</code></pre>
+<p>&#x62A5;&#x9519;&#xFF1A;</p>
+<pre><code class="lang-bash">[vite] Internal server error: Preprocessor dependency <span class="hljs-string">&quot;sass&quot;</span> not found. Did you install it?
+</code></pre>
+<p>&#x8FD9;&#x610F;&#x5473;&#x7740;&#xFF1A;&#x5C3D;&#x7BA1;&#x7EC4;&#x4EF6;&#x5E93;&#x5305;&#x4E2D;&#x5DF2;&#x7ECF;&#x5B89;&#x88C5;&#x4E86;<code>node-sass</code>&#xFF0C;&#x4F46;&#x6253;&#x5305;&#x4EA7;&#x7269;&#x4F3C;&#x4E4E;&#x6CA1;&#x80FD;&#x5C06;sass&#x8F6C;&#x6362;&#x6210;css&#x3002;</p>
+<p>&#x539F;&#x56E0;&#x5728;&#x4E8E;&#x5C11;&#x88C5;&#x4E86;sass-loader&#x6A21;&#x5757;&#x3002;</p>
+<p>&#x3010;&#x62D3;&#x5C55;&#x3011;sass-loader / node-sass / sass / dart-sass&#x4E4B;&#x95F4;&#x7684;&#x533A;&#x522B;&#xFF1A;</p>
+<p>sass&#x4F9D;&#x8D56;&#x539F;&#x6765;&#x662F;dart-sass&#xFF0C;&#x662F;&#x4E3A;&#x4E86;&#x4E0E;node-sass&#x533A;&#x5206;&#x7684;&#x3002;&#x540E;&#x6765;&#x5B98;&#x7F51;&#x5C06;node-sass&#x5E9F;&#x5F03;&#x4E86;&#xFF0C;&#x5C31;&#x4E00;&#x540C;&#x5C06;dart-sass&#x6539;&#x540D;&#x4E3A;&#x4E86;sass&#x3002;</p>
+<h3 id="7-&#x901A;&#x8FC7;npm&#x53D1;&#x5E03;">7. &#x901A;&#x8FC7;npm&#x53D1;&#x5E03;</h3>
+<ul>
+<li>&#x5982;&#x4F55;&#x4F7F;&#x7528;npm&#x53D1;&#x5E03;&#x5305;&#xFF1F;<pre><code class="lang-javascript"><span class="hljs-comment">// 1. &#x6CE8;&#x518C;&#x5E76;&#x767B;&#x5F55;npm&#x5B98;&#x7F51;&#x83B7;&#x53D6;&#x8D26;&#x53F7;&#x548C;token</span>
+<span class="hljs-comment">// 2. &#x767B;&#x5F55;&#x81EA;&#x5DF1;&#x7684;npm&#x8D26;&#x53F7;</span>
+npm login usename token
+<span class="hljs-comment">// 3. &#x53D1;&#x5E03;&#x5305;</span>
+npm publish
+<span class="hljs-comment">// &#x6B64;&#x65F6;&#x4FBF;&#x53EF;&#x5728;&#x5B98;&#x7F51;&#x8BBF;&#x95EE;&#x81EA;&#x5DF1;&#x7684;&#x5305;</span>
+</code></pre>
+</li>
+<li><p>&#x8FDB;&#x9636;&#xFF1A;&#x4F7F;&#x7528;<a href="https://juejin.cn/post/7059224326674841636" target="_blank">nucm</a>&#x7BA1;&#x7406;&#x591A;&#x4E2A;npm&#x8D26;&#x53F7;&#xFF1B;&#x4F7F;&#x7528;<a href="https://juejin.cn/post/7101323896669863967" target="_blank">nrm</a>&#x7BA1;&#x7406;&#x591A;&#x4E2A;&#x955C;&#x50CF;&#x6E90;</p>
+</li>
+<li><p>&#x53D1;&#x5E03;&#x4EC0;&#x4E48;&#x5185;&#x5BB9;&#xFF1F;</p>
+<ul>
+<li>&#x6E90;&#x7801;&#x53D1;&#x5E03;&#xFF1A;&#x76F4;&#x63A5;&#x5728;&#x6839;&#x76EE;&#x5F55;&#x4E0B;&#x6267;&#x884C;npm publish
+&#x6B64;&#x65F6;&#x7528;&#x6237;npm install&#x65F6;&#x76F8;&#x5F53;&#x4E8E;&#x5C06;&#x4F60;&#x7684;&#x7EC4;&#x4EF6;&#x5E93;&#x6E90;&#x4EE3;&#x7801;&#x590D;&#x5236;&#x4E86;&#x4E00;&#x4EFD;&#x3002;</li>
+<li>&#x4EC5;&#x53D1;&#x5E03;&#x6253;&#x5305;&#x4EA7;&#x7269;&#xFF1A;&#x8FDB;&#x5165;&#x6253;&#x5305;&#x8F93;&#x51FA;&#x76EE;&#x5F55;spring-lib&#x4E2D;&#xFF0C;&#x751F;&#x6210;&#x4E00;&#x4E2A;package.json&#x6587;&#x4EF6;&#xFF0C;&#x518D;&#x6267;&#x884C;npm publish&#xFF0C;&#x6B64;&#x65F6;npm&#x5305;&#x4E2D;&#x5C06;&#x53EA;&#x6709;&#x6253;&#x5305;&#x4EA7;&#x7269;&#x3002;</li>
+</ul>
+</li>
+</ul>
+<h3 id="notion">Notion</h3>
+<p><a href="https://sass-lang.com/blog/libsass-is-deprecated" target="_blank">node-sass&#x5C06;&#x505C;&#x6B62;&#x66F4;&#x65B0;&#x7EF4;&#x62A4;&#xFF0C;&#x5B98;&#x65B9;&#x63A8;&#x8350;&#x6539;&#x7528;dart-sass</a></p>
+<h3 id="&#x53C2;&#x8003;&#x8D44;&#x6599;">&#x53C2;&#x8003;&#x8D44;&#x6599;</h3>
+<ul>
+<li><a href="https://chenshenhai.github.io/rollupjs-note/note/chapter04/02.html" target="_blank">rollup&#x7F16;&#x8BD1;Vue.js </a></li>
+<li><a href="https://juejin.cn/post/6934698510436859912" target="_blank">css&#x63D2;&#x4EF6;&#x4F7F;&#x7528;&#x53C2;&#x8003;</a></li>
+<li><a href="https://juejin.cn/post/6932736907830886413#heading-4" target="_blank">webpack&#x6253;&#x5305;</a></li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: BLOG SHARE">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../readings/" class="navigation navigation-next " aria-label="Next page: DO SOME READING">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"rollup搭建个人组件库","level":"1.3.1","depth":2,"next":{"title":"DO SOME READING","level":"2.1","depth":1,"path":"readings/index.md","ref":"readings/index.md","articles":[{"title":"【笔记】《一本书读懂Web3.0:区块链、NFT、云宇宙和DAO》","level":"2.1.1","depth":2,"path":"readings/oneweb3book.md","ref":"readings/oneweb3book.md","articles":[]}]},"previous":{"title":"BLOG SHARE","level":"1.3","depth":1,"path":"archive/index.md","ref":"archive/index.md","articles":[{"title":"rollup搭建个人组件库","level":"1.3.1","depth":2,"path":"archive/createpersonallib.md","ref":"archive/createpersonallib.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"archive/createpersonallib.md","mtime":"2022-11-20T17:09:22.813Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-11-25T02:23:02.991Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
