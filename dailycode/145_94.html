@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>144. 二叉树的前序遍历【简单题】 · GitBook</title>
+        <title>145.94 二叉树的中序&后序遍历【简单题】 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="145_94.html" />
     
-    
-    <link rel="prev" href="./" />
+    <link rel="prev" href="144.html" />
     
 
     </head>
@@ -213,7 +211,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="2.2.1" data-path="144.html">
+        <li class="chapter " data-level="2.2.1" data-path="144.html">
             
                 <a href="144.html">
             
@@ -226,7 +224,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2.2" data-path="145_94.html">
+        <li class="chapter active" data-level="2.2.2" data-path="145_94.html">
             
                 <a href="145_94.html">
             
@@ -274,7 +272,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >144. 二叉树的前序遍历【简单题】</a>
+        <a href=".." >145.94 二叉树的中序&后序遍历【简单题】</a>
     </h1>
 </div>
 
@@ -289,50 +287,16 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="144-&#x4E8C;&#x53C9;&#x6811;&#x7684;&#x524D;&#x5E8F;&#x904D;&#x5386;&#x3010;&#x7B80;&#x5355;&#x9898;&#x3011;">144. &#x4E8C;&#x53C9;&#x6811;&#x7684;&#x524D;&#x5E8F;&#x904D;&#x5386;&#x3010;&#x7B80;&#x5355;&#x9898;&#x3011;</h1>
-<p><a href="https://leetcode.cn/problems/binary-tree-preorder-traversal/" target="_blank">&#x9898;&#x76EE;&#x5730;&#x5740;</a></p>
-<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">TreeNode</span>(<span class="hljs-params">val,left,right</span>) </span>{
-    <span class="hljs-keyword">this</span>.val = (val===<span class="hljs-literal">undefined</span> ? <span class="hljs-number">0</span> : val);
-    <span class="hljs-keyword">this</span>.left = (left===<span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span> : left);
-    <span class="hljs-keyword">this</span>.right = (right===<span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span>: right);
-}
-
-<span class="hljs-comment">/**
- * &#x8FD8;&#x539F;&#x4E00;&#x68F5;&#x6EE1;&#x4E8C;&#x53C9;&#x6811;(&#x4F3C;&#x4E4E;&#x548C;&#x9898;&#x76EE;&#x7528;&#x4F8B;&#x4E0D;&#x592A;&#x4E00;&#x6837;&#xFF1F;)
- * @param {number[]} valList 
- * @returns {TreeNode root}
- */</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">initTree</span>(<span class="hljs-params">valList</span>) </span>{
-    <span class="hljs-keyword">const</span> treeNodeList = [];
-    <span class="hljs-keyword">const</span> sum = valList.length;
-    valList.forEach((el, index) =&gt; {
-        <span class="hljs-keyword">if</span> (!el) {
-            treeNodeList.push(<span class="hljs-literal">null</span>);
-            <span class="hljs-keyword">return</span>;
-        }
-        <span class="hljs-keyword">const</span> leftIndex = index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span> &lt; sum ? index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>: <span class="hljs-literal">null</span>;
-        <span class="hljs-keyword">const</span>  rightIndex = index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span> &lt; sum ? index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span> :<span class="hljs-literal">null</span>;
-        <span class="hljs-keyword">const</span> newNode = <span class="hljs-keyword">new</span> TreeNode(el, leftIndex, rightIndex);
-        treeNodeList.push(newNode);
-    });
-    treeNodeList.forEach(node=&gt;{
-        <span class="hljs-keyword">if</span>(node &amp;&amp; node.left) {
-            node.left = treeNodeList[node.left];
-        }
-        <span class="hljs-keyword">if</span>(node &amp;&amp; node.right){
-            node.right = treeNodeList[node.right];
-        }
-    });
-    <span class="hljs-keyword">return</span> treeNodeList[<span class="hljs-number">0</span>];
-}
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">action</span>(<span class="hljs-params">curNode, curRes</span>) </span>{
+                                <h1 id="14594-&#x4E8C;&#x53C9;&#x6811;&#x7684;&#x4E2D;&#x5E8F;&#x540E;&#x5E8F;&#x904D;&#x5386;&#x3010;&#x7B80;&#x5355;&#x9898;&#x3011;">145.94 &#x4E8C;&#x53C9;&#x6811;&#x7684;&#x4E2D;&#x5E8F;&amp;&#x540E;&#x5E8F;&#x904D;&#x5386;&#x3010;&#x7B80;&#x5355;&#x9898;&#x3011;</h1>
+<p><a href="https://leetcode.cn/problems/binary-tree-postorder-traversal/" target="_blank">145</a></p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">action</span>(<span class="hljs-params">curNode, curRes</span>) </span>{
     <span class="hljs-keyword">if</span> (!curNode) {
         <span class="hljs-keyword">return</span> curRes;
     }
-    curRes.push(curNode.val);
     curRes = action(curNode.left, curRes);
     curRes = action(curNode.right, curRes);
+    curRes.push(curNode.val);
+
     <span class="hljs-keyword">return</span> curRes;
 }
 
@@ -340,20 +304,29 @@
  * @param {TreeNode} root
  * @return {number[]}
  */</span>
-<span class="hljs-keyword">var</span> preorderTraversal = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>{
+<span class="hljs-keyword">var</span> postorderTraversal = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>{
     <span class="hljs-keyword">return</span> action(root, []);
 }
+</code></pre>
+<p><a href="https://leetcode.cn/problems/binary-tree-inorder-traversal/" target="_blank">94</a></p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">action</span>(<span class="hljs-params">curNode, curRes</span>) </span>{
+    <span class="hljs-keyword">if</span> (!curNode) {
+        <span class="hljs-keyword">return</span> curRes;
+    }
+    curRes = action(curNode.left, curRes);
+    curRes.push(curNode.val);
+    curRes = action(curNode.right, curRes);
 
-<span class="hljs-comment">// &#x9A8C;&#x8BC1;&#x4EE3;&#x7801;</span>
-<span class="hljs-comment">// function validate() {</span>
-<span class="hljs-comment">//     const input = [1,2,3];</span>
-<span class="hljs-comment">//     const root = initTree(input);</span>
-<span class="hljs-comment">//     console.log(&apos;root&apos;, root);</span>
-<span class="hljs-comment">//     const result = preorderTraversal(root);</span>
-<span class="hljs-comment">//     console.log(result);</span>
-<span class="hljs-comment">// }</span>
+    <span class="hljs-keyword">return</span> curRes;
+}
 
-<span class="hljs-comment">// validate();</span>
+<span class="hljs-comment">/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */</span>
+<span class="hljs-keyword">var</span> inorderTraversal = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>{
+    <span class="hljs-keyword">return</span> action(root, []);
+};
 </code></pre>
 
                                 
@@ -382,14 +355,10 @@
 
             
                 
-                <a href="./" class="navigation navigation-prev " aria-label="Previous page: 力扣题解 Daily Code">
+                <a href="144.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 144. 二叉树的前序遍历【简单题】">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="145_94.html" class="navigation navigation-next " aria-label="Next page: 145.94 二叉树的中序&后序遍历【简单题】">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -398,7 +367,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"144. 二叉树的前序遍历【简单题】","level":"2.2.1","depth":2,"next":{"title":"145.94 二叉树的中序&后序遍历【简单题】","level":"2.2.2","depth":2,"path":"dailycode/145_94.md","ref":"./dailycode/145_94.md","articles":[]},"previous":{"title":"力扣题解 Daily Code","level":"2.2","depth":1,"path":"dailycode/index.md","ref":"./dailycode/index.md","articles":[{"title":"144. 二叉树的前序遍历【简单题】","level":"2.2.1","depth":2,"path":"dailycode/144.md","ref":"./dailycode/144.md","articles":[]},{"title":"145.94 二叉树的中序&后序遍历【简单题】","level":"2.2.2","depth":2,"path":"dailycode/145_94.md","ref":"./dailycode/145_94.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/144.md","mtime":"2023-01-18T06:51:04.305Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-01-20T02:57:16.567Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"145.94 二叉树的中序&后序遍历【简单题】","level":"2.2.2","depth":2,"previous":{"title":"144. 二叉树的前序遍历【简单题】","level":"2.2.1","depth":2,"path":"dailycode/144.md","ref":"./dailycode/144.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/145_94.md","mtime":"2023-01-20T02:56:23.362Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-01-20T02:57:16.567Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

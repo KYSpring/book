@@ -7,5 +7,7 @@ some place for personal study
 ### gitbook常用命令：
 ```javascript
 gitbook serve //启动本地开发
-gitbook build //
+gitbook build //生成静态站点
+cd draftbook
+npm run deploy // 将daft中产物拷贝到book文件夹中
 ```
