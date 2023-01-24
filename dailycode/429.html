@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>199. 二叉树的右视图【中等题】 · GitBook</title>
+        <title>429. N 叉树的层序遍历【中等题】 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="429.html" />
     
-    
-    <link rel="prev" href="102.html" />
+    <link rel="prev" href="199.html" />
     
 
     </head>
@@ -252,7 +250,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.2.4" data-path="199.html">
+        <li class="chapter " data-level="2.2.4" data-path="199.html">
             
                 <a href="199.html">
             
@@ -265,7 +263,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2.5" data-path="429.html">
+        <li class="chapter active" data-level="2.2.5" data-path="429.html">
             
                 <a href="429.html">
             
@@ -313,7 +311,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >199. 二叉树的右视图【中等题】</a>
+        <a href=".." >429. N 叉树的层序遍历【中等题】</a>
     </h1>
 </div>
 
@@ -328,76 +326,71 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="199-&#x4E8C;&#x53C9;&#x6811;&#x7684;&#x53F3;&#x89C6;&#x56FE;">199. &#x4E8C;&#x53C9;&#x6811;&#x7684;&#x53F3;&#x89C6;&#x56FE;</h1>
-<p><a href="https://leetcode.cn/problems/binary-tree-right-side-view/" target="_blank">&#x9898;&#x76EE;&#x94FE;&#x63A5;</a></p>
-<pre><code class="lang-javascript">
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">TreeNode</span>(<span class="hljs-params">val,left,right</span>) </span>{
-    <span class="hljs-keyword">this</span>.val = (val===<span class="hljs-literal">undefined</span> ? <span class="hljs-number">0</span> : val);
-    <span class="hljs-keyword">this</span>.left = (left===<span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span> : left);
-    <span class="hljs-keyword">this</span>.right = (right===<span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span>: right);
-}
+                                <h1 id="429-n-&#x53C9;&#x6811;&#x7684;&#x5C42;&#x5E8F;&#x904D;&#x5386;">429. N &#x53C9;&#x6811;&#x7684;&#x5C42;&#x5E8F;&#x904D;&#x5386;</h1>
+<p><a href="https://leetcode.cn/problems/n-ary-tree-level-order-traversal/" target="_blank">&#x9898;&#x76EE;&#x94FE;&#x63A5;</a></p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Definition for a Node.</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Node</span>(<span class="hljs-params">val,children</span>) </span>{
+    <span class="hljs-keyword">this</span>.val = val;
+    <span class="hljs-keyword">this</span>.children = children;
+};
 
-<span class="hljs-comment">/**
- * &#x8FD8;&#x539F;&#x4E00;&#x68F5;&#x6EE1;&#x4E8C;&#x53C9;&#x6811;(&#x4F3C;&#x4E4E;&#x548C;&#x9898;&#x76EE;&#x7528;&#x4F8B;&#x4E0D;&#x592A;&#x4E00;&#x6837;&#xFF1F;)
- * @param {number[]} valList 
- * @returns {TreeNode root}
- */</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">initTree</span>(<span class="hljs-params">valList</span>) </span>{
-    <span class="hljs-keyword">const</span> treeNodeList = [];
-    <span class="hljs-keyword">const</span> sum = valList.length;
-    valList.forEach((el, index) =&gt; {
+<span class="hljs-comment">// &#x8FD8;&#x539F;&#x4E00;&#x68F5;n&#x53C9;&#x6811;</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">initTree</span>(<span class="hljs-params">dataList</span>) </span>{
+    <span class="hljs-keyword">let</span> curFather = <span class="hljs-number">-1</span>; <span class="hljs-comment">// father&#x8DDF;&#x968F;datalist&#xFF0C; &#x526F;</span>
+    <span class="hljs-keyword">let</span> curChildren = []; <span class="hljs-comment">// &#x89E3;&#x6790;&#x5F53;&#x524D;&#x7684;&#x5B69;&#x5B50;&#x8282;&#x70B9;, &#x4E3B;</span>
+    <span class="hljs-keyword">let</span> allNodeList = [];
+    dataList.forEach(el =&gt; {
         <span class="hljs-keyword">if</span> (!el) {
-            treeNodeList.push(<span class="hljs-literal">null</span>);
-            <span class="hljs-keyword">return</span>;
-        }
-        <span class="hljs-keyword">const</span> leftIndex = index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span> &lt; sum ? index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>: <span class="hljs-literal">null</span>;
-        <span class="hljs-keyword">const</span>  rightIndex = index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span> &lt; sum ? index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span> :<span class="hljs-literal">null</span>;
-        <span class="hljs-keyword">const</span> newNode = <span class="hljs-keyword">new</span> TreeNode(el, leftIndex, rightIndex);
-        treeNodeList.push(newNode);
-    });
-    treeNodeList.forEach(node=&gt;{
-        <span class="hljs-keyword">if</span>(node &amp;&amp; node.left) {
-            node.left = treeNodeList[node.left];
-        }
-        <span class="hljs-keyword">if</span>(node &amp;&amp; node.right){
-            node.right = treeNodeList[node.right];
+            <span class="hljs-keyword">if</span> (curFather !== <span class="hljs-number">-1</span>) {
+                allNodeList[curFather].children = [...curChildren];
+            }
+            curFather += <span class="hljs-number">1</span>;
+            curChildren = [];
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">const</span> curNode = <span class="hljs-keyword">new</span> Node(el, []);
+            allNodeList.push(curNode);
+            curChildren.push(curNode);
         }
     });
-    <span class="hljs-keyword">return</span> treeNodeList[<span class="hljs-number">0</span>];
+    <span class="hljs-comment">// &#x6700;&#x540E;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#x4E4B;&#x540E;&#x6CA1;&#x6709;null, &#x56E0;&#x6B64;&#x9700;&#x8981;&#x5BF9;&#x6700;&#x540E;&#x7684;&#x8282;&#x70B9;&#x505A;&#x5904;&#x7406;</span>
+    <span class="hljs-keyword">if</span> (curFather !== <span class="hljs-number">-1</span>) {
+        allNodeList[curFather].children = [...curChildren];
+    }
+    <span class="hljs-keyword">return</span> allNodeList[<span class="hljs-number">0</span>];
 }
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">validate</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">const</span> input = [];
-    <span class="hljs-keyword">const</span> root = initTree(input);
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;root&apos;</span>, root);
-    <span class="hljs-keyword">const</span> result = rightSideView(root);
-    <span class="hljs-built_in">console</span>.log(result);
-}
-
-<span class="hljs-comment">/**
- * @param {TreeNode} root
- * @return {number[]}
- */</span>
-<span class="hljs-keyword">var</span> rightSideView = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>{
-    <span class="hljs-keyword">if</span> (!root) <span class="hljs-keyword">return</span> [];
-    <span class="hljs-keyword">let</span> queue = [root];
-    <span class="hljs-keyword">let</span> rightSideList = [];
-    <span class="hljs-keyword">while</span>(queue.length) {
-        <span class="hljs-keyword">const</span> curLevelLen = queue.length;
-        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;curLevelLen; i++) {
-            <span class="hljs-keyword">const</span> curNode = queue.pop();
-            <span class="hljs-keyword">if</span> (i==curLevelLen<span class="hljs-number">-1</span>) {
-                <span class="hljs-comment">// &#x6700;&#x53F3;&#x4FA7;&#x8282;&#x70B9;</span>
-                rightSideList.push(curNode.val);
-            }
-            <span class="hljs-comment">// &#x5426;&#x5219;&#x66F4;&#x65B0;&#x4E0B;&#x4E00;&#x5C42;&#x8282;&#x70B9;</span>
-            <span class="hljs-keyword">if</span>(curNode.left)queue.unshift(curNode.left);
-            <span class="hljs-keyword">if</span>(curNode.right)queue.unshift(curNode.right);
-        }
-    }
-    <span class="hljs-keyword">return</span> rightSideList;
+    <span class="hljs-keyword">const</span> input = [<span class="hljs-number">1</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">8</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">9</span>,<span class="hljs-number">10</span>,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">11</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">12</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">13</span>,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">14</span>];
+    <span class="hljs-keyword">const</span> tree = initTree(input);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;tree&apos;</span>, tree);
+    <span class="hljs-keyword">const</span> res = levelOrder(tree);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;res&apos;</span>, res);
 };
 
+<span class="hljs-comment">/**
+ * @param {Node|null} root
+ * @return {number[][]}
+ */</span>
+<span class="hljs-keyword">var</span> levelOrder = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>{
+    <span class="hljs-keyword">if</span>(!root)<span class="hljs-keyword">return</span> [];
+    <span class="hljs-keyword">const</span> queue = [root];
+    <span class="hljs-keyword">let</span> res = [];
+    <span class="hljs-keyword">while</span> (queue.length) {
+        <span class="hljs-keyword">let</span> curLevel = [];
+        <span class="hljs-keyword">const</span> levelLen = queue.length;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;levelLen;i++) {
+            curNode = queue.pop();
+            curLevel.push(curNode.val);
+            <span class="hljs-keyword">if</span> (curNode.children) {
+                curNode.children.forEach(child=&gt;{
+                    queue.unshift(child);
+                });
+            }
+        }
+        res.push(curLevel);
+    }
+    <span class="hljs-keyword">return</span> res;
+};
 
 validate();
 </code></pre>
@@ -428,14 +421,10 @@ validate();
 
             
                 
-                <a href="102.html" class="navigation navigation-prev " aria-label="Previous page: 102. 二叉树的层序遍历【中等题】">
+                <a href="199.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 199. 二叉树的右视图【中等题】">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="429.html" class="navigation navigation-next " aria-label="Next page: 429. N 叉树的层序遍历【中等题】">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -444,7 +433,7 @@ validate();
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"199. 二叉树的右视图【中等题】","level":"2.2.4","depth":2,"next":{"title":"429. N 叉树的层序遍历【中等题】","level":"2.2.5","depth":2,"path":"dailycode/429.md","ref":"./dailycode/429.md","articles":[]},"previous":{"title":"102. 二叉树的层序遍历【中等题】","level":"2.2.3","depth":2,"path":"dailycode/102.md","ref":"./dailycode/102.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/199.md","mtime":"2023-01-21T08:26:35.480Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-01-24T14:24:57.122Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"429. N 叉树的层序遍历【中等题】","level":"2.2.5","depth":2,"previous":{"title":"199. 二叉树的右视图【中等题】","level":"2.2.4","depth":2,"path":"dailycode/199.md","ref":"./dailycode/199.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/429.md","mtime":"2023-01-24T14:21:18.590Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-01-24T14:24:57.122Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
