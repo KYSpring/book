@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>力扣题解 Daily Code · GitBook</title>
+        <title>104.111. 二叉树的最小/最大深度【简单题】 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="144.html" />
     
-    
-    <link rel="prev" href="../readings/destiny.html" />
+    <link rel="prev" href="515.html" />
     
 
     </head>
@@ -199,7 +197,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.2" data-path="./">
+        <li class="chapter " data-level="2.2" data-path="./">
             
                 <a href="./">
             
@@ -304,7 +302,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2.8" data-path="104_111.html">
+        <li class="chapter active" data-level="2.2.8" data-path="104_111.html">
             
                 <a href="104_111.html">
             
@@ -352,7 +350,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >力扣题解 Daily Code</a>
+        <a href=".." >104.111. 二叉树的最小/最大深度【简单题】</a>
     </h1>
 </div>
 
@@ -367,18 +365,95 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x6BCF;&#x65E5;&#x4E00;&#x9898;">&#x6BCF;&#x65E5;&#x4E00;&#x9898;</h1>
-<p>&#x65E0;&#x4ED6;&#xFF0C;&#x4FDD;&#x6301;&#x624B;&#x719F;&#x5C14;</p>
-<ul>
-<li>&#x3010;2023.1.18&#x3011; <a href="144.html">144. &#x4E8C;&#x53C9;&#x6811;&#x7684;&#x524D;&#x5E8F;&#x904D;&#x5386;&#x3010;&#x7B80;&#x5355;&#x9898;&#x3011;</a></li>
-<li>&#x3010;2023.1.19&#x3011;<a href="145_94.html">145.94 &#x4E8C;&#x53C9;&#x6811;&#x7684;&#x4E2D;&#x5E8F;&amp;&#x540E;&#x5E8F;&#x904D;&#x5386;&#x3010;&#x7B80;&#x5355;&#x9898;&#x3011;</a></li>
-<li>&#x3010;2023.1.20&#x3011;<a href="102.html">102. &#x4E8C;&#x53C9;&#x6811;&#x7684;&#x5C42;&#x5E8F;&#x904D;&#x5386;&#x3010;&#x4E2D;&#x7B49;&#x9898;&#x3011;</a></li>
-<li>&#x3010;2023.1.21&#x3011;<a href="199.html">199. &#x4E8C;&#x53C9;&#x6811;&#x7684;&#x53F3;&#x89C6;&#x56FE;&#x3010;&#x4E2D;&#x7B49;&#x9898;&#x3011;</a></li>
-<li>&#x3010;2023.1.22&#x3011;<a href="429.html">429. N &#x53C9;&#x6811;&#x7684;&#x5C42;&#x5E8F;&#x904D;&#x5386;&#x3010;&#x4E2D;&#x7B49;&#x9898;&#x3011;</a></li>
-<li>&#x3010;2023.1.23&#x3011;<a href="116.html">116. &#x586B;&#x5145;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x7684;&#x4E0B;&#x4E00;&#x4E2A;&#x53F3;&#x4FA7;&#x8282;&#x70B9;&#x6307;&#x9488;&#x3010;&#x4E2D;&#x7B49;&#x9898;&#x3011;</a></li>
-<li>&#x3010;2023.1.24&#x3011;<a href="515.html">515. &#x5728;&#x6BCF;&#x4E2A;&#x6811;&#x884C;&#x4E2D;&#x627E;&#x6700;&#x5927;&#x503C;&#x3010;&#x4E2D;&#x7B49;&#x9898;&#x3011;</a></li>
-<li>&#x3010;2023.1.25&#x3011;<a href="104_111.html">104.111. &#x4E8C;&#x53C9;&#x6811;&#x7684;&#x6700;&#x5C0F;/&#x6700;&#x5927;&#x6DF1;&#x5EA6;&#x3010;&#x7B80;&#x5355;&#x9898;&#x3011;</a></li>
-</ul>
+                                <h1 id="104111-&#x4E8C;&#x53C9;&#x6811;&#x7684;&#x6700;&#x5C0F;&#x6700;&#x5927;&#x6DF1;&#x5EA6;">104.111. &#x4E8C;&#x53C9;&#x6811;&#x7684;&#x6700;&#x5C0F;/&#x6700;&#x5927;&#x6DF1;&#x5EA6;</h1>
+<p><a href="https://leetcode.cn/problems/maximum-depth-of-binary-tree/" target="_blank">104</a>
+<a href="https://leetcode.cn/problems/minimum-depth-of-binary-tree/" target="_blank">111</a></p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// &#x5347;&#x7EA7;&#x4E00;&#x4E0B;initTree&#x7684;&#x4EE3;&#x7801;</span>
+<span class="hljs-keyword">const</span> initTree = (inputList) =&gt; {
+    <span class="hljs-keyword">const</span> total = inputList.length;
+    <span class="hljs-keyword">if</span>(!inputList[<span class="hljs-number">0</span>])<span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    inputList[<span class="hljs-number">0</span>] = <span class="hljs-keyword">new</span> TreeNode(inputList[<span class="hljs-number">0</span>]);
+    inputList.forEach((el,index) =&gt; {
+        <span class="hljs-keyword">let</span> leftP = <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">let</span> rightP = <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">if</span> (!el) <span class="hljs-keyword">return</span>;
+        <span class="hljs-keyword">if</span> (index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span> &lt; total) {
+            leftP = inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>]? <span class="hljs-keyword">new</span> TreeNode(inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>]): <span class="hljs-literal">null</span>;
+            inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>] = leftP;
+        } 
+        <span class="hljs-keyword">if</span> (index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span> &lt; total) {
+            rightP = inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>]? <span class="hljs-keyword">new</span> TreeNode(inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>]): <span class="hljs-literal">null</span>;
+            inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>] = rightP;
+        }
+        inputList[index].left = leftP;
+        inputList[index].right = rightP;
+    });
+    <span class="hljs-keyword">return</span> inputList[<span class="hljs-number">0</span>];
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">TreeNode</span>(<span class="hljs-params">val, left, right</span>) </span>{
+    <span class="hljs-keyword">this</span>.val = (val===<span class="hljs-literal">undefined</span> ? <span class="hljs-number">0</span> : val)
+    <span class="hljs-keyword">this</span>.left = (left===<span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span> : left)
+    <span class="hljs-keyword">this</span>.right = (right===<span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span> : right)
+}
+
+<span class="hljs-comment">/**
+ * @param {TreeNode} root
+ * @return {number}
+ */</span>
+<span class="hljs-keyword">var</span> maxDepth = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>{
+    <span class="hljs-keyword">if</span>(!root) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">const</span> queue = [root];
+    <span class="hljs-keyword">const</span> depList = [];
+    <span class="hljs-keyword">let</span> levelNum = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span>(queue.length) {
+        <span class="hljs-keyword">const</span> levelLen = queue.length;
+        levelNum += <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;levelLen;i++){
+            <span class="hljs-keyword">const</span> curNode = queue.pop();
+            <span class="hljs-keyword">if</span> (curNode.left) queue.unshift(curNode.left);
+            <span class="hljs-keyword">if</span> (curNode.right) queue.unshift(curNode.right);
+            <span class="hljs-keyword">if</span> (!curNode.left &amp;&amp; !curNode.right) {
+                depList.push(levelNum);
+            }
+        }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.max(...depList);
+};
+
+<span class="hljs-comment">/**
+ * @param {TreeNode} root
+ * @return {number}
+ */</span>
+<span class="hljs-keyword">var</span> minDepth = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>{
+    <span class="hljs-keyword">if</span>(!root) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">const</span> queue = [root];
+    <span class="hljs-keyword">const</span> depList = [];
+    <span class="hljs-keyword">let</span> levelNum = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span>(queue.length) {
+        <span class="hljs-keyword">const</span> levelLen = queue.length;
+        levelNum += <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;levelLen;i++){
+            <span class="hljs-keyword">const</span> curNode = queue.pop();
+            <span class="hljs-keyword">if</span> (curNode.left) queue.unshift(curNode.left);
+            <span class="hljs-keyword">if</span> (curNode.right) queue.unshift(curNode.right);
+            <span class="hljs-keyword">if</span> (!curNode.left &amp;&amp; !curNode.right) {
+                depList.push(levelNum);
+            }
+        }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.min(...depList);
+};
+
+<span class="hljs-comment">// &#x9A8C;&#x8BC1;&#x4EE3;&#x7801;</span>
+(()=&gt;{
+    <span class="hljs-keyword">const</span> input = [<span class="hljs-number">3</span>,<span class="hljs-number">9</span>,<span class="hljs-number">20</span>,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">15</span>,<span class="hljs-number">7</span>];
+    <span class="hljs-keyword">const</span> root = initTree(input);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;root&apos;</span>, root);
+    <span class="hljs-keyword">const</span> res = maxDepth(root);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;res&apos;</span>, res);
+})();
+</code></pre>
 
                                 
                                 </section>
@@ -406,14 +481,10 @@
 
             
                 
-                <a href="../readings/destiny.html" class="navigation navigation-prev " aria-label="Previous page: 【笔记】《命运》蔡崇达">
+                <a href="515.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 515. 在每个树行中找最大值【中等题】">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="144.html" class="navigation navigation-next " aria-label="Next page: 144. 二叉树的前序遍历【简单题】">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -422,7 +493,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"力扣题解 Daily Code","level":"2.2","depth":1,"next":{"title":"144. 二叉树的前序遍历【简单题】","level":"2.2.1","depth":2,"path":"dailycode/144.md","ref":"./dailycode/144.md","articles":[]},"previous":{"title":"【笔记】《命运》蔡崇达","level":"2.1.3","depth":2,"path":"readings/destiny.md","ref":"readings/destiny.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/index.md","mtime":"2023-01-25T05:13:37.854Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-01-25T05:13:43.159Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"104.111. 二叉树的最小/最大深度【简单题】","level":"2.2.8","depth":2,"previous":{"title":"515. 在每个树行中找最大值【中等题】","level":"2.2.7","depth":2,"path":"dailycode/515.md","ref":"./dailycode/515.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/104_111.md","mtime":"2023-01-25T05:10:31.042Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-01-25T05:13:43.159Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
