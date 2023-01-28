@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>101. 对称二叉树【简单题】 · GitBook</title>
+        <title>110.222. 平衡二叉树/完全二叉树的节点个数 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="226.html" />
     
-    
-    <link rel="prev" href="104_111.html" />
+    <link rel="prev" href="226.html" />
     
 
     </head>
@@ -317,7 +315,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.2.9" data-path="101.html">
+        <li class="chapter " data-level="2.2.9" data-path="101.html">
             
                 <a href="101.html">
             
@@ -343,7 +341,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2.11" data-path="202_110.html">
+        <li class="chapter active" data-level="2.2.11" data-path="202_110.html">
             
                 <a href="202_110.html">
             
@@ -391,7 +389,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >101. 对称二叉树【简单题】</a>
+        <a href=".." >110.222. 平衡二叉树/完全二叉树的节点个数</a>
     </h1>
 </div>
 
@@ -406,8 +404,9 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="101-&#x5BF9;&#x79F0;&#x4E8C;&#x53C9;&#x6811;&#x3010;&#x7B80;&#x5355;&#x9898;&#x3011;">101. &#x5BF9;&#x79F0;&#x4E8C;&#x53C9;&#x6811;&#x3010;&#x7B80;&#x5355;&#x9898;&#x3011;</h1>
-<p><a href="https://leetcode.cn/problems/symmetric-tree/" target="_blank">&#x9898;&#x76EE;&#x94FE;&#x63A5;</a></p>
+                                <h1 id="110222-&#x5E73;&#x8861;&#x4E8C;&#x53C9;&#x6811;&#x5B8C;&#x5168;&#x4E8C;&#x53C9;&#x6811;&#x7684;&#x8282;&#x70B9;&#x4E2A;&#x6570;">110.222. &#x5E73;&#x8861;&#x4E8C;&#x53C9;&#x6811;/&#x5B8C;&#x5168;&#x4E8C;&#x53C9;&#x6811;&#x7684;&#x8282;&#x70B9;&#x4E2A;&#x6570;</h1>
+<p><a href="https://leetcode.cn/problems/balanced-binary-tree/" target="_blank">110</a>
+<a href="https://leetcode.cn/problems/count-complete-tree-nodes/" target="_blank">222</a></p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// &#x5347;&#x7EA7;&#x4E00;&#x4E0B;initTree&#x7684;&#x4EE3;&#x7801;</span>
 <span class="hljs-keyword">const</span> initTree = (inputList) =&gt; {
     <span class="hljs-keyword">const</span> total = inputList.length;
@@ -416,20 +415,20 @@
     inputList.forEach((el,index) =&gt; {
         <span class="hljs-keyword">let</span> leftP = <span class="hljs-literal">null</span>;
         <span class="hljs-keyword">let</span> rightP = <span class="hljs-literal">null</span>;
-        <span class="hljs-keyword">if</span> (!el) <span class="hljs-keyword">return</span>;
+        <span class="hljs-keyword">if</span> (el === <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span>;
         <span class="hljs-keyword">if</span> (index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span> &lt; total) {
-            leftP = inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>]? <span class="hljs-keyword">new</span> TreeNode(inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>]): <span class="hljs-literal">null</span>;
+            leftP = inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>] !== <span class="hljs-literal">null</span> ? <span class="hljs-keyword">new</span> TreeNode(inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>]): <span class="hljs-literal">null</span>;
             inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>] = leftP;
         } 
         <span class="hljs-keyword">if</span> (index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span> &lt; total) {
-            rightP = inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>]? <span class="hljs-keyword">new</span> TreeNode(inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>]): <span class="hljs-literal">null</span>;
+            rightP = inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>] !== <span class="hljs-literal">null</span> ? <span class="hljs-keyword">new</span> TreeNode(inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>]): <span class="hljs-literal">null</span>;
             inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>] = rightP;
         }
         inputList[index].left = leftP;
         inputList[index].right = rightP;
     });
     <span class="hljs-keyword">return</span> inputList[<span class="hljs-number">0</span>];
-  }
+}
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">TreeNode</span>(<span class="hljs-params">val, left, right</span>) </span>{
     <span class="hljs-keyword">this</span>.val = (val===<span class="hljs-literal">undefined</span> ? <span class="hljs-number">0</span> : val)
@@ -437,35 +436,59 @@
     <span class="hljs-keyword">this</span>.right = (right===<span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span> : right)
 }
 
-<span class="hljs-keyword">const</span> compare = (left, right) =&gt; {
-    <span class="hljs-keyword">if</span> (!left &amp;&amp; !right) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
-    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!left || !right) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
-    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (left &amp;&amp; right &amp;&amp; left.val !== right.val) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
-    <span class="hljs-keyword">else</span> {
-        <span class="hljs-comment">// left &amp;&amp; right &amp;&amp; left.val === right.val</span>
-        <span class="hljs-keyword">const</span> outsideRes = compare(left.left, right.right);
-        <span class="hljs-keyword">const</span> insideRes = compare(left.right, right.left);
-        <span class="hljs-keyword">return</span> outsideRes &amp;&amp; insideRes;
+<span class="hljs-keyword">const</span> cntHeight = (root) =&gt; {
+    <span class="hljs-keyword">if</span> (!root) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">const</span> queue = [root];
+    <span class="hljs-keyword">let</span> treeHeight = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span>(queue.length) {
+        <span class="hljs-keyword">const</span> qLen = queue.length;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>; i&lt;qLen; i++) {
+        <span class="hljs-comment">// for(let i=0; i&lt; queue.length; i++) {</span>
+        <span class="hljs-comment">// &#x6CE8;&#x610F;&#xFF0C;&#x6B64;&#x5904;qlen&#x5982;&#x679C;&#x76F4;&#x63A5;&#x5199;&#x6210;queue.length&#x4F3C;&#x4E4E;&#x4F1A;&#x5F97;&#x5230;&#x4E00;&#x4E9B;&#x5947;&#x602A;&#x7684;&#x7ED3;&#x679C;&#xFF0C;leetcode&#x4F1A;&#x4E0D;&#x901A;&#x8FC7;</span>
+            <span class="hljs-keyword">const</span> curNode = queue.pop();
+            <span class="hljs-keyword">if</span> (curNode.left) queue.unshift(curNode.left);
+            <span class="hljs-keyword">if</span> (curNode.right) queue.unshift(curNode.right);
+        }
+        treeHeight += <span class="hljs-number">1</span>;
     }
+    <span class="hljs-keyword">return</span> treeHeight;
 }
 
 <span class="hljs-comment">/**
  * @param {TreeNode} root
  * @return {boolean}
  */</span>
-<span class="hljs-keyword">var</span> isSymmetric = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>{
-    <span class="hljs-keyword">return</span> compare(root.left, root.right);
+<span class="hljs-keyword">var</span> isBalanced = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>{
+    <span class="hljs-keyword">if</span> (root===<span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    <span class="hljs-keyword">if</span> (isBalanced(root.left) &amp;&amp; isBalanced(root.right)) {
+        <span class="hljs-keyword">let</span> leftH = cntHeight(root.left);
+        <span class="hljs-keyword">let</span> rightH = cntHeight(root.right);
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;root, leftH, rightH,&apos;</span>,root, leftH, rightH);
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.abs(leftH - rightH) &gt; <span class="hljs-number">1</span> ? <span class="hljs-literal">false</span>: <span class="hljs-literal">true</span>;
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
 };
 
+<span class="hljs-comment">/**
+ * O(n)&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;
+ * @param {TreeNode} root
+ * @return {number}
+ */</span>
+<span class="hljs-keyword">var</span> countNodes = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>{
+    <span class="hljs-keyword">if</span> (!root) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">const</span> leftCnt = countNodes(root.left);
+    <span class="hljs-keyword">const</span> rightCnt = countNodes(root.right);
+    <span class="hljs-keyword">return</span> leftCnt + rightCnt + <span class="hljs-number">1</span>;
+};
 
 <span class="hljs-comment">// &#x9A8C;&#x8BC1;&#x4EE3;&#x7801;</span>
 (()=&gt;{
-    <span class="hljs-keyword">const</span> input = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">4</span>,<span class="hljs-number">3</span>];
+    <span class="hljs-keyword">const</span> input =[<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">0</span>,<span class="hljs-number">7</span>,<span class="hljs-number">9</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">8</span>,<span class="hljs-number">8</span>,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">7</span>];
     <span class="hljs-keyword">const</span> root = initTree(input);
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;root&apos;</span>, root);
-    <span class="hljs-keyword">const</span> res = isSymmetric(root);
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;res&apos;</span>, res);
-  })();
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;countNodes&apos;</span>, countNodes(root));
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;isBalanced&apos;</span>, isBalanced(root));
+})();
 </code></pre>
 
                                 
@@ -494,14 +517,10 @@
 
             
                 
-                <a href="104_111.html" class="navigation navigation-prev " aria-label="Previous page: 104.111. 二叉树的最小/最大深度【简单题】">
+                <a href="226.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 226. 翻转二叉树【简单题】">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="226.html" class="navigation navigation-next " aria-label="Next page: 226. 翻转二叉树【简单题】">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -510,7 +529,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"101. 对称二叉树【简单题】","level":"2.2.9","depth":2,"next":{"title":"226. 翻转二叉树【简单题】","level":"2.2.10","depth":2,"path":"dailycode/226.md","ref":"./dailycode/226.md","articles":[]},"previous":{"title":"104.111. 二叉树的最小/最大深度【简单题】","level":"2.2.8","depth":2,"path":"dailycode/104_111.md","ref":"./dailycode/104_111.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/101.md","mtime":"2023-01-27T05:05:41.794Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-01-28T14:57:25.334Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"110.222. 平衡二叉树/完全二叉树的节点个数","level":"2.2.11","depth":2,"previous":{"title":"226. 翻转二叉树【简单题】","level":"2.2.10","depth":2,"path":"dailycode/226.md","ref":"./dailycode/226.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/202_110.md","mtime":"2023-01-28T14:54:16.259Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-01-28T14:57:25.334Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
