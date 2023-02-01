@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>404.左叶子之和【简单】 · GitBook</title>
+        <title>513. 找树左下角的值【中等】 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="513.html" />
     
-    
-    <link rel="prev" href="100.html" />
+    <link rel="prev" href="404.html" />
     
 
     </head>
@@ -382,7 +380,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.2.14" data-path="404.html">
+        <li class="chapter " data-level="2.2.14" data-path="404.html">
             
                 <a href="404.html">
             
@@ -395,7 +393,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2.15" data-path="513.html">
+        <li class="chapter active" data-level="2.2.15" data-path="513.html">
             
                 <a href="513.html">
             
@@ -443,7 +441,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >404.左叶子之和【简单】</a>
+        <a href=".." >513. 找树左下角的值【中等】</a>
     </h1>
 </div>
 
@@ -458,21 +456,26 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="404-&#x5DE6;&#x53F6;&#x5B50;&#x4E4B;&#x548C;">404. &#x5DE6;&#x53F6;&#x5B50;&#x4E4B;&#x548C;</h1>
-<p><a href="https://leetcode.cn/problems/sum-of-left-leaves/" target="_blank">&#x9898;&#x76EE;&#x94FE;&#x63A5;</a></p>
+                                <h1 id="513-&#x627E;&#x6811;&#x5DE6;&#x4E0B;&#x89D2;&#x7684;&#x503C;">513. &#x627E;&#x6811;&#x5DE6;&#x4E0B;&#x89D2;&#x7684;&#x503C;</h1>
+<p><a href="https://leetcode.cn/problems/find-bottom-left-tree-value/" target="_blank">&#x9898;&#x76EE;&#x94FE;&#x63A5;</a></p>
 <pre><code class="lang-javascript"><span class="hljs-comment">/**
  * @param {TreeNode} root
  * @return {number}
  */</span>
-<span class="hljs-keyword">var</span> sumOfLeftLeaves = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>{
-    <span class="hljs-keyword">if</span> (root === <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">let</span> leftVal = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">if</span> (root.left &amp;&amp; !root.left.left &amp;&amp; !root.left.right) {
-        leftVal = root.left.val;
-    } <span class="hljs-keyword">else</span> {
-        leftVal = sumOfLeftLeaves(root.left);
+<span class="hljs-keyword">var</span> findBottomLeftValue = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>{
+    <span class="hljs-keyword">if</span> (!root) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">const</span> queue = [root];
+    <span class="hljs-keyword">let</span> leftVal = root?.val;
+    <span class="hljs-keyword">while</span>(queue.length) {
+        <span class="hljs-keyword">const</span> levelLen = queue.length;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>; i&lt;levelLen; i++) {
+            <span class="hljs-keyword">const</span> curNode = queue.pop();
+            <span class="hljs-keyword">if</span>(i === <span class="hljs-number">0</span>) leftVal = curNode.val;
+            <span class="hljs-keyword">if</span> (curNode.left) queue.unshift(curNode.left);
+            <span class="hljs-keyword">if</span> (curNode.right) queue.unshift(curNode.right);
+        }
     }
-    <span class="hljs-keyword">return</span> leftVal + sumOfLeftLeaves(root.right);
+    <span class="hljs-keyword">return</span> leftVal;
 };
 </code></pre>
 
@@ -502,14 +505,10 @@
 
             
                 
-                <a href="100.html" class="navigation navigation-prev " aria-label="Previous page: 100.相同的树【简单】">
+                <a href="404.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 404.左叶子之和【简单】">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="513.html" class="navigation navigation-next " aria-label="Next page: 513. 找树左下角的值【中等】">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -518,7 +517,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"404.左叶子之和【简单】","level":"2.2.14","depth":2,"next":{"title":"513. 找树左下角的值【中等】","level":"2.2.15","depth":2,"path":"dailycode/513.md","ref":"./dailycode/513.md","articles":[]},"previous":{"title":"100.相同的树【简单】","level":"2.2.13","depth":2,"path":"dailycode/100.md","ref":"./dailycode/100.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/404.md","mtime":"2023-01-31T01:01:49.417Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-02-01T15:55:11.882Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"513. 找树左下角的值【中等】","level":"2.2.15","depth":2,"previous":{"title":"404.左叶子之和【简单】","level":"2.2.14","depth":2,"path":"dailycode/404.md","ref":"./dailycode/404.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/513.md","mtime":"2023-02-01T15:49:54.792Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-02-01T15:55:11.882Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
