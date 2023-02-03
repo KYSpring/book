@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>101. 对称二叉树【简单题】 · GitBook</title>
+        <title>106. 从中序与后序遍历序列构造二叉树【中等】 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="226.html" />
     
-    
-    <link rel="prev" href="104_111.html" />
+    <link rel="prev" href="112.html" />
     
 
     </head>
@@ -317,7 +315,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.2.9" data-path="101.html">
+        <li class="chapter " data-level="2.2.9" data-path="101.html">
             
                 <a href="101.html">
             
@@ -421,7 +419,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2.17" data-path="106.html">
+        <li class="chapter active" data-level="2.2.17" data-path="106.html">
             
                 <a href="106.html">
             
@@ -469,7 +467,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >101. 对称二叉树【简单题】</a>
+        <a href=".." >106. 从中序与后序遍历序列构造二叉树【中等】</a>
     </h1>
 </div>
 
@@ -484,66 +482,46 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="101-&#x5BF9;&#x79F0;&#x4E8C;&#x53C9;&#x6811;&#x3010;&#x7B80;&#x5355;&#x9898;&#x3011;">101. &#x5BF9;&#x79F0;&#x4E8C;&#x53C9;&#x6811;&#x3010;&#x7B80;&#x5355;&#x9898;&#x3011;</h1>
-<p><a href="https://leetcode.cn/problems/symmetric-tree/" target="_blank">&#x9898;&#x76EE;&#x94FE;&#x63A5;</a></p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// &#x5347;&#x7EA7;&#x4E00;&#x4E0B;initTree&#x7684;&#x4EE3;&#x7801;</span>
-<span class="hljs-keyword">const</span> initTree = (inputList) =&gt; {
-    <span class="hljs-keyword">const</span> total = inputList.length;
-    <span class="hljs-keyword">if</span>(!inputList[<span class="hljs-number">0</span>])<span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
-    inputList[<span class="hljs-number">0</span>] = <span class="hljs-keyword">new</span> TreeNode(inputList[<span class="hljs-number">0</span>]);
-    inputList.forEach((el,index) =&gt; {
-        <span class="hljs-keyword">let</span> leftP = <span class="hljs-literal">null</span>;
-        <span class="hljs-keyword">let</span> rightP = <span class="hljs-literal">null</span>;
-        <span class="hljs-keyword">if</span> (!el) <span class="hljs-keyword">return</span>;
-        <span class="hljs-keyword">if</span> (index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span> &lt; total) {
-            leftP = inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>]? <span class="hljs-keyword">new</span> TreeNode(inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>]): <span class="hljs-literal">null</span>;
-            inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>] = leftP;
-        } 
-        <span class="hljs-keyword">if</span> (index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span> &lt; total) {
-            rightP = inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>]? <span class="hljs-keyword">new</span> TreeNode(inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>]): <span class="hljs-literal">null</span>;
-            inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>] = rightP;
-        }
-        inputList[index].left = leftP;
-        inputList[index].right = rightP;
-    });
-    <span class="hljs-keyword">return</span> inputList[<span class="hljs-number">0</span>];
-  }
-
+                                <h1 id="106-&#x4ECE;&#x4E2D;&#x5E8F;&#x4E0E;&#x540E;&#x5E8F;&#x904D;&#x5386;&#x5E8F;&#x5217;&#x6784;&#x9020;&#x4E8C;&#x53C9;&#x6811;">106. &#x4ECE;&#x4E2D;&#x5E8F;&#x4E0E;&#x540E;&#x5E8F;&#x904D;&#x5386;&#x5E8F;&#x5217;&#x6784;&#x9020;&#x4E8C;&#x53C9;&#x6811;</h1>
+<p><a href="https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/" target="_blank">&#x9898;&#x76EE;&#x94FE;&#x63A5;</a></p>
+<pre><code class="lang-javascript"><span class="hljs-comment">/**
+ * Definition for a binary tree node.
+ */</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">TreeNode</span>(<span class="hljs-params">val, left, right</span>) </span>{
     <span class="hljs-keyword">this</span>.val = (val===<span class="hljs-literal">undefined</span> ? <span class="hljs-number">0</span> : val)
     <span class="hljs-keyword">this</span>.left = (left===<span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span> : left)
     <span class="hljs-keyword">this</span>.right = (right===<span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span> : right)
 }
 
-<span class="hljs-keyword">const</span> compare = (left, right) =&gt; {
-    <span class="hljs-keyword">if</span> (!left &amp;&amp; !right) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
-    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!left || !right) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
-    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (left &amp;&amp; right &amp;&amp; left.val !== right.val) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
-    <span class="hljs-keyword">else</span> {
-        <span class="hljs-comment">// left &amp;&amp; right &amp;&amp; left.val === right.val</span>
-        <span class="hljs-keyword">const</span> outsideRes = compare(left.left, right.right);
-        <span class="hljs-keyword">const</span> insideRes = compare(left.right, right.left);
-        <span class="hljs-keyword">return</span> outsideRes &amp;&amp; insideRes;
-    }
-}
-
 <span class="hljs-comment">/**
- * @param {TreeNode} root
- * @return {boolean}
+ * @param {number[]} inorder
+ * @param {number[]} postorder
+ * @return {TreeNode}
  */</span>
-<span class="hljs-keyword">var</span> isSymmetric = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>{
-    <span class="hljs-keyword">return</span> compare(root.left, root.right);
+<span class="hljs-keyword">var</span> buildTree = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">inorder, postorder</span>) </span>{
+    <span class="hljs-comment">// console.log(inorder, postorder);</span>
+    <span class="hljs-keyword">if</span> (!inorder.length || !postorder.length) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">if</span> (inorder.length === <span class="hljs-number">1</span> &amp;&amp; postorder.length === <span class="hljs-number">1</span> &amp;&amp; inorder[<span class="hljs-number">0</span>] === postorder[<span class="hljs-number">0</span>]) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> TreeNode(inorder[<span class="hljs-number">0</span>]);
+    }
+    <span class="hljs-keyword">const</span> curRootVal = postorder.pop();
+    <span class="hljs-keyword">const</span> newRoot = <span class="hljs-keyword">new</span> TreeNode(curRootVal);
+    <span class="hljs-comment">// console.log(&apos;newRoot&apos;, newRoot);</span>
+    <span class="hljs-keyword">const</span> splitPos = inorder.findIndex((it)=&gt;it === curRootVal);
+    <span class="hljs-keyword">const</span> valListLeft = inorder.slice(<span class="hljs-number">0</span>,splitPos);
+    <span class="hljs-keyword">const</span> valListRight = inorder.slice(splitPos+<span class="hljs-number">1</span>, inorder.length);
+    <span class="hljs-keyword">const</span> leftTree = buildTree(valListLeft, postorder.slice(<span class="hljs-number">0</span>, valListLeft.length));
+    <span class="hljs-keyword">const</span> rightTree = buildTree(valListRight, postorder.slice(valListLeft.length, valListLeft.length + valListRight.length));
+    newRoot.left = leftTree;
+    newRoot.right = rightTree;
+    <span class="hljs-keyword">return</span> newRoot;
 };
-
 
 <span class="hljs-comment">// &#x9A8C;&#x8BC1;&#x4EE3;&#x7801;</span>
 (()=&gt;{
-    <span class="hljs-keyword">const</span> input = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">4</span>,<span class="hljs-number">3</span>];
-    <span class="hljs-keyword">const</span> root = initTree(input);
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;root&apos;</span>, root);
-    <span class="hljs-keyword">const</span> res = isSymmetric(root);
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;res&apos;</span>, res);
-  })();
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;buildTree&apos;</span>, buildTree([<span class="hljs-number">9</span>,<span class="hljs-number">3</span>,<span class="hljs-number">15</span>,<span class="hljs-number">20</span>,<span class="hljs-number">7</span>], [<span class="hljs-number">9</span>,<span class="hljs-number">15</span>,<span class="hljs-number">7</span>,<span class="hljs-number">20</span>,<span class="hljs-number">3</span>]));
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;buildTree&apos;</span>, buildTree([<span class="hljs-number">-1</span>], [<span class="hljs-number">-1</span>]));
+})();
 </code></pre>
 
                                 
@@ -572,14 +550,10 @@
 
             
                 
-                <a href="104_111.html" class="navigation navigation-prev " aria-label="Previous page: 104.111. 二叉树的最小/最大深度【简单题】">
+                <a href="112.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 112. 路径总和【简单】">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="226.html" class="navigation navigation-next " aria-label="Next page: 226. 翻转二叉树【简单题】">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -588,7 +562,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"101. 对称二叉树【简单题】","level":"2.2.9","depth":2,"next":{"title":"226. 翻转二叉树【简单题】","level":"2.2.10","depth":2,"path":"dailycode/226.md","ref":"./dailycode/226.md","articles":[]},"previous":{"title":"104.111. 二叉树的最小/最大深度【简单题】","level":"2.2.8","depth":2,"path":"dailycode/104_111.md","ref":"./dailycode/104_111.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/101.md","mtime":"2023-01-27T05:05:41.794Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-02-03T01:27:03.897Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"106. 从中序与后序遍历序列构造二叉树【中等】","level":"2.2.17","depth":2,"previous":{"title":"112. 路径总和【简单】","level":"2.2.16","depth":2,"path":"dailycode/112.md","ref":"./dailycode/112.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/106.md","mtime":"2023-02-03T01:25:42.522Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-02-03T01:27:03.897Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
