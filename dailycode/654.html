@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>100.相同的树【简单】 · GitBook</title>
+        <title>654. 最大二叉树【中等题】 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="404.html" />
     
-    
-    <link rel="prev" href="257.html" />
+    <link rel="prev" href="106.html" />
     
 
     </head>
@@ -369,7 +367,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.2.13" data-path="100.html">
+        <li class="chapter " data-level="2.2.13" data-path="100.html">
             
                 <a href="100.html">
             
@@ -434,7 +432,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2.18" data-path="654.html">
+        <li class="chapter active" data-level="2.2.18" data-path="654.html">
             
                 <a href="654.html">
             
@@ -482,7 +480,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >100.相同的树【简单】</a>
+        <a href=".." >654. 最大二叉树【中等题】</a>
     </h1>
 </div>
 
@@ -497,60 +495,34 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="100&#x76F8;&#x540C;&#x7684;&#x6811;&#x3010;&#x7B80;&#x5355;&#x3011;">100.&#x76F8;&#x540C;&#x7684;&#x6811;&#x3010;&#x7B80;&#x5355;&#x3011;</h1>
-<p><a href="https://leetcode.cn/problems/same-tree/submissions/" target="_blank">&#x9898;&#x76EE;&#x94FE;&#x63A5;</a></p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// &#x5347;&#x7EA7;&#x4E00;&#x4E0B;initTree&#x7684;&#x4EE3;&#x7801;</span>
-<span class="hljs-keyword">const</span> initTree = (inputList) =&gt; {
-    <span class="hljs-keyword">const</span> total = inputList.length;
-    <span class="hljs-keyword">if</span>(!inputList[<span class="hljs-number">0</span>])<span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
-    inputList[<span class="hljs-number">0</span>] = <span class="hljs-keyword">new</span> TreeNode(inputList[<span class="hljs-number">0</span>]);
-    inputList.forEach((el,index) =&gt; {
-        <span class="hljs-keyword">let</span> leftP = <span class="hljs-literal">null</span>;
-        <span class="hljs-keyword">let</span> rightP = <span class="hljs-literal">null</span>;
-        <span class="hljs-keyword">if</span> (el === <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span>;
-        <span class="hljs-keyword">if</span> (index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span> &lt; total) {
-            leftP = inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>] !== <span class="hljs-literal">null</span> ? <span class="hljs-keyword">new</span> TreeNode(inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>]): <span class="hljs-literal">null</span>;
-            inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>] = leftP;
-        } 
-        <span class="hljs-keyword">if</span> (index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span> &lt; total) {
-            rightP = inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>] !== <span class="hljs-literal">null</span> ? <span class="hljs-keyword">new</span> TreeNode(inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>]): <span class="hljs-literal">null</span>;
-            inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>] = rightP;
-        }
-        inputList[index].left = leftP;
-        inputList[index].right = rightP;
-    });
-    <span class="hljs-keyword">return</span> inputList[<span class="hljs-number">0</span>];
-}
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">TreeNode</span>(<span class="hljs-params">val, left, right</span>) </span>{
-    <span class="hljs-keyword">this</span>.val = (val===<span class="hljs-literal">undefined</span> ? <span class="hljs-number">0</span> : val)
-    <span class="hljs-keyword">this</span>.left = (left===<span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span> : left)
-    <span class="hljs-keyword">this</span>.right = (right===<span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span> : right)
-}
-
-<span class="hljs-comment">/**
- * @param {TreeNode} p
- * @param {TreeNode} q
- * @return {boolean}
- */</span>
-<span class="hljs-keyword">var</span> isSameTree = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">p, q</span>) </span>{
-    <span class="hljs-keyword">if</span> (p === <span class="hljs-literal">null</span> &amp;&amp; q === <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
-    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (p === <span class="hljs-literal">null</span> || q === <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
-    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (p.val!== q.val) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
-    <span class="hljs-keyword">else</span> {
-        <span class="hljs-keyword">const</span> leftRes = isSameTree(p.left, q.left);
-        <span class="hljs-keyword">const</span> rightRes = isSameTree(p.right, q.right);
-        <span class="hljs-keyword">return</span> leftRes &amp;&amp; rightRes;
+                                <h1 id="654-&#x6700;&#x5927;&#x4E8C;&#x53C9;&#x6811;&#x3010;&#x4E2D;&#x7B49;&#x9898;&#x3011;">654. &#x6700;&#x5927;&#x4E8C;&#x53C9;&#x6811;&#x3010;&#x4E2D;&#x7B49;&#x9898;&#x3011;</h1>
+<p><a href="https://leetcode.cn/problems/maximum-binary-tree/" target="_blank">&#x9898;&#x76EE;&#x94FE;&#x63A5;</a></p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">class</span> TreeNode {
+    val: <span class="hljs-built_in">number</span>
+    left: TreeNode | <span class="hljs-literal">null</span>
+    right: TreeNode | <span class="hljs-literal">null</span>
+    <span class="hljs-keyword">constructor</span>(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+        <span class="hljs-keyword">this</span>.val = (val===<span class="hljs-literal">undefined</span> ? <span class="hljs-number">0</span> : val)
+        <span class="hljs-keyword">this</span>.left = (left===<span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span> : left)
+        <span class="hljs-keyword">this</span>.right = (right===<span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span> : right)
     }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">constructMaximumBinaryTree</span>(<span class="hljs-params">nums: <span class="hljs-built_in">number</span>[]</span>): <span class="hljs-title">TreeNode</span> | <span class="hljs-title">null</span> </span>{
+    <span class="hljs-keyword">if</span> (!nums.length) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">if</span> (nums.length === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> TreeNode(nums[<span class="hljs-number">0</span>]);
+    <span class="hljs-keyword">const</span> maxVal = <span class="hljs-built_in">Math</span>.max(...nums);
+    <span class="hljs-keyword">const</span> maxIndex = nums.findIndex(it =&gt; it === maxVal);
+    <span class="hljs-keyword">const</span> leftRoot = constructMaximumBinaryTree(nums.slice(<span class="hljs-number">0</span>, maxIndex));
+    <span class="hljs-keyword">const</span> rightRoot = constructMaximumBinaryTree(nums.slice(maxIndex+<span class="hljs-number">1</span>,nums.length));
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> TreeNode(maxVal, leftRoot, rightRoot);
 };
+
 
 <span class="hljs-comment">// &#x9A8C;&#x8BC1;&#x4EE3;&#x7801;</span>
 (()=&gt;{
-    <span class="hljs-keyword">const</span> input = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>];
-    <span class="hljs-keyword">const</span> root = initTree(input);
-    <span class="hljs-keyword">const</span> input2 = [<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>];
-    <span class="hljs-keyword">const</span> root2 = initTree(input2);
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;binaryTreePaths&apos;</span>, isSameTree(root, root2));
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;constructMaximumBinaryTree&apos;</span>, constructMaximumBinaryTree([<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">6</span>,<span class="hljs-number">0</span>,<span class="hljs-number">5</span>]));
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;constructMaximumBinaryTree&apos;</span>, constructMaximumBinaryTree([<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>]));
 })();
 </code></pre>
 
@@ -580,14 +552,10 @@
 
             
                 
-                <a href="257.html" class="navigation navigation-prev " aria-label="Previous page: 257.二叉树的所有路径【简单题】">
+                <a href="106.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 106. 从中序与后序遍历序列构造二叉树【中等】">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="404.html" class="navigation navigation-next " aria-label="Next page: 404.左叶子之和【简单】">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -596,7 +564,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"100.相同的树【简单】","level":"2.2.13","depth":2,"next":{"title":"404.左叶子之和【简单】","level":"2.2.14","depth":2,"path":"dailycode/404.md","ref":"./dailycode/404.md","articles":[]},"previous":{"title":"257.二叉树的所有路径【简单题】","level":"2.2.12","depth":2,"path":"dailycode/257.md","ref":"./dailycode/257.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/100.md","mtime":"2023-01-30T01:13:03.360Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-02-04T05:46:56.020Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"654. 最大二叉树【中等题】","level":"2.2.18","depth":2,"previous":{"title":"106. 从中序与后序遍历序列构造二叉树【中等】","level":"2.2.17","depth":2,"path":"dailycode/106.md","ref":"./dailycode/106.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/654.md","mtime":"2023-02-04T05:44:23.193Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-02-04T05:46:56.020Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
