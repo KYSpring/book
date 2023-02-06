@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>513. 找树左下角的值【中等】 · GitBook</title>
+        <title>700. 二叉搜索树中的搜索【简单】 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="112.html" />
     
-    
-    <link rel="prev" href="404.html" />
+    <link rel="prev" href="617.html" />
     
 
     </head>
@@ -395,7 +393,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.2.15" data-path="513.html">
+        <li class="chapter " data-level="2.2.15" data-path="513.html">
             
                 <a href="513.html">
             
@@ -460,7 +458,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2.20" data-path="700.html">
+        <li class="chapter active" data-level="2.2.20" data-path="700.html">
             
                 <a href="700.html">
             
@@ -508,7 +506,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >513. 找树左下角的值【中等】</a>
+        <a href=".." >700. 二叉搜索树中的搜索【简单】</a>
     </h1>
 </div>
 
@@ -523,27 +521,56 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="513-&#x627E;&#x6811;&#x5DE6;&#x4E0B;&#x89D2;&#x7684;&#x503C;">513. &#x627E;&#x6811;&#x5DE6;&#x4E0B;&#x89D2;&#x7684;&#x503C;</h1>
-<p><a href="https://leetcode.cn/problems/find-bottom-left-tree-value/" target="_blank">&#x9898;&#x76EE;&#x94FE;&#x63A5;</a></p>
-<pre><code class="lang-javascript"><span class="hljs-comment">/**
- * @param {TreeNode} root
- * @return {number}
- */</span>
-<span class="hljs-keyword">var</span> findBottomLeftValue = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>{
-    <span class="hljs-keyword">if</span> (!root) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
-    <span class="hljs-keyword">const</span> queue = [root];
-    <span class="hljs-keyword">let</span> leftVal = root?.val;
-    <span class="hljs-keyword">while</span>(queue.length) {
-        <span class="hljs-keyword">const</span> levelLen = queue.length;
-        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>; i&lt;levelLen; i++) {
-            <span class="hljs-keyword">const</span> curNode = queue.pop();
-            <span class="hljs-keyword">if</span>(i === <span class="hljs-number">0</span>) leftVal = curNode.val;
-            <span class="hljs-keyword">if</span> (curNode.left) queue.unshift(curNode.left);
-            <span class="hljs-keyword">if</span> (curNode.right) queue.unshift(curNode.right);
+                                <h1 id="700-&#x4E8C;&#x53C9;&#x641C;&#x7D22;&#x6811;&#x4E2D;&#x7684;&#x641C;&#x7D22;&#x3010;&#x7B80;&#x5355;&#x3011;">700. &#x4E8C;&#x53C9;&#x641C;&#x7D22;&#x6811;&#x4E2D;&#x7684;&#x641C;&#x7D22;&#x3010;&#x7B80;&#x5355;&#x3011;</h1>
+<p><a href="https://leetcode.cn/problems/search-in-a-binary-search-tree/" target="_blank">&#x9898;&#x76EE;&#x94FE;&#x63A5;</a></p>
+<pre><code class="lang-typescript"><span class="hljs-comment">// &#x5DE5;&#x5177;&#x51FD;&#x6570;</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> initTree = (inputList: <span class="hljs-built_in">any</span>[]) =&gt; {
+    <span class="hljs-keyword">const</span> total = inputList.length;
+    <span class="hljs-keyword">if</span>(!inputList[<span class="hljs-number">0</span>])<span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    inputList[<span class="hljs-number">0</span>] = <span class="hljs-keyword">new</span> TreeNode(inputList[<span class="hljs-number">0</span>]);
+    inputList.forEach((el: <span class="hljs-built_in">any</span>, index) =&gt; {
+        <span class="hljs-keyword">let</span> leftP: (<span class="hljs-literal">null</span> | TreeNode) = <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">let</span> rightP: (<span class="hljs-literal">null</span> | TreeNode)  = <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">if</span> (el === <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span>;
+        <span class="hljs-keyword">if</span> (index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span> &lt; total) {
+            leftP = inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>] !== <span class="hljs-literal">null</span> ? <span class="hljs-keyword">new</span> TreeNode(inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>]): <span class="hljs-literal">null</span>;
+            inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>] = leftP;
+        } 
+        <span class="hljs-keyword">if</span> (index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span> &lt; total) {
+            rightP = inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>] !== <span class="hljs-literal">null</span> ? <span class="hljs-keyword">new</span> TreeNode(inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>]): <span class="hljs-literal">null</span>;
+            inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>] = rightP;
         }
+        inputList[index].left = leftP;
+        inputList[index].right = rightP;
+    });
+    <span class="hljs-keyword">return</span> inputList[<span class="hljs-number">0</span>];
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> TreeNode {
+    val: <span class="hljs-built_in">number</span>
+    left: TreeNode | <span class="hljs-literal">null</span>
+    right: TreeNode | <span class="hljs-literal">null</span>
+    <span class="hljs-keyword">constructor</span>(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+        <span class="hljs-keyword">this</span>.val = (val===<span class="hljs-literal">undefined</span> ? <span class="hljs-number">0</span> : val)
+        <span class="hljs-keyword">this</span>.left = (left===<span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span> : left)
+        <span class="hljs-keyword">this</span>.right = (right===<span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span> : right)
     }
-    <span class="hljs-keyword">return</span> leftVal;
+}
+</code></pre>
+<pre><code class="lang-typescript"><span class="hljs-comment">// &#x9898;&#x89E3;</span>
+<span class="hljs-keyword">import</span> { initTree, TreeNode } from <span class="hljs-string">&apos;./utils/ts-index&apos;</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">searchBST</span>(<span class="hljs-params">root: TreeNode | <span class="hljs-literal">null</span>, val: <span class="hljs-built_in">number</span></span>): <span class="hljs-title">TreeNode</span> | <span class="hljs-title">null</span> </span>{
+    <span class="hljs-keyword">if</span> (!root) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">if</span> (val === root.val) <span class="hljs-keyword">return</span> root;
+    <span class="hljs-keyword">if</span> (val &lt; root.val) <span class="hljs-keyword">return</span> searchBST(root.left, val);
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> searchBST(root.right, val);
 };
+
+(()=&gt; {
+    <span class="hljs-keyword">const</span> root = initTree([<span class="hljs-number">4</span>,<span class="hljs-number">2</span>,<span class="hljs-number">7</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>]);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;searchBST&apos;</span>, searchBST(root, <span class="hljs-number">2</span>));
+})();
 </code></pre>
 
                                 
@@ -572,14 +599,10 @@
 
             
                 
-                <a href="404.html" class="navigation navigation-prev " aria-label="Previous page: 404.左叶子之和【简单】">
+                <a href="617.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 617. 合并二叉树-TS版【简单题】">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="112.html" class="navigation navigation-next " aria-label="Next page: 112. 路径总和【简单】">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -588,7 +611,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"513. 找树左下角的值【中等】","level":"2.2.15","depth":2,"next":{"title":"112. 路径总和【简单】","level":"2.2.16","depth":2,"path":"dailycode/112.md","ref":"./dailycode/112.md","articles":[]},"previous":{"title":"404.左叶子之和【简单】","level":"2.2.14","depth":2,"path":"dailycode/404.md","ref":"./dailycode/404.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/513.md","mtime":"2023-02-01T15:49:54.792Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-02-06T01:01:31.434Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"700. 二叉搜索树中的搜索【简单】","level":"2.2.20","depth":2,"previous":{"title":"617. 合并二叉树-TS版【简单题】","level":"2.2.19","depth":2,"path":"dailycode/617.md","ref":"./dailycode/617.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/700.md","mtime":"2023-02-06T01:00:31.142Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-02-06T01:01:31.434Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
