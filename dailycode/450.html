@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>654. 最大二叉树【中等题】 · GitBook</title>
+        <title>450. 删除二叉搜索树中的节点【中等】 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="617.html" />
     
-    
-    <link rel="prev" href="106.html" />
+    <link rel="prev" href="701.html" />
     
 
     </head>
@@ -434,7 +432,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.2.18" data-path="654.html">
+        <li class="chapter " data-level="2.2.18" data-path="654.html">
             
                 <a href="654.html">
             
@@ -538,7 +536,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2.26" data-path="450.html">
+        <li class="chapter active" data-level="2.2.26" data-path="450.html">
             
                 <a href="450.html">
             
@@ -586,7 +584,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >654. 最大二叉树【中等题】</a>
+        <a href=".." >450. 删除二叉搜索树中的节点【中等】</a>
     </h1>
 </div>
 
@@ -601,35 +599,34 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="654-&#x6700;&#x5927;&#x4E8C;&#x53C9;&#x6811;-ts&#x7248;&#x3010;&#x4E2D;&#x7B49;&#x9898;&#x3011;">654. &#x6700;&#x5927;&#x4E8C;&#x53C9;&#x6811;-TS&#x7248;&#x3010;&#x4E2D;&#x7B49;&#x9898;&#x3011;</h1>
-<p><a href="https://leetcode.cn/problems/maximum-binary-tree/" target="_blank">&#x9898;&#x76EE;&#x94FE;&#x63A5;</a></p>
-<pre><code class="lang-typescript"><span class="hljs-keyword">class</span> TreeNode {
-    val: <span class="hljs-built_in">number</span>
-    left: TreeNode | <span class="hljs-literal">null</span>
-    right: TreeNode | <span class="hljs-literal">null</span>
-    <span class="hljs-keyword">constructor</span>(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
-        <span class="hljs-keyword">this</span>.val = (val===<span class="hljs-literal">undefined</span> ? <span class="hljs-number">0</span> : val)
-        <span class="hljs-keyword">this</span>.left = (left===<span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span> : left)
-        <span class="hljs-keyword">this</span>.right = (right===<span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span> : right)
+                                <h1 id="450-&#x5220;&#x9664;&#x4E8C;&#x53C9;&#x641C;&#x7D22;&#x6811;&#x4E2D;&#x7684;&#x8282;&#x70B9;">450. &#x5220;&#x9664;&#x4E8C;&#x53C9;&#x641C;&#x7D22;&#x6811;&#x4E2D;&#x7684;&#x8282;&#x70B9;</h1>
+<p><a href="https://leetcode.cn/problems/delete-node-in-a-bst/" target="_blank">&#x9898;&#x76EE;&#x94FE;&#x63A5;</a></p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> getMin = (root: TreeNode): <span class="hljs-built_in">number</span> =&gt; {
+    <span class="hljs-keyword">let</span> curNode = root;
+    <span class="hljs-keyword">while</span>(curNode.left) {
+        curNode = curNode.left
     }
-}
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">constructMaximumBinaryTree</span>(<span class="hljs-params">nums: <span class="hljs-built_in">number</span>[]</span>): <span class="hljs-title">TreeNode</span> | <span class="hljs-title">null</span> </span>{
-    <span class="hljs-keyword">if</span> (!nums.length) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
-    <span class="hljs-keyword">if</span> (nums.length === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> TreeNode(nums[<span class="hljs-number">0</span>]);
-    <span class="hljs-keyword">const</span> maxVal = <span class="hljs-built_in">Math</span>.max(...nums);
-    <span class="hljs-keyword">const</span> maxIndex = nums.findIndex(it =&gt; it === maxVal);
-    <span class="hljs-keyword">const</span> leftRoot = constructMaximumBinaryTree(nums.slice(<span class="hljs-number">0</span>, maxIndex));
-    <span class="hljs-keyword">const</span> rightRoot = constructMaximumBinaryTree(nums.slice(maxIndex+<span class="hljs-number">1</span>,nums.length));
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> TreeNode(maxVal, leftRoot, rightRoot);
+    <span class="hljs-keyword">return</span> curNode.val;
 };
 
-
-<span class="hljs-comment">// &#x9A8C;&#x8BC1;&#x4EE3;&#x7801;</span>
-(()=&gt;{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;constructMaximumBinaryTree&apos;</span>, constructMaximumBinaryTree([<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">6</span>,<span class="hljs-number">0</span>,<span class="hljs-number">5</span>]));
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;constructMaximumBinaryTree&apos;</span>, constructMaximumBinaryTree([<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>]));
-})();
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">deleteNode</span>(<span class="hljs-params">root: TreeNode | <span class="hljs-literal">null</span>, key: <span class="hljs-built_in">number</span></span>): <span class="hljs-title">TreeNode</span> | <span class="hljs-title">null</span> </span>{
+    <span class="hljs-keyword">if</span> (!root) <span class="hljs-keyword">return</span> root;
+    <span class="hljs-keyword">if</span> (key &lt; root.val) {
+        root.left = deleteNode(root.left, key);
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (key &gt; root.val) {
+        root.right = deleteNode(root.right, key);
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (root.val === key) {
+        <span class="hljs-keyword">if</span> (root.right) {
+            <span class="hljs-keyword">const</span> newRoot = <span class="hljs-keyword">new</span> TreeNode(getMin(root.right));
+            newRoot.left = root.left;
+            newRoot.right = deleteNode(root.right, newRoot.val);
+            root = newRoot;
+        } <span class="hljs-keyword">else</span> {
+            root = root.left;
+        }
+    }
+    <span class="hljs-keyword">return</span> root;
+};
 </code></pre>
 
                                 
@@ -658,14 +655,10 @@
 
             
                 
-                <a href="106.html" class="navigation navigation-prev " aria-label="Previous page: 106. 从中序与后序遍历序列构造二叉树【中等】">
+                <a href="701.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 701. 二叉搜索树中的插入操作【中等】">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="617.html" class="navigation navigation-next " aria-label="Next page: 617. 合并二叉树-TS版【简单题】">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -674,7 +667,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"654. 最大二叉树【中等题】","level":"2.2.18","depth":2,"next":{"title":"617. 合并二叉树-TS版【简单题】","level":"2.2.19","depth":2,"path":"dailycode/617.md","ref":"./dailycode/617.md","articles":[]},"previous":{"title":"106. 从中序与后序遍历序列构造二叉树【中等】","level":"2.2.17","depth":2,"path":"dailycode/106.md","ref":"./dailycode/106.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/654.md","mtime":"2023-02-05T17:47:31.989Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-02-11T18:20:35.063Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"450. 删除二叉搜索树中的节点【中等】","level":"2.2.26","depth":2,"previous":{"title":"701. 二叉搜索树中的插入操作【中等】","level":"2.2.25","depth":2,"path":"dailycode/701.md","ref":"./dailycode/701.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/450.md","mtime":"2023-02-11T18:18:25.709Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-02-11T18:20:35.063Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
