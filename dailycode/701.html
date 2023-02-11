@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>515. 在每个树行中找最大值【中等题】 · GitBook</title>
+        <title>701. 二叉搜索树中的插入操作【中等】 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="104_111.html" />
     
-    
-    <link rel="prev" href="116.html" />
+    <link rel="prev" href="236.html" />
     
 
     </head>
@@ -291,7 +289,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.2.7" data-path="515.html">
+        <li class="chapter " data-level="2.2.7" data-path="515.html">
             
                 <a href="515.html">
             
@@ -525,7 +523,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2.25" data-path="701.html">
+        <li class="chapter active" data-level="2.2.25" data-path="701.html">
             
                 <a href="701.html">
             
@@ -573,7 +571,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >515. 在每个树行中找最大值【中等题】</a>
+        <a href=".." >701. 二叉搜索树中的插入操作【中等】</a>
     </h1>
 </div>
 
@@ -588,75 +586,27 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="515-&#x5728;&#x6BCF;&#x4E2A;&#x6811;&#x884C;&#x4E2D;&#x627E;&#x6700;&#x5927;&#x503C;&#x3010;&#x4E2D;&#x7B49;&#x9898;&#x3011;">515. &#x5728;&#x6BCF;&#x4E2A;&#x6811;&#x884C;&#x4E2D;&#x627E;&#x6700;&#x5927;&#x503C;&#x3010;&#x4E2D;&#x7B49;&#x9898;&#x3011;</h1>
-<p><a href="https://leetcode.cn/problems/find-largest-value-in-each-tree-row/" target="_blank">&#x9898;&#x76EE;&#x94FE;&#x63A5;</a></p>
-<pre><code class="lang-javascript">
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">TreeNode</span>(<span class="hljs-params">val,left,right</span>) </span>{
-    <span class="hljs-keyword">this</span>.val = (val===<span class="hljs-literal">undefined</span> ? <span class="hljs-number">0</span> : val);
-    <span class="hljs-keyword">this</span>.left = (left===<span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span> : left);
-    <span class="hljs-keyword">this</span>.right = (right===<span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span>: right);
-}
+                                <h1 id="701-&#x4E8C;&#x53C9;&#x641C;&#x7D22;&#x6811;&#x4E2D;&#x7684;&#x63D2;&#x5165;&#x64CD;&#x4F5C;">701. &#x4E8C;&#x53C9;&#x641C;&#x7D22;&#x6811;&#x4E2D;&#x7684;&#x63D2;&#x5165;&#x64CD;&#x4F5C;</h1>
+<p><a href="https://leetcode.cn/problems/insert-into-a-binary-search-tree/" target="_blank">&#x9898;&#x76EE;&#x94FE;&#x63A5;</a></p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { initTree, TreeNode } from <span class="hljs-string">&apos;./utils/ts-index&apos;</span>;
 
-<span class="hljs-comment">/**
- * &#x8FD8;&#x539F;&#x4E00;&#x68F5;&#x6EE1;&#x4E8C;&#x53C9;&#x6811;(&#x4F3C;&#x4E4E;&#x548C;&#x9898;&#x76EE;&#x7528;&#x4F8B;&#x4E0D;&#x592A;&#x4E00;&#x6837;&#xFF1F;)
- * @param {number[]} valList 
- * @returns {TreeNode root}
- */</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">initTree</span>(<span class="hljs-params">valList</span>) </span>{
-    <span class="hljs-keyword">const</span> treeNodeList = [];
-    <span class="hljs-keyword">const</span> sum = valList.length;
-    valList.forEach((el, index) =&gt; {
-        <span class="hljs-keyword">if</span> (!el) {
-            treeNodeList.push(<span class="hljs-literal">null</span>);
-            <span class="hljs-keyword">return</span>;
-        }
-        <span class="hljs-keyword">const</span> leftIndex = index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span> &lt; sum ? index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>: <span class="hljs-literal">null</span>;
-        <span class="hljs-keyword">const</span>  rightIndex = index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span> &lt; sum ? index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span> :<span class="hljs-literal">null</span>;
-        <span class="hljs-keyword">const</span> newNode = <span class="hljs-keyword">new</span> TreeNode(el, leftIndex, rightIndex);
-        treeNodeList.push(newNode);
-    });
-    treeNodeList.forEach(node=&gt;{
-        <span class="hljs-keyword">if</span>(node &amp;&amp; node.left) {
-            node.left = treeNodeList[node.left];
-        }
-        <span class="hljs-keyword">if</span>(node &amp;&amp; node.right){
-            node.right = treeNodeList[node.right];
-        }
-    });
-    <span class="hljs-keyword">return</span> treeNodeList[<span class="hljs-number">0</span>];
-}
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">validate</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">const</span> input =  [<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">5</span>,<span class="hljs-number">3</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">9</span>];
-    <span class="hljs-keyword">const</span> root = initTree(input);
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;root&apos;</span>, root);
-    <span class="hljs-keyword">const</span> result = largestValues(root);
-    <span class="hljs-built_in">console</span>.log(result);
-}
-
-<span class="hljs-comment">/**
- * @param {TreeNode} root
- * @return {number[]}
- */</span>
-<span class="hljs-keyword">var</span> largestValues = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>{
-    <span class="hljs-keyword">if</span>(!root)<span class="hljs-keyword">return</span> [];
-    <span class="hljs-keyword">const</span> queue = [root];
-    <span class="hljs-keyword">let</span> res = [];
-    <span class="hljs-keyword">while</span>(queue.length) {
-        <span class="hljs-keyword">let</span> curLevel = [];
-        <span class="hljs-keyword">const</span> levelLen = queue.length;
-        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;levelLen;i++) {
-            <span class="hljs-keyword">const</span> curNode = queue.pop();
-            curLevel.push(curNode.val);
-            <span class="hljs-keyword">if</span>(curNode.left)queue.unshift(curNode.left);
-            <span class="hljs-keyword">if</span>(curNode.right)queue.unshift(curNode.right);
-        }
-        res.push(<span class="hljs-built_in">Math</span>.max(...curLevel));
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">insertIntoBST</span>(<span class="hljs-params">root: TreeNode | <span class="hljs-literal">null</span>, val: <span class="hljs-built_in">number</span></span>): <span class="hljs-title">TreeNode</span> | <span class="hljs-title">null</span> </span>{
+    <span class="hljs-keyword">if</span> (!root) <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> TreeNode(val);
+    <span class="hljs-keyword">if</span> (val &gt; root.val) {
+        <span class="hljs-comment">// &#x8FDB;&#x5165;&#x53F3;&#x5B50;&#x6811;</span>
+        root.right = insertIntoBST(root.right, val);
     }
-    <span class="hljs-keyword">return</span> res;
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (val &lt; root.val) {
+        <span class="hljs-comment">// &#x8FDB;&#x5165;&#x5DE6;&#x5B50;&#x6811;</span>
+        root.left = insertIntoBST(root.left, val);
+    }
+    <span class="hljs-keyword">return</span> root;
 };
 
-validate();
+(()=&gt; {
+    <span class="hljs-keyword">const</span> root = initTree([<span class="hljs-number">4</span>,<span class="hljs-number">2</span>,<span class="hljs-number">7</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>]);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;insertIntoBST&apos;</span>, insertIntoBST(root, <span class="hljs-number">6</span>));
+})();
 </code></pre>
 
                                 
@@ -685,14 +635,10 @@ validate();
 
             
                 
-                <a href="116.html" class="navigation navigation-prev " aria-label="Previous page: 116. 填充每个节点的下一个右侧节点指针【中等题】">
+                <a href="236.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 236. 【回溯】二叉树的最近公共祖先【中等】">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="104_111.html" class="navigation navigation-next " aria-label="Next page: 104.111. 二叉树的最小/最大深度【简单题】">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -701,7 +647,7 @@ validate();
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"515. 在每个树行中找最大值【中等题】","level":"2.2.7","depth":2,"next":{"title":"104.111. 二叉树的最小/最大深度【简单题】","level":"2.2.8","depth":2,"path":"dailycode/104_111.md","ref":"./dailycode/104_111.md","articles":[]},"previous":{"title":"116. 填充每个节点的下一个右侧节点指针【中等题】","level":"2.2.6","depth":2,"path":"dailycode/116.md","ref":"./dailycode/116.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/515.md","mtime":"2023-01-24T15:08:14.422Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-02-11T17:31:18.604Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"701. 二叉搜索树中的插入操作【中等】","level":"2.2.25","depth":2,"previous":{"title":"236. 【回溯】二叉树的最近公共祖先【中等】","level":"2.2.24","depth":2,"path":"dailycode/236.md","ref":"./dailycode/236.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/701.md","mtime":"2023-02-11T17:29:26.608Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-02-11T17:31:18.604Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
