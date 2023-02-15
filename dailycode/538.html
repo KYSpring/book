@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>617. 合并二叉树-TS版【简单题】 · GitBook</title>
+        <title>538. 把二叉搜索树转换为累加树【中等】 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="700.html" />
     
-    
-    <link rel="prev" href="654.html" />
+    <link rel="prev" href="108.html" />
     
 
     </head>
@@ -447,7 +445,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.2.19" data-path="617.html">
+        <li class="chapter " data-level="2.2.19" data-path="617.html">
             
                 <a href="617.html">
             
@@ -577,7 +575,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2.29" data-path="538.html">
+        <li class="chapter active" data-level="2.2.29" data-path="538.html">
             
                 <a href="538.html">
             
@@ -625,7 +623,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >617. 合并二叉树-TS版【简单题】</a>
+        <a href=".." >538. 把二叉搜索树转换为累加树【中等】</a>
     </h1>
 </div>
 
@@ -640,15 +638,19 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="617-&#x5408;&#x5E76;&#x4E8C;&#x53C9;&#x6811;-ts&#x7248;&#x3010;&#x7B80;&#x5355;&#x9898;&#x3011;">617. &#x5408;&#x5E76;&#x4E8C;&#x53C9;&#x6811;-TS&#x7248;&#x3010;&#x7B80;&#x5355;&#x9898;&#x3011;</h1>
-<p><a href="https://leetcode.cn/problems/merge-two-binary-trees/" target="_blank">&#x9898;&#x76EE;&#x94FE;&#x63A5;</a></p>
-<pre><code class="lang-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mergeTrees</span>(<span class="hljs-params">root1: TreeNode | <span class="hljs-literal">null</span>, root2: TreeNode | <span class="hljs-literal">null</span></span>): <span class="hljs-title">TreeNode</span> | <span class="hljs-title">null</span> </span>{
-    <span class="hljs-keyword">if</span> (!root1) <span class="hljs-keyword">return</span> root2;
-    <span class="hljs-keyword">if</span> (!root2) <span class="hljs-keyword">return</span> root1;
-    <span class="hljs-keyword">const</span> newVal = root1.val + root2.val;
-    <span class="hljs-keyword">const</span> leftChild = mergeTrees(root1.left, root2.left);
-    <span class="hljs-keyword">const</span> rightChild = mergeTrees(root1.right, root2.right);
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> TreeNode(newVal, leftChild, rightChild);
+                                <h1 id="538-&#x628A;&#x4E8C;&#x53C9;&#x641C;&#x7D22;&#x6811;&#x8F6C;&#x6362;&#x4E3A;&#x7D2F;&#x52A0;&#x6811;">538. &#x628A;&#x4E8C;&#x53C9;&#x641C;&#x7D22;&#x6811;&#x8F6C;&#x6362;&#x4E3A;&#x7D2F;&#x52A0;&#x6811;</h1>
+<p><a href="https://leetcode.cn/problems/convert-bst-to-greater-tree/" target="_blank">&#x9898;&#x76EE;&#x94FE;&#x63A5;</a></p>
+<pre><code class="lang-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">convertBST</span>(<span class="hljs-params">root: TreeNode | <span class="hljs-literal">null</span></span>): <span class="hljs-title">TreeNode</span> | <span class="hljs-title">null</span> </span>{
+    <span class="hljs-keyword">let</span> lastSum = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">const</span> reverseInorder = (root: TreeNode|<span class="hljs-literal">null</span>) =&gt; {
+        <span class="hljs-keyword">if</span>(!root) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+        reverseInorder(root.right);
+        root.val += lastSum;
+        lastSum = root.val;
+        reverseInorder(root.left);
+    };
+    reverseInorder(root);
+    <span class="hljs-keyword">return</span> root;
 };
 </code></pre>
 
@@ -678,14 +680,10 @@
 
             
                 
-                <a href="654.html" class="navigation navigation-prev " aria-label="Previous page: 654. 最大二叉树【中等题】">
+                <a href="108.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 108. 将有序数组转换为二叉搜索树【简单】">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="700.html" class="navigation navigation-next " aria-label="Next page: 700. 二叉搜索树中的搜索【简单】">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -694,7 +692,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"617. 合并二叉树-TS版【简单题】","level":"2.2.19","depth":2,"next":{"title":"700. 二叉搜索树中的搜索【简单】","level":"2.2.20","depth":2,"path":"dailycode/700.md","ref":"./dailycode/700.md","articles":[]},"previous":{"title":"654. 最大二叉树【中等题】","level":"2.2.18","depth":2,"path":"dailycode/654.md","ref":"./dailycode/654.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/617.md","mtime":"2023-02-05T17:46:04.482Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-02-15T01:32:19.608Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"538. 把二叉搜索树转换为累加树【中等】","level":"2.2.29","depth":2,"previous":{"title":"108. 将有序数组转换为二叉搜索树【简单】","level":"2.2.28","depth":2,"path":"dailycode/108.md","ref":"./dailycode/108.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/538.md","mtime":"2023-02-15T01:30:35.827Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-02-15T01:32:19.608Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
