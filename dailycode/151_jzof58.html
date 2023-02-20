@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>106. 从中序与后序遍历序列构造二叉树【中等】 · GitBook</title>
+        <title>151. 反转字符串中的单词 & 剑指 Offer 58 - II. 左旋转字符串 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="654.html" />
     
-    
-    <link rel="prev" href="112.html" />
+    <link rel="prev" href="jzoffer_005.html" />
     
 
     </head>
@@ -421,7 +419,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.2.17" data-path="106.html">
+        <li class="chapter " data-level="2.2.17" data-path="106.html">
             
                 <a href="106.html">
             
@@ -642,7 +640,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2.34" data-path="151_jzof58.html">
+        <li class="chapter active" data-level="2.2.34" data-path="151_jzof58.html">
             
                 <a href="151_jzof58.html">
             
@@ -690,7 +688,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >106. 从中序与后序遍历序列构造二叉树【中等】</a>
+        <a href=".." >151. 反转字符串中的单词 & 剑指 Offer 58 - II. 左旋转字符串</a>
     </h1>
 </div>
 
@@ -705,46 +703,16 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="106-&#x4ECE;&#x4E2D;&#x5E8F;&#x4E0E;&#x540E;&#x5E8F;&#x904D;&#x5386;&#x5E8F;&#x5217;&#x6784;&#x9020;&#x4E8C;&#x53C9;&#x6811;">106. &#x4ECE;&#x4E2D;&#x5E8F;&#x4E0E;&#x540E;&#x5E8F;&#x904D;&#x5386;&#x5E8F;&#x5217;&#x6784;&#x9020;&#x4E8C;&#x53C9;&#x6811;</h1>
-<p><a href="https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/" target="_blank">&#x9898;&#x76EE;&#x94FE;&#x63A5;</a></p>
-<pre><code class="lang-javascript"><span class="hljs-comment">/**
- * Definition for a binary tree node.
- */</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">TreeNode</span>(<span class="hljs-params">val, left, right</span>) </span>{
-    <span class="hljs-keyword">this</span>.val = (val===<span class="hljs-literal">undefined</span> ? <span class="hljs-number">0</span> : val)
-    <span class="hljs-keyword">this</span>.left = (left===<span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span> : left)
-    <span class="hljs-keyword">this</span>.right = (right===<span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span> : right)
-}
-
-<span class="hljs-comment">/**
- * @param {number[]} inorder
- * @param {number[]} postorder
- * @return {TreeNode}
- */</span>
-<span class="hljs-keyword">var</span> buildTree = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">inorder, postorder</span>) </span>{
-    <span class="hljs-comment">// console.log(inorder, postorder);</span>
-    <span class="hljs-keyword">if</span> (!inorder.length || !postorder.length) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
-    <span class="hljs-keyword">if</span> (inorder.length === <span class="hljs-number">1</span> &amp;&amp; postorder.length === <span class="hljs-number">1</span> &amp;&amp; inorder[<span class="hljs-number">0</span>] === postorder[<span class="hljs-number">0</span>]) {
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> TreeNode(inorder[<span class="hljs-number">0</span>]);
-    }
-    <span class="hljs-keyword">const</span> curRootVal = postorder.pop();
-    <span class="hljs-keyword">const</span> newRoot = <span class="hljs-keyword">new</span> TreeNode(curRootVal);
-    <span class="hljs-comment">// console.log(&apos;newRoot&apos;, newRoot);</span>
-    <span class="hljs-keyword">const</span> splitPos = inorder.findIndex((it)=&gt;it === curRootVal);
-    <span class="hljs-keyword">const</span> valListLeft = inorder.slice(<span class="hljs-number">0</span>,splitPos);
-    <span class="hljs-keyword">const</span> valListRight = inorder.slice(splitPos+<span class="hljs-number">1</span>, inorder.length);
-    <span class="hljs-keyword">const</span> leftTree = buildTree(valListLeft, postorder.slice(<span class="hljs-number">0</span>, valListLeft.length));
-    <span class="hljs-keyword">const</span> rightTree = buildTree(valListRight, postorder.slice(valListLeft.length, valListLeft.length + valListRight.length));
-    newRoot.left = leftTree;
-    newRoot.right = rightTree;
-    <span class="hljs-keyword">return</span> newRoot;
+                                <h1 id="151-&#x53CD;&#x8F6C;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7684;&#x5355;&#x8BCD;--&#x5251;&#x6307;-offer-58---ii-&#x5DE6;&#x65CB;&#x8F6C;&#x5B57;&#x7B26;&#x4E32;">151. &#x53CD;&#x8F6C;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7684;&#x5355;&#x8BCD; &amp; &#x5251;&#x6307; Offer 58 - II. &#x5DE6;&#x65CB;&#x8F6C;&#x5B57;&#x7B26;&#x4E32;</h1>
+<p><a href="https://leetcode.cn/problems/reverse-words-in-a-string/" target="_blank">151</a></p>
+<p><a href="https://leetcode.cn/problems/zuo-xuan-zhuan-zi-fu-chuan-lcof/" target="_blank">&#x5251;&#x6307;offer58</a></p>
+<pre><code class="lang-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reverseWords</span>(<span class="hljs-params">s: <span class="hljs-built_in">string</span></span>): <span class="hljs-title">string</span> </span>{
+    <span class="hljs-keyword">return</span> s.split(<span class="hljs-string">&apos; &apos;</span>).filter(el=&gt;!!el).reverse().join(<span class="hljs-string">&apos; &apos;</span>);
 };
 
-<span class="hljs-comment">// &#x9A8C;&#x8BC1;&#x4EE3;&#x7801;</span>
-(()=&gt;{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;buildTree&apos;</span>, buildTree([<span class="hljs-number">9</span>,<span class="hljs-number">3</span>,<span class="hljs-number">15</span>,<span class="hljs-number">20</span>,<span class="hljs-number">7</span>], [<span class="hljs-number">9</span>,<span class="hljs-number">15</span>,<span class="hljs-number">7</span>,<span class="hljs-number">20</span>,<span class="hljs-number">3</span>]));
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;buildTree&apos;</span>, buildTree([<span class="hljs-number">-1</span>], [<span class="hljs-number">-1</span>]));
-})();
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reverseLeftWords</span>(<span class="hljs-params">s: <span class="hljs-built_in">string</span>, n: <span class="hljs-built_in">number</span></span>): <span class="hljs-title">string</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${s.substring(n,s.length)}</span><span class="hljs-subst">${s.substring(0, n)}</span>`</span>;
+};
 </code></pre>
 
                                 
@@ -773,14 +741,10 @@
 
             
                 
-                <a href="112.html" class="navigation navigation-prev " aria-label="Previous page: 112. 路径总和【简单】">
+                <a href="jzoffer_005.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 剑指 Offer 05. 替换空格 ">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="654.html" class="navigation navigation-next " aria-label="Next page: 654. 最大二叉树【中等题】">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -789,7 +753,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"106. 从中序与后序遍历序列构造二叉树【中等】","level":"2.2.17","depth":2,"next":{"title":"654. 最大二叉树【中等题】","level":"2.2.18","depth":2,"path":"dailycode/654.md","ref":"./dailycode/654.md","articles":[]},"previous":{"title":"112. 路径总和【简单】","level":"2.2.16","depth":2,"path":"dailycode/112.md","ref":"./dailycode/112.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/106.md","mtime":"2023-02-03T01:25:42.522Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-02-20T01:14:20.045Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"151. 反转字符串中的单词 & 剑指 Offer 58 - II. 左旋转字符串","level":"2.2.34","depth":2,"previous":{"title":"剑指 Offer 05. 替换空格 ","level":"2.2.33","depth":2,"path":"dailycode/jzoffer_005.md","ref":"./dailycode/jzoffer_005.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/151_jzof58.md","mtime":"2023-02-20T01:13:21.766Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-02-20T01:14:20.045Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
