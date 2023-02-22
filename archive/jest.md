@@ -163,6 +163,75 @@ console.log(myMockFn(), myMockFn(), myMockFn(), myMockFn());
 // > 'first call', 'second call', 'default', 'default'
 ```
 
+#### 6、模拟计时器
+
+
+#### 7、spyon的用法
+
+#### 8、如何测试reject和resolve;
+```javascript
+it('works with resolves', () => {
+  expect.assertions(1);
+  return expect(user.getUserName(5)).resolves.toBe('Paul');
+});
+// 用`.rejects`.来测试一个异步的错误
+it('tests error with rejects', () => {
+  expect.assertions(1);
+  return expect(user.getUserName(3)).rejects.toEqual({
+    error: 'User with 3 not found.',
+  });
+});
+// 或者与async/await 一起使用 `.rejects`.
+it('tests error with async/await and rejects', async () => {
+  expect.assertions(1);
+  await expect(user.getUserName(3)).rejects.toEqual({
+    error: 'User with 3 not found.',
+  });
+});
+
+// 一个和异常结合的例子
+// 待测试项
+const callback = asynnewc (data, error) => {
+  // 判断回调是否是当前的
+  clearTimeout(timer);
+  this.unregister(handlerName, callbackHandler);
+  if (error) {
+    reject(new Error(error));
+  } else {
+    resolve(data);
+  }
+};
+callback(null, new Error(error));
+// 测试用例
+await expect(callback(null, 'wsctest error')).rejects.toEqual(Error('wsctest error'));
+```
+
+
+#### 9、如何测试异常处理
+参考：https://juejin.cn/post/7125708324426743838
+```javascript
+expect.assertions(1)
+try {
+  await jssdkInstance.login(data);
+} catch(error) {
+  expect(error).toEqual(Error('login param "userId" is required'));
+}
+```
+
+#### 10、如何模拟类中的某个方法
+直接mock类的原型方法
+
+```javascript
+jest.spyOn(jssdk.prototype, 'invoke');
+jssdk.prototype.invoke.mockReturnValue(Promise.resolve({
+  name: 'test name',
+  id: '12345'
+}));
+```
+
+
+
+
 ### 一些ui级别的测试方法：
 
 【待补充】
