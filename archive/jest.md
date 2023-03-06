@@ -234,7 +234,18 @@ jssdk.prototype.invoke.mockReturnValue(Promise.resolve({
 
 ### 一些ui级别的测试方法：
 
-【待补充】
+#### a. vue中如何使用jest：
+[Vue Test Utils](https://v1.test-utils.vuejs.org/zh/guides/#%E8%B5%B7%E6%AD%A5)
+
+1、浅渲染
+
+Vue Test Utils 允许你通过 shallowMount 方法只挂载一个组件而不渲染其子组件 (即保留它们的存根)：
+
+2、快照测试（jest的一个api）:toMatchSnapshot
+
+官方的一个例子：[Snapshot Testing with Jest](https://jestjs.io/docs/snapshot-testing)
+
+更新快照：```jest --updateSnapshot```
  
 
 ### 一些提高覆盖率的技巧：
@@ -282,7 +293,7 @@ test.each([
 
 #### c. 通过expect().not.toThrow()来进行条件覆盖
 
-    由于变异测试会对条件进行变异，通过会导致无法执行的代码被执行，这时会抛出异常，通过toThrow来进行测试，可以覆盖到这些变异条件。
+由于变异测试会对条件进行变异，通过会导致无法执行的代码被执行，这时会抛出异常，通过toThrow来进行测试，可以覆盖到这些变异条件。
 
 ```javascript
 expect(() => instance.destory()).not.toThrow();
