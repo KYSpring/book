@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>28. [kmp]找出字符串中第一个匹配项的下标【中等】 · GitBook</title>
+        <title>77. 组合【中等】 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="344.html" />
     
-    
-    <link rel="prev" href="538.html" />
+    <link rel="prev" href="459.html" />
     
 
     </head>
@@ -590,7 +588,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.2.30" data-path="28.html">
+        <li class="chapter " data-level="2.2.30" data-path="28.html">
             
                 <a href="28.html">
             
@@ -668,7 +666,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2.36" data-path="77.html">
+        <li class="chapter active" data-level="2.2.36" data-path="77.html">
             
                 <a href="77.html">
             
@@ -716,7 +714,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >28. [kmp]找出字符串中第一个匹配项的下标【中等】</a>
+        <a href=".." >77. 组合【中等】</a>
     </h1>
 </div>
 
@@ -731,48 +729,46 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="28-&#x627E;&#x51FA;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7B2C;&#x4E00;&#x4E2A;&#x5339;&#x914D;&#x9879;&#x7684;&#x4E0B;&#x6807;">28. &#x627E;&#x51FA;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7B2C;&#x4E00;&#x4E2A;&#x5339;&#x914D;&#x9879;&#x7684;&#x4E0B;&#x6807;</h1>
-<p><a href="https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/" target="_blank">&#x9898;&#x76EE;&#x94FE;&#x63A5;</a></p>
-<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> getNext = (src: <span class="hljs-built_in">string</span>) =&gt; {
-    <span class="hljs-keyword">let</span> preMatchLen = <span class="hljs-number">0</span>; <span class="hljs-comment">// &#x5F53;&#x524D;&#x5339;&#x914D;&#x5230;&#x7684;&#x524D;&#x7F00;&#x957F;&#x5EA6;</span>
-    <span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">const</span> next:<span class="hljs-built_in">number</span>[] =[]; <span class="hljs-comment">// &#x67D0;&#x4E2A;&#x4F4D;&#x7F6E;&#x7684;&#x540E;&#x7F00;&#x80FD;&#x591F;&#x5339;&#x914D;&#x7684;&#x6700;&#x5927;&#x524D;&#x7F00;&#x957F;&#x5EA6;&#xFF1B;</span>
-    next[i] = preMatchLen; 
-    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">1</span>;i&lt;src.length;i++) {
-        <span class="hljs-keyword">while</span>(src[i] != src[preMatchLen]) {
-            <span class="hljs-keyword">if</span>(preMatchLen &lt;= <span class="hljs-number">0</span>)<span class="hljs-keyword">break</span>;
-            preMatchLen = next[preMatchLen - <span class="hljs-number">1</span>];
-        }
-        <span class="hljs-keyword">if</span> (src[i] === src[preMatchLen]) {
-            preMatchLen += <span class="hljs-number">1</span>;
-        } 
-        next[i] = preMatchLen;
+                                <h1 id="77-&#x7EC4;&#x5408;&#x3010;&#x4E2D;&#x7B49;&#x3011;">77. &#x7EC4;&#x5408;&#x3010;&#x4E2D;&#x7B49;&#x3011;</h1>
+<p><a href="https://leetcode.cn/problems/combinations/" target="_blank">&#x9898;&#x76EE;&#x94FE;&#x63A5;</a></p>
+<pre><code class="lang-typescript">const backTracking = (n: number, k: number, start:number, newRes: number[], result: number[][] ) =&gt; {
+    if (newRes.length === k) { // &#x6613;&#x9519;
+        const item = [...newRes];
+        result.push(item);
+        return;
     }
-    <span class="hljs-keyword">return</span> next;
-}
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">strStr</span>(<span class="hljs-params">haystack: <span class="hljs-built_in">string</span>, needle: <span class="hljs-built_in">string</span></span>): <span class="hljs-title">number</span> </span>{
-    <span class="hljs-keyword">let</span> matchLen = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">const</span> next = getNext(needle);
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;i&lt;haystack.length;i++) {
-        <span class="hljs-keyword">while</span>(matchLen&gt;<span class="hljs-number">0</span> &amp;&amp; haystack[i] !== needle[matchLen]) {
-            matchLen = next[matchLen - <span class="hljs-number">1</span>];
-        }
-        <span class="hljs-keyword">if</span> (haystack[i] === needle[matchLen]) {
-            matchLen += <span class="hljs-number">1</span>;
-        }
-        <span class="hljs-keyword">if</span> (matchLen === needle.length) {
-            <span class="hljs-keyword">return</span> i - matchLen + <span class="hljs-number">1</span>;
-        }
+    for(let i = start; i&lt;=n ; i++) {
+        newRes.push(i);
+        backTracking(n, k, i+1, newRes, result);
+        newRes.pop();
     }
-    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
 };
 
+function combine(n: number, k: number): number[][] {
+    const result: number[][] = [];
+    backTracking(n, k, 1, [], result);
+    return result;
+};
+</code></pre>
+<p>&#x526A;&#x652F;&#x7248;&#xFF1A;</p>
+<pre><code class="lang-typescript">const backTracking = (n: number, k: number, start:number, newRes: number[], result: number[][] ) =&gt; {
+    if (newRes.length === k) {
+        const item = [...newRes];
+        result.push(item);
+        return;
+    }
+    for(let i = start; i&lt;=n-(k-newRes.length)+1 ; i++) {
+        newRes.push(i);
+        backTracking(n, k, i+1, newRes, result);
+        newRes.pop();
+    }
+};
 
-(()=&gt;{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;getNext&apos;</span>, getNext(<span class="hljs-string">&apos;aabaac&apos;</span>));
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;strStr&apos;</span> , strStr(<span class="hljs-string">&quot;dfasdsasadbutsad&quot;</span>, <span class="hljs-string">&quot;sad&quot;</span>));
-})()
+function combine(n: number, k: number): number[][] {
+    const result: number[][] = [];
+    backTracking(n, k, 1, [], result);
+    return result;
+};
 </code></pre>
 
                                 
@@ -801,14 +797,10 @@
 
             
                 
-                <a href="538.html" class="navigation navigation-prev " aria-label="Previous page: 538. 把二叉搜索树转换为累加树【中等】">
+                <a href="459.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 459. 重复的子字符串[kmp]">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="344.html" class="navigation navigation-next " aria-label="Next page: 344. 原地反转字符串【简单】">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -817,7 +809,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"28. [kmp]找出字符串中第一个匹配项的下标【中等】","level":"2.2.30","depth":2,"next":{"title":"344. 原地反转字符串【简单】","level":"2.2.31","depth":2,"path":"dailycode/344.md","ref":"./dailycode/344.md","articles":[]},"previous":{"title":"538. 把二叉搜索树转换为累加树【中等】","level":"2.2.29","depth":2,"path":"dailycode/538.md","ref":"./dailycode/538.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/28.md","mtime":"2023-02-18T16:48:09.725Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-03-08T01:15:33.981Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"77. 组合【中等】","level":"2.2.36","depth":2,"previous":{"title":"459. 重复的子字符串[kmp]","level":"2.2.35","depth":2,"path":"dailycode/459.md","ref":"./dailycode/459.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/77.md","mtime":"2023-03-08T01:14:21.771Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-03-08T01:15:33.981Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
