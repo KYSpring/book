@@ -1,5 +1,23 @@
 # svelte精粹
 
+- [svelte精粹](#svelte精粹)
+    - [Q1 项目快速初始化](#q1-项目快速初始化)
+    - [Q2 动态属性](#q2-动态属性)
+    - [Q3 样式](#q3-样式)
+    - [Q4 组件：](#q4-组件)
+    - [Q5 响应系统：](#q5-响应系统)
+    - [Q6 组件通信 - 属性传递：支持默认属性 / 支持对象解构](#q6-组件通信---属性传递支持默认属性--支持对象解构)
+    - [Q7 逻辑](#q7-逻辑)
+    - [Q8 事件](#q8-事件)
+    - [Q9 绑定](#q9-绑定)
+    - [Q10 生命周期](#q10-生命周期)
+    - [Q11 stores状态管理](#q11-stores状态管理)
+    - [Q12 Motion??? Tweening / Spring](#q12-motion-tweening--spring)
+    - [Q13 Transition \& animation](#q13-transition--animation)
+    - [Q14 元素级别生命周期函数：use](#q14-元素级别生命周期函数use)
+    - [Q15 高级样式语法](#q15-高级样式语法)
+  - [sveltekit](#sveltekit)
+
 ### Q1 项目快速初始化
 1. <font color="red">【不推荐】</font>~~npx degit直接拷贝官方模版，基于rollup构建~~：已经不维护了（[官方模版地址](https://github.com/sveltejs/template)）
 
@@ -228,7 +246,7 @@ export const time = readable(new Date(), function start(set) {
 	on:click="{() => current = 'foo'}"
 >foo</button>
 
-<div class:big}>
+<div class:big>
 	<!-- ... -->
 </div>
 ```
@@ -244,3 +262,7 @@ export const time = readable(new Date(), function start(set) {
 ```
 
 【未完待续】
+
+## sveltekit
+
+https://kit.svelte.dev/

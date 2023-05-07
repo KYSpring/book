@@ -1,0 +1,977 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>吴恩达提示工程公开课笔记 prompt engineering · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../readings/" />
+    
+    
+    <link rel="prev" href="createpersonallib.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    技术博客 Blog Share
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="createpersonallib.html">
+            
+                <a href="createpersonallib.html">
+            
+                    
+                    rollup搭建个人组件库
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.2" data-path="promptengineering.html">
+            
+                <a href="promptengineering.html">
+            
+                    
+                    吴恩达提示工程公开课笔记 prompt engineering
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../readings/">
+            
+                <a href="../readings/">
+            
+                    
+                    阅读笔记 Reading
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../readings/oneweb3book.html">
+            
+                <a href="../readings/oneweb3book.html">
+            
+                    
+                    【笔记】《一本书读懂Web3.0:区块链、NFT、云宇宙和DAO》
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../readings/ftcsxf.html">
+            
+                <a href="../readings/ftcsxf.html">
+            
+                    
+                    【笔记】《冯唐成事心法》
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../readings/destiny.html">
+            
+                <a href="../readings/destiny.html">
+            
+                    
+                    【笔记】《命运》蔡崇达
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../dailycode/">
+            
+                <a href="../dailycode/">
+            
+                    
+                    力扣题解 Daily Code
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../dailycode/144.html">
+            
+                <a href="../dailycode/144.html">
+            
+                    
+                    144. 二叉树的前序遍历【简单题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../dailycode/145_94.html">
+            
+                <a href="../dailycode/145_94.html">
+            
+                    
+                    145.94 二叉树的中序&后序遍历【简单题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../dailycode/102.html">
+            
+                <a href="../dailycode/102.html">
+            
+                    
+                    102. 二叉树的层序遍历【中等题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../dailycode/199.html">
+            
+                <a href="../dailycode/199.html">
+            
+                    
+                    199. 二叉树的右视图【中等题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../dailycode/429.html">
+            
+                <a href="../dailycode/429.html">
+            
+                    
+                    429. N 叉树的层序遍历【中等题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../dailycode/116.html">
+            
+                <a href="../dailycode/116.html">
+            
+                    
+                    116. 填充每个节点的下一个右侧节点指针【中等题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="../dailycode/515.html">
+            
+                <a href="../dailycode/515.html">
+            
+                    
+                    515. 在每个树行中找最大值【中等题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="../dailycode/104_111.html">
+            
+                <a href="../dailycode/104_111.html">
+            
+                    
+                    104.111. 二叉树的最小/最大深度【简单题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="../dailycode/101.html">
+            
+                <a href="../dailycode/101.html">
+            
+                    
+                    101. 对称二叉树【简单题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10" data-path="../dailycode/226.html">
+            
+                <a href="../dailycode/226.html">
+            
+                    
+                    226. 翻转二叉树【简单题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.11" data-path="../dailycode/202_110.html">
+            
+                <a href="../dailycode/202_110.html">
+            
+                    
+                    110.222. 平衡二叉树/完全二叉树的节点个数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.12" data-path="../dailycode/257.html">
+            
+                <a href="../dailycode/257.html">
+            
+                    
+                    257.二叉树的所有路径【简单题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.13" data-path="../dailycode/100.html">
+            
+                <a href="../dailycode/100.html">
+            
+                    
+                    100.相同的树【简单】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.14" data-path="../dailycode/404.html">
+            
+                <a href="../dailycode/404.html">
+            
+                    
+                    404.左叶子之和【简单】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.15" data-path="../dailycode/513.html">
+            
+                <a href="../dailycode/513.html">
+            
+                    
+                    513. 找树左下角的值【中等】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.16" data-path="../dailycode/112.html">
+            
+                <a href="../dailycode/112.html">
+            
+                    
+                    112. 路径总和【简单】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.17" data-path="../dailycode/106.html">
+            
+                <a href="../dailycode/106.html">
+            
+                    
+                    106. 从中序与后序遍历序列构造二叉树【中等】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.18" data-path="../dailycode/654.html">
+            
+                <a href="../dailycode/654.html">
+            
+                    
+                    654. 最大二叉树【中等题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.19" data-path="../dailycode/617.html">
+            
+                <a href="../dailycode/617.html">
+            
+                    
+                    617. 合并二叉树-TS版【简单题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.20" data-path="../dailycode/700.html">
+            
+                <a href="../dailycode/700.html">
+            
+                    
+                    700. 二叉搜索树中的搜索【简单】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21" data-path="../dailycode/98.html">
+            
+                <a href="../dailycode/98.html">
+            
+                    
+                    98. 验证二叉搜索树 【中等】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.22" data-path="../dailycode/530.html">
+            
+                <a href="../dailycode/530.html">
+            
+                    
+                    530. 二叉搜索树的最小绝对差【简单】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.23" data-path="../dailycode/501.html">
+            
+                <a href="../dailycode/501.html">
+            
+                    
+                    501. 二叉搜索树中的众数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.24" data-path="../dailycode/236.html">
+            
+                <a href="../dailycode/236.html">
+            
+                    
+                    236. 【回溯】二叉树的最近公共祖先【中等】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.25" data-path="../dailycode/701.html">
+            
+                <a href="../dailycode/701.html">
+            
+                    
+                    701. 二叉搜索树中的插入操作【中等】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.26" data-path="../dailycode/450.html">
+            
+                <a href="../dailycode/450.html">
+            
+                    
+                    450. 删除二叉搜索树中的节点【中等】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.27" data-path="../dailycode/669.html">
+            
+                <a href="../dailycode/669.html">
+            
+                    
+                    669. 修剪二叉搜索树【中等】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.28" data-path="../dailycode/108.html">
+            
+                <a href="../dailycode/108.html">
+            
+                    
+                    108. 将有序数组转换为二叉搜索树【简单】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.29" data-path="../dailycode/538.html">
+            
+                <a href="../dailycode/538.html">
+            
+                    
+                    538. 把二叉搜索树转换为累加树【中等】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.30" data-path="../dailycode/28.html">
+            
+                <a href="../dailycode/28.html">
+            
+                    
+                    28. [kmp]找出字符串中第一个匹配项的下标【中等】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.31" data-path="../dailycode/344.html">
+            
+                <a href="../dailycode/344.html">
+            
+                    
+                    344. 原地反转字符串【简单】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.32" data-path="../dailycode/541.html">
+            
+                <a href="../dailycode/541.html">
+            
+                    
+                    541. 反转字符串 II【简单】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.33" data-path="../dailycode/jzoffer_005.html">
+            
+                <a href="../dailycode/jzoffer_005.html">
+            
+                    
+                    剑指 Offer 05. 替换空格 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.34" data-path="../dailycode/151_jzof58.html">
+            
+                <a href="../dailycode/151_jzof58.html">
+            
+                    
+                    151. 反转字符串中的单词 & 剑指 Offer 58 - II. 左旋转字符串
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.35" data-path="../dailycode/459.html">
+            
+                <a href="../dailycode/459.html">
+            
+                    
+                    459. 重复的子字符串[kmp]
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.36" data-path="../dailycode/77.html">
+            
+                <a href="../dailycode/77.html">
+            
+                    
+                    77. 组合【中等】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.37" data-path="../dailycode/216.html">
+            
+                <a href="../dailycode/216.html">
+            
+                    
+                    216. 组合总和 III【中等】
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >吴恩达提示工程公开课笔记 prompt engineering</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <!-- no toc --> 
+<h1 id="&#x5434;&#x6069;&#x8FBE;&#x516C;&#x5F00;&#x8BFE;&#x7B14;&#x8BB0;-prompt-engineering">&#x5434;&#x6069;&#x8FBE;&#x516C;&#x5F00;&#x8BFE;&#x7B14;&#x8BB0; prompt engineering</h1>
+<ul>
+<li><a href="#&#x5434;&#x6069;&#x8FBE;&#x516C;&#x5F00;&#x8BFE;&#x7B14;&#x8BB0;-prompt-engineering">&#x5434;&#x6069;&#x8FBE;&#x516C;&#x5F00;&#x8BFE;&#x7B14;&#x8BB0; prompt engineering</a><ul>
+<li><a href="#ch1-&#x5F15;&#x8A00;">ch1 &#x5F15;&#x8A00;</a></li>
+<li><a href="#ch2-guidelines">ch2 guidelines</a><ul>
+<li><a href="#&#x539F;&#x5219;1-&#x7F16;&#x5199;&#x660E;&#x786E;&#x4E14;&#x5177;&#x4F53;&#x7684;&#x6307;&#x4EE4;">&#x539F;&#x5219;1: &#x7F16;&#x5199;&#x660E;&#x786E;&#x4E14;&#x5177;&#x4F53;&#x7684;&#x6307;&#x4EE4;</a></li>
+<li><a href="#&#x539F;&#x5219;2-&#x7ED9;&#x6A21;&#x578B;&#x4EE5;&#x601D;&#x8003;&#x7684;&#x65F6;&#x95F4;">&#x539F;&#x5219;2: &#x7ED9;&#x6A21;&#x578B;&#x4EE5;&#x601D;&#x8003;&#x7684;&#x65F6;&#x95F4;</a></li>
+<li><a href="#llm&#x6A21;&#x578B;&#x7684;&#x5C40;&#x9650;&#x6027;">LLM&#x6A21;&#x578B;&#x7684;&#x5C40;&#x9650;&#x6027;&#xFF1A;</a></li>
+</ul>
+</li>
+<li><a href="#ch3-&#x8FED;&#x4EE3;&#x63D0;&#x793A;&#x5DE5;&#x7A0B;&#x5F00;&#x53D1;">ch3 &#x8FED;&#x4EE3;&#x63D0;&#x793A;&#x5DE5;&#x7A0B;&#x5F00;&#x53D1;</a></li>
+<li><a href="#ch4-&#x5B9E;&#x8DF5;1-&#x6458;&#x8981;">ch4 &#x5B9E;&#x8DF5;1: &#x6458;&#x8981;</a></li>
+<li><a href="#ch5-&#x5B9E;&#x8DF5;2-&#x63A8;&#x7406;">ch5 &#x5B9E;&#x8DF5;2: &#x63A8;&#x7406;</a></li>
+<li><a href="#ch6-&#x5B9E;&#x8DF5;3-&#x8F6C;&#x6362;">ch6 &#x5B9E;&#x8DF5;3: &#x8F6C;&#x6362;</a></li>
+<li><a href="#ch7-&#x5B9E;&#x8DF5;4-&#x6269;&#x5C55;">ch7 &#x5B9E;&#x8DF5;4: &#x6269;&#x5C55;</a></li>
+<li><a href="#ch8-&#x5B9E;&#x8DF5;5-&#x81EA;&#x5B9A;&#x4E49;&#x804A;&#x5929;&#x673A;&#x5668;&#x4EBA;">ch8 &#x5B9E;&#x8DF5;5: &#x81EA;&#x5B9A;&#x4E49;&#x804A;&#x5929;&#x673A;&#x5668;&#x4EBA;</a></li>
+<li><a href="#ch9-&#x8BFE;&#x7A0B;&#x603B;&#x7ED3;">ch9 &#x8BFE;&#x7A0B;&#x603B;&#x7ED3;</a></li>
+</ul>
+</li>
+</ul>
+<p><a href="https://www.bilibili.com/video/BV1No4y1t7Zn?p=1&amp;vd_source=2c2dd629dacf16f2809eea3e9618d04c" target="_blank">&#x516C;&#x5F00;&#x8BFE;&#x5730;&#x5740;</a></p>
+<h2 id="ch1-&#x5F15;&#x8A00;">ch1 &#x5F15;&#x8A00;</h2>
+<p>&#x9884;&#x671F;&#x5B66;&#x4E60;&#x7684;&#x5185;&#x5BB9;&#xFF1A;</p>
+<ul>
+<li>&#x8F6F;&#x4EF6;&#x5F00;&#x53D1;&#x63D0;&#x793A;&#x8BCD;&#x7684;&#x6700;&#x4F73;&#x5B9E;&#x8DF5;&#x53CA;&#x7528;&#x4F8B;</li>
+<li>&#x6784;&#x5EFA;&#x4E00;&#x4E2A;&#x804A;&#x5929;&#x673A;&#x5668;&#x4EBA;</li>
+</ul>
+<p>llm&#x4ECB;&#x7ECD;&#xFF1A;</p>
+<ul>
+<li>&#x4E24;&#x79CD;&#x7C7B;&#x578B;&#x7684;LLM&#xFF1A;base LLM / instruction tuned llm</li>
+<li>base LLM&#xFF1A;&#x9884;&#x6D4B;&#x4E0B;&#x4E00;&#x4E2A;&#x8BCD;&#x8BED;</li>
+<li>instruction tuned llm&#xFF1A;&#x9075;&#x5FAA;&#x6307;&#x4EE4; &amp; RLHF&#x8BAD;&#x7EC3;
+<img src="static/2023-05-06-21-42-24.png" alt=""></li>
+<li>&#x672C;&#x8BFE;&#x7A0B;&#x4E3B;&#x8981;&#x6559;&#x5B66;instruction tuned llm</li>
+<li>&#x4E00;&#x4E2A;&#x201C;&#x806A;&#x660E;&#x7684;&#x4EBA;&#x201D;&#x7531;&#x4E8E;&#x7F3A;&#x4E4F;&#x6709;&#x6548;&#x7684;&#x6307;&#x5F15;&#x5C06;&#x96BE;&#x4EE5;&#x65BD;&#x5C55;&#x5176;&#x80FD;&#x529B;&#xFF1A;<ul>
+<li>clear and specific /</li>
+<li>give time</li>
+</ul>
+</li>
+</ul>
+<h2 id="ch2-guidelines">ch2 guidelines</h2>
+<ul>
+<li><p>&#x4E24;&#x4E2A;&#x5199;&#x63D0;&#x793A;&#x8BCD;&#x7684;&#x6838;&#x5FC3;&#x539F;&#x5219;&#x548C;&#x7B56;&#x7565;&#xFF1A;</p>
+<ul>
+<li>1&#x3001;&#x7F16;&#x5199;&#x660E;&#x786E;&#x4E14;&#x5177;&#x4F53;&#x7684;&#x6307;&#x4EE4;&#xFF1A;&#x6E05;&#x6670; &#x4E0D;&#x7B49;&#x4E8E; &#x7B80;&#x77ED;</li>
+<li><p>2&#x3001;&#x7ED9;&#x6A21;&#x578B;&#x601D;&#x8003;&#x7684;&#x65F6;&#x95F4;</p>
+<p><img src="static/2023-05-06-21-50-27.png" style="height: 200px"></p>
+</li>
+</ul>
+</li>
+<li><p>&#x4F7F;&#x7528;openai api&#x5B9E;&#x73B0;&#x7684;&#x793A;&#x4F8B;</p>
+</li>
+</ul>
+<h3 id="&#x539F;&#x5219;1-&#x7F16;&#x5199;&#x660E;&#x786E;&#x4E14;&#x5177;&#x4F53;&#x7684;&#x6307;&#x4EE4;">&#x539F;&#x5219;1: &#x7F16;&#x5199;&#x660E;&#x786E;&#x4E14;&#x5177;&#x4F53;&#x7684;&#x6307;&#x4EE4;</h3>
+<ul>
+<li><p>&#x7B56;&#x7565;1: &#x6B63;&#x786E;&#x4F7F;&#x7528;&#x5206;&#x9694;&#x7B26; 
+&#x6709;&#x6548;&#x907F;&#x514D;&#x63D0;&#x793A;&#x6CE8;&#x5165;prompt injection</p>
+<p>  <img src="static/2023-05-06-21-54-50.png" style="height: 300px"></p>
+</li>
+<li><p>&#x7B56;&#x7565;2:&#x8981;&#x6C42;&#x7ED3;&#x6784;&#x5316;&#x8F93;&#x51FA;&#xFF08;html / json&#xFF09;</p>
+</li>
+<li><p>&#x7B56;&#x7565;3:&#x8981;&#x6C42;&#x6A21;&#x578B;&#x6821;&#x9A8C;&#x6761;&#x4EF6;&#x662F;&#x5426;&#x6EE1;&#x8DB3;&#xFF0C;&#x907F;&#x514D;&#x5F02;&#x5E38;&#x8FB9;&#x754C;</p>
+<p>  <img src="static/2023-05-06-22-01-22.png" style="height: 400px">
+  <img src="static/2023-05-06-22-02-30.png" style="height: 400px"></p>
+</li>
+<li><p>&#x7B56;&#x7565;4:few-shot prompts&#x5C11;&#x91CF;&#x8BAD;&#x7EC3;&#x63D0;&#x793A;:&#x5728;&#x6A21;&#x578B;&#x6267;&#x884C;&#x4EFB;&#x52A1;&#x4E4B;&#x524D;&#x7ED9;&#x4E00;&#x4E9B;&#x6B63;&#x786E;&#x7684;&#x56DE;&#x590D;&#x6837;&#x4F8B;</p>
+<p>  <img src="static/2023-05-06-22-03-53.png" style="height: 200px"></p>
+</li>
+</ul>
+<h3 id="&#x539F;&#x5219;2-&#x7ED9;&#x6A21;&#x578B;&#x4EE5;&#x601D;&#x8003;&#x7684;&#x65F6;&#x95F4;">&#x539F;&#x5219;2: &#x7ED9;&#x6A21;&#x578B;&#x4EE5;&#x601D;&#x8003;&#x7684;&#x65F6;&#x95F4;</h3>
+<p>&#x5982;&#x679C;&#x7ED9;&#x6A21;&#x578B;&#x592A;&#x5C11;&#x7684;&#x63D0;&#x793A;&#x8BCD;&#xFF0C;&#x4ED6;&#x4F1A;&#x503E;&#x5411;&#x4E8E;&#x731C;&#x7B54;&#x6848;&#x800C;&#x975E;&#x4E25;&#x683C;&#x7684;&#x63A8;&#x7406;&#x903B;&#x8F91;&#xFF0C;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x7ED9;&#x6A21;&#x578B;&#x4EE5;&#x601D;&#x8003;&#x7684;&#x65F6;&#x95F4;&#x3002;</p>
+<ul>
+<li><p>&#x7B56;&#x7565;1&#xFF1A;&#x660E;&#x786E;&#x5B8C;&#x6210;&#x67D0;&#x4E2A;&#x4EFB;&#x52A1;&#x9700;&#x8981;&#x7684;&#x6B65;&#x9AA4;</p>
+<p>  <img src="static/2023-05-06-22-06-21.png" style="height: 300px"></p>
+</li>
+<li><p>&#x7B56;&#x7565;2&#xFF1A;&#x5F15;&#x5BFC;&#x6A21;&#x578B;&#x5F62;&#x6210;&#x81EA;&#x5DF1;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF0C;&#x6700;&#x540E;&#x518D;&#x5F97;&#x5230;&#x7ED3;&#x8BBA;</p>
+<ul>
+<li><p>&#x9519;&#x8BEF;&#x793A;&#x4F8B;&#xFF1A;</p>
+<p><img src="static/2023-05-06-22-17-37.png" style="height: 300px"></p>
+</li>
+<li><p>&#x6B63;&#x786E;&#x793A;&#x4F8B;&#xFF1A;</p>
+<p><img src="static/2023-05-06-22-13-13.png" style="height: 400px"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="llm&#x6A21;&#x578B;&#x7684;&#x5C40;&#x9650;&#x6027;&#xFF1A;">LLM&#x6A21;&#x578B;&#x7684;&#x5C40;&#x9650;&#x6027;&#xFF1A;</h3>
+<ul>
+<li>&#x6A21;&#x578B;&#x865A;&#x6784;&#x3001;&#x6A21;&#x578B;&#x5E7B;&#x89C9;&#xFF08;hallucination&#xFF09;&#xFF1A;&#x7F16;&#x9020;&#x5408;&#x7406;&#x4F46;&#x4E0D;&#x6B63;&#x786E;&#x7684;&#x5185;&#x5BB9;&#xFF08;&#x865A;&#x6784;&#xFF09;</li>
+<li>&#x907F;&#x514D;&#x7B56;&#x7565;&#xFF1A;&#x8981;&#x6C42;&#x6A21;&#x578B;&#x5217;&#x51FA;&#x5F15;&#x7528;&#x7684;&#x6587;&#x732E;&#x6765;&#x6E90;&#xFF0C;&#x4FBF;&#x4E8E;&#x6EAF;&#x6E90;</li>
+</ul>
+<h2 id="ch3-&#x8FED;&#x4EE3;&#x63D0;&#x793A;&#x5DE5;&#x7A0B;&#x5F00;&#x53D1;">ch3 &#x8FED;&#x4EE3;&#x63D0;&#x793A;&#x5DE5;&#x7A0B;&#x5F00;&#x53D1;</h2>
+<p><img src="static/2023-05-06-22-25-56.png" style="height: 300px"></p>
+<h2 id="ch4-&#x5B9E;&#x8DF5;1-&#x6458;&#x8981;">ch4 &#x5B9E;&#x8DF5;1: &#x6458;&#x8981;</h2>
+<ul>
+<li><p>&#x6A21;&#x7248;prompt:</p>
+<p>  <img src="static/2023-05-07-04-57-11.png" style="height: 200px"></p>
+</li>
+<li><p>&#x591A;&#x6761;&#x8BB0;&#x5F55;&#x7684;&#x6458;&#x8981;:</p>
+<p>  <img src="static/2023-05-07-04-59-34.png" style="height: 300px"></p>
+</li>
+</ul>
+<h2 id="ch5-&#x5B9E;&#x8DF5;2-&#x63A8;&#x7406;">ch5 &#x5B9E;&#x8DF5;2: &#x63A8;&#x7406;</h2>
+<p>&#x63D0;&#x53D6;&#x6807;&#x7B7E;&#x3001;&#x63D0;&#x524D;&#x540D;&#x79F0;&#x3001;&#x7406;&#x89E3;&#x6587;&#x672C;&#x60C5;&#x611F;</p>
+<ul>
+<li><p>&#x60C5;&#x611F;&#x5206;&#x7C7B;prompts:</p>
+<p>  <img src="static/2023-05-07-05-02-14.png" style="height: 300px"></p>
+</li>
+<li><p>&#x4FE1;&#x606F;&#x63D0;&#x53D6;prompts:</p>
+<p>  <img src="static/2023-05-07-05-04-49.png" style="height: 300px"></p>
+</li>
+<li><p>&#x4E3B;&#x9898;&#x5F52;&#x7EB3;prompts&#xFF1A;</p>
+<p>  <img src="static/2023-05-07-05-07-11.png" style="height: 200px"></p>
+</li>
+</ul>
+<h2 id="ch6-&#x5B9E;&#x8DF5;3-&#x8F6C;&#x6362;">ch6 &#x5B9E;&#x8DF5;3: &#x8F6C;&#x6362;</h2>
+<p>&#x8BED;&#x8A00;&#x7FFB;&#x8BD1;&#x3001;&#x8BED;&#x6CD5;&#x4FEE;&#x6B63;&#x3001;&#x683C;&#x5F0F;&#x8F6C;&#x6362;</p>
+<ul>
+<li>&#x7FFB;&#x8BD1;&#x4EFB;&#x52A1;&#x3001;&#x5206;&#x8FA8;&#x8BED;&#x79CD;<blockquote>
+<p>Translate the following text to French</p>
+</blockquote>
+</li>
+<li><p>&#x901A;&#x7528;&#x7684;&#x7FFB;&#x8BD1;&#x5DE5;&#x5177;&#xFF1A;&#x5C06;&#x6240;&#x6709;&#x6587;&#x672C;&#x7FFB;&#x8BD1;&#x6210;&#x7EDF;&#x4E00;&#x7684;&#x8BED;&#x8A00;</p>
+<p>  <img src="static/2023-05-07-05-13-15.png" style="height: 200px"></p>
+</li>
+<li><p>&#x6B63;&#x5F0F;&#x573A;&#x5408;&#x3001;&#x975E;&#x6B63;&#x5F0F;&#x573A;&#x5408;</p>
+</li>
+<li>&#x8BED;&#x6C14;&#x8F6C;&#x6362;&#xFF1A; slang to business</li>
+<li>&#x683C;&#x5F0F;&#x8F6C;&#x6362;&#xFF1A;json, html ...</li>
+<li>&#x8BED;&#x6CD5;&#x68C0;&#x67E5;</li>
+</ul>
+<h2 id="ch7-&#x5B9E;&#x8DF5;4-&#x6269;&#x5C55;">ch7 &#x5B9E;&#x8DF5;4: &#x6269;&#x5C55;</h2>
+<p><img src="static/2023-05-07-05-21-05.png" style="height: 200px"></p>
+<ul>
+<li>&#x53C2;&#x6570;&#x8C03;&#x6574;&#xFF1A;
+temperature: &#x6A21;&#x578B;&#x7684;&#x63A2;&#x7D22;&#x7A0B;&#x5EA6;&#x548C;&#x968F;&#x673A;&#x6027;&#xFF08;&#x591A;&#x6837;&#x6027;&#xFF09;&#xFF0C;0&#x66F4;&#x52A0;&#x7A33;&#x5B9A;&#xFF08;&#x6BCF;&#x6B21;&#x7ED3;&#x679C;&#x90FD;&#x4E00;&#x81F4;&#xFF09;&#x3001;1&#x66F4;&#x52A0;&#x591A;&#x6837;&#x5316;&#xFF08;&#x6BCF;&#x6B21;&#x7ED3;&#x8BBA;&#x66F4;&#x503E;&#x5411;&#x4E8E;&#x4E0D;&#x540C;&#xFF09;&#x3002;</li>
+</ul>
+<h2 id="ch8-&#x5B9E;&#x8DF5;5-&#x81EA;&#x5B9A;&#x4E49;&#x804A;&#x5929;&#x673A;&#x5668;&#x4EBA;">ch8 &#x5B9E;&#x8DF5;5: &#x81EA;&#x5B9A;&#x4E49;&#x804A;&#x5929;&#x673A;&#x5668;&#x4EBA;</h2>
+<p>&#x901A;&#x8FC7;&#x4F20;&#x5165;&#x6D88;&#x606F;&#x5217;&#x8868;&#x8FDB;&#x884C;&#x521D;&#x59CB;&#x5316;</p>
+<p><img src="static/2023-05-07-05-27-20.png" style="height: 300px"></p>
+<p>&#x63D0;&#x4F9B;&#x8DB3;&#x591F;&#x7684;&#x4E0A;&#x4E0B;&#x6587;</p>
+<p><img src="static/2023-05-07-05-32-18.png" style="height: 300px"></p>
+<h2 id="ch9-&#x8BFE;&#x7A0B;&#x603B;&#x7ED3;">ch9 &#x8BFE;&#x7A0B;&#x603B;&#x7ED3;</h2>
+<p><img src="static/2023-05-07-05-34-49.png" style="height: 150px"></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="createpersonallib.html" class="navigation navigation-prev " aria-label="Previous page: rollup搭建个人组件库">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../readings/" class="navigation navigation-next " aria-label="Next page: 阅读笔记 Reading">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"吴恩达提示工程公开课笔记 prompt engineering","level":"1.2.2","depth":2,"next":{"title":"阅读笔记 Reading","level":"1.3","depth":1,"path":"readings/index.md","ref":"readings/index.md","articles":[{"title":"【笔记】《一本书读懂Web3.0:区块链、NFT、云宇宙和DAO》","level":"1.3.1","depth":2,"path":"readings/oneweb3book.md","ref":"readings/oneweb3book.md","articles":[]},{"title":"【笔记】《冯唐成事心法》","level":"1.3.2","depth":2,"path":"readings/ftcsxf.md","ref":"readings/ftcsxf.md","articles":[]},{"title":"【笔记】《命运》蔡崇达","level":"1.3.3","depth":2,"path":"readings/destiny.md","ref":"readings/destiny.md","articles":[]}]},"previous":{"title":"rollup搭建个人组件库","level":"1.2.1","depth":2,"path":"archive/createpersonallib.md","ref":"archive/createpersonallib.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"archive/promptengineering.md","mtime":"2023-05-07T05:33:01.847Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-05-07T05:33:29.781Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
