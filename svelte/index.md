@@ -17,6 +17,16 @@
     - [Q14 元素级别生命周期函数：use](#q14-元素级别生命周期函数use)
     - [Q15 高级样式语法](#q15-高级样式语法)
   - [sveltekit](#sveltekit)
+  - [svelte组件引入](#svelte组件引入)
+  - [svelte状态管理：store](#svelte状态管理store)
+    - [writable stores](#writable-stores)
+    - [auto-subscription自动销毁订阅 语法糖](#auto-subscription自动销毁订阅-语法糖)
+    - [readable stores](#readable-stores)
+    - [derived stores](#derived-stores)
+    - [custom stores](#custom-stores)
+    - [store bindings](#store-bindings)
+    - [一些问题](#一些问题)
+  - [sveltekit](#sveltekit-1)
 
 ### Q1 项目快速初始化
 1. <font color="red">【不推荐】</font>~~npx degit直接拷贝官方模版，基于rollup构建~~：已经不维护了（[官方模版地址](https://github.com/sveltejs/template)）
@@ -266,3 +276,138 @@ export const time = readable(new Date(), function start(set) {
 ## sveltekit
 
 https://kit.svelte.dev/
+
+
+## svelte组件引入
+
+js引入 vs. 模版引入
+引申问题，vue是否支持？
+
+```javascript
+import Dialog from '@components/dialog/index.svelte';
+// 方式1
+new Dialog({
+  target: document.body,
+  props: {
+    title: 'hello world',
+    isShowFooter: true,
+  },
+});
+// 方式2:
+<Dialog
+  title="基础服务授权"
+  on:cancel={handleCancel}
+  on:confirm={handleConfirm}
+  on:close={handleClose}
+>
+```
+
+## svelte状态管理：store
+### writable stores
+
+```javascript
+import { writable } from 'svelte/store';
+
+export const count = writable(0);
+```
+
+- 拥有两个内置函数：set / update 
+- 需要注意在onDestory的时候需要手动unsubscribe;
+### auto-subscription自动销毁订阅 语法糖
+
+\$+store名称
+
+### readable stores
+
+```javascript
+import { readable } from 'svelte/store';
+
+export const time = readable(null, function start(set) {
+	// implementation goes here	
+	const interval = setInterval(() => {
+		set(new Date());
+	}, 1000);
+
+	return function stop() {
+		clearInterval(interval);
+	};
+});
+```
+
+### derived stores
+根据已有的store变量生成一个新的store变量；
+
+```javascript
+import { readable, derived } from 'svelte/store';
+
+export const time = readable(new Date(), function start(set) {
+	const interval = setInterval(() => {
+		set(new Date());
+	}, 1000);
+
+	return function stop() {
+		clearInterval(interval);
+	};
+});
+
+const start = new Date();
+
+export const elapsed = derived(
+	time,
+	$time => Math.round(($time - start) / 1000)
+);
+```
+
+### custom stores
+自定义一个store对象，本质是在原生store之上进行了一层封装；
+
+```javascript
+function createCount() {
+	const { subscribe, set, update } = writable(0);
+
+	return {
+		subscribe,
+		increment: () => update(n => n + 1),
+		decrement: () => update(n => n - 1),
+		reset: () => set(0)
+	};
+}
+```
+### store bindings
+> If a store is writable — i.e. it has a set method — you can bind to its value, just as you can bind to local component state.
+
+牛皮，所以vue3支不支持这种双向绑定
+
+
+### 一些问题
+- 若如下所示的初始化在多个组件中被调用，是否会导致sore反复初始化？过去元素丢失？
+```javascript
+import { writable } from "svelte/store";
+
+const createHonorBindStore = () => {
+	const { subscribe, set, update } = writable({});
+
+	return {
+		subscribe,
+		updateBind: (gameId: string) => {
+			console.log('update/gameId', gameId);
+			update((honorState) => {
+				honorState[gameId] = true;
+				return honorState;
+			});
+		},
+		reset: () => set({}),
+	};
+}
+
+export const honorBindState = createHonorBindStore();
+```
+
+【回答】似乎不会，官方例子即是分布组件中调用的，但需要注意语法糖具体在什么场景下不能使用？
+> Auto-subscription only works with store variables that are declared (or imported) at the top-level scope of a component.
+
+- props透传：
+  1、支持{...obj}的形式向子组件传递props；
+  2、特殊关键字$$props可用于将当前组件自身的全部Props传递给子组件而无论子组件是否export, 但需要解决ts报错的问题；
+
+## sveltekit
