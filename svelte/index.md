@@ -25,6 +25,9 @@
     - [derived stores](#derived-stores)
     - [custom stores](#custom-stores)
     - [store bindings](#store-bindings)
+    - [context apis](#context-apis)
+      - [Contexts vs. stores](#contexts-vs-stores)
+    - [模块级上下文](#模块级上下文)
     - [一些问题](#一些问题)
   - [sveltekit](#sveltekit-1)
 
@@ -378,6 +381,58 @@ function createCount() {
 
 牛皮，所以vue3支不支持这种双向绑定
 
+
+### context apis
+
+[官方文档](https://svelte.dev/tutorial/context-api)
+
+使用示例：
+```javascript
+import { onDestroy, setContext } from 'svelte';
+import { mapbox, key } from './mapbox.js';
+
+setContext(key, {
+	getMap: () => map
+});
+```
+```javascript
+import { getContext } from 'svelte';
+import { mapbox, key } from './mapbox.js';
+
+const { getMap } = getContext(key);
+const map = getMap();
+```
+
+> 注意：只能在组件及其子孙组件中使用
+
+#### Contexts vs. stores
+Contexts and stores seem similar. They differ in that stores are available to any part of an app, while a context is only available to a component and its descendants. This can be helpful if you want to use several instances of a component without the state of one interfering with the state of the others.
+
+### 模块级上下文
+
+能够在多个组件之间共享一份数据内容，一个例子：
+[参考](https://www.educative.io/answers/how-to-use-module-context-in-svelte)
+
+```html
+<script context="module">
+    let totalCount=0
+    export function totalCount(){
+        return totalCount
+    }
+</script>
+
+<script>
+     let count=0
+     function btnHandler(){
+         count += 1
+         totalCount += 1
+     }
+</script>
+
+    <h2>Cart counter - {count}</h2>
+    <button on:click ={btnHandler}>Increment Cart </button>
+    <hr />
+```
 
 ### 一些问题
 - 若如下所示的初始化在多个组件中被调用，是否会导致sore反复初始化？过去元素丢失？

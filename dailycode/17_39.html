@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>257.二叉树的所有路径【简单题】 · GitBook</title>
+        <title>17&39. 电话号码的字母组合&组合总和 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="100.html" />
     
-    
-    <link rel="prev" href="202_110.html" />
+    <link rel="prev" href="216.html" />
     
 
     </head>
@@ -388,7 +386,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.12" data-path="257.html">
+        <li class="chapter " data-level="1.4.12" data-path="257.html">
             
                 <a href="257.html">
             
@@ -726,7 +724,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.38" data-path="17_39.html">
+        <li class="chapter active" data-level="1.4.38" data-path="17_39.html">
             
                 <a href="17_39.html">
             
@@ -774,7 +772,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >257.二叉树的所有路径【简单题】</a>
+        <a href=".." >17&39. 电话号码的字母组合&组合总和</a>
     </h1>
 </div>
 
@@ -789,74 +787,74 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="257&#x4E8C;&#x53C9;&#x6811;&#x7684;&#x6240;&#x6709;&#x8DEF;&#x5F84;&#x3010;&#x7B80;&#x5355;&#x9898;&#x3011;">257.&#x4E8C;&#x53C9;&#x6811;&#x7684;&#x6240;&#x6709;&#x8DEF;&#x5F84;&#x3010;&#x7B80;&#x5355;&#x9898;&#x3011;</h1>
-<p><a href="https://leetcode.cn/problems/binary-tree-paths/" target="_blank">&#x9898;&#x76EE;&#x94FE;&#x63A5;</a></p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// &#x5347;&#x7EA7;&#x4E00;&#x4E0B;initTree&#x7684;&#x4EE3;&#x7801;</span>
-<span class="hljs-keyword">const</span> initTree = (inputList) =&gt; {
-    <span class="hljs-keyword">const</span> total = inputList.length;
-    <span class="hljs-keyword">if</span>(!inputList[<span class="hljs-number">0</span>])<span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
-    inputList[<span class="hljs-number">0</span>] = <span class="hljs-keyword">new</span> TreeNode(inputList[<span class="hljs-number">0</span>]);
-    inputList.forEach((el,index) =&gt; {
-        <span class="hljs-keyword">let</span> leftP = <span class="hljs-literal">null</span>;
-        <span class="hljs-keyword">let</span> rightP = <span class="hljs-literal">null</span>;
-        <span class="hljs-keyword">if</span> (el === <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span>;
-        <span class="hljs-keyword">if</span> (index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span> &lt; total) {
-            leftP = inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>] !== <span class="hljs-literal">null</span> ? <span class="hljs-keyword">new</span> TreeNode(inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>]): <span class="hljs-literal">null</span>;
-            inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>] = leftP;
-        } 
-        <span class="hljs-keyword">if</span> (index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span> &lt; total) {
-            rightP = inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>] !== <span class="hljs-literal">null</span> ? <span class="hljs-keyword">new</span> TreeNode(inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>]): <span class="hljs-literal">null</span>;
-            inputList[index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>] = rightP;
+                                <h1 id="17&#x7535;&#x8BDD;&#x53F7;&#x7801;&#x7684;&#x5B57;&#x6BCD;&#x7EC4;&#x5408;39&#x7EC4;&#x5408;&#x603B;&#x548C;">17<em>&#x7535;&#x8BDD;&#x53F7;&#x7801;&#x7684;&#x5B57;&#x6BCD;&#x7EC4;&#x5408;_39</em>&#x7EC4;&#x5408;&#x603B;&#x548C;</h1>
+<p><a href="https://leetcode.cn/problems/letter-combinations-of-a-phone-number/" target="_blank">17&#x9898;&#x76EE;&#x94FE;&#x63A5;</a></p>
+<pre><code class="lang-typescript">const keyMap: any = {
+    &apos;2&apos;: &apos;abc&apos;,
+    &apos;3&apos;: &apos;def&apos;,
+    &apos;4&apos;: &apos;ghi&apos;,
+    &apos;5&apos;: &apos;jkl&apos;,
+    &apos;6&apos;: &apos;mno&apos;,
+    &apos;7&apos;: &apos;pqrs&apos;,
+    &apos;8&apos;: &apos;tuv&apos;,
+    &apos;9&apos;: &apos;wxyz&apos;,
+
+}
+
+function letterCombinations(digits: string): string[] {
+    const result: string[] = [];
+    const backtrackingLetter = (digits: string, curPath: string, startIndex: number) =&gt; {
+        if (curPath?.length === digits?.length) {
+            const newPath = curPath;
+            if (!newPath.length) return;
+            result.push(newPath);
         }
-        inputList[index].left = leftP;
-        inputList[index].right = rightP;
-    });
-    <span class="hljs-keyword">return</span> inputList[<span class="hljs-number">0</span>];
-}
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">TreeNode</span>(<span class="hljs-params">val, left, right</span>) </span>{
-    <span class="hljs-keyword">this</span>.val = (val===<span class="hljs-literal">undefined</span> ? <span class="hljs-number">0</span> : val)
-    <span class="hljs-keyword">this</span>.left = (left===<span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span> : left)
-    <span class="hljs-keyword">this</span>.right = (right===<span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span> : right)
-}
-
-<span class="hljs-keyword">const</span> getAllPath = (curNode, curPath, paths) =&gt; {
-    curPath.push(curNode.val)
-    <span class="hljs-keyword">if</span> (!curNode.left &amp;&amp; !curNode.right) {
-        paths.push(curPath);
-        <span class="hljs-keyword">return</span> 
+        if (startIndex &gt;= digits.length) return;
+        const letters = keyMap[digits[startIndex]];
+        for(let j=0;j&lt;letters.length;j++) {
+            curPath += letters[j];
+            backtrackingLetter(digits, curPath, startIndex+1);
+            curPath = curPath.slice(0, curPath.length-1);
+        };
     }
-    <span class="hljs-keyword">if</span>(curNode.left)getAllPath(curNode.left, [...curPath], paths);
-    <span class="hljs-keyword">if</span>(curNode.right)getAllPath(curNode.right, [...curPath], paths);
-}
-
-<span class="hljs-keyword">const</span> formatted = (paths) =&gt; {
-    <span class="hljs-keyword">const</span> res = [];
-    paths.forEach(list=&gt;{
-        res.push(list.join(<span class="hljs-string">&apos;-&gt;&apos;</span>));
-    })
-    <span class="hljs-keyword">return</span> res;
-}
-
-<span class="hljs-comment">/**
- * @param {TreeNode} root
- * @return {string[]}
- */</span>
-<span class="hljs-keyword">var</span> binaryTreePaths = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) </span>{
-    <span class="hljs-keyword">if</span> (!root) <span class="hljs-keyword">return</span> [];
-    <span class="hljs-keyword">const</span> paths = [];
-    getAllPath(root, [], paths);
-    <span class="hljs-keyword">return</span> formatted(paths);
+    backtrackingLetter(digits, &quot;&quot;, 0);
+    return result;
 };
 
-<span class="hljs-comment">// &#x9A8C;&#x8BC1;&#x4EE3;&#x7801;</span>
-(()=&gt;{
-    <span class="hljs-comment">// const input = [1,2,3,null,5];</span>
-    <span class="hljs-keyword">const</span> input = [];
-    <span class="hljs-keyword">const</span> root = initTree(input);
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;root&apos;</span>, root);
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;binaryTreePaths&apos;</span>, binaryTreePaths(root));
-})();
+console.log(letterCombinations(&quot;&quot;));
+console.log(letterCombinations(&quot;2&quot;));
+console.log(letterCombinations(&quot;23&quot;));
+</code></pre>
+<p><a href="https://leetcode.cn/problems/combination-sum/" target="_blank">39&#x94FE;&#x63A5;</a></p>
+<pre><code class="lang-typescript">const sum = (arr: number[]) =&gt; arr.reduce((pres, cur)=&gt; {
+    return pres + cur;
+},0);
+
+function combinationSum(candidates: number[], target: number): number[][] {
+    const result: number[][] = [];
+    const backtrackingSum = (candidates: number[], target: number, curPath: number[], start: number) =&gt; {
+        if (sum(curPath) === target) {
+            const newPath = [...curPath];
+            result.push(newPath);
+            return;
+        }
+        if (sum(curPath) &gt; target) {
+            return;
+        }
+        for(let i = start; i&lt;candidates.length; i+=1) {
+            curPath.push(candidates[i]);
+            backtrackingSum(candidates, target, curPath, i);
+            curPath.pop();
+        }
+    }
+    backtrackingSum(candidates, target, [], 0);
+    return result;
+};
+
+
+console.log(combinationSum([2,3,6,7],7));
+console.log(combinationSum([2,3,5],8));
+console.log(combinationSum([2],1));
 </code></pre>
 
                                 
@@ -885,14 +883,10 @@
 
             
                 
-                <a href="202_110.html" class="navigation navigation-prev " aria-label="Previous page: 110.222. 平衡二叉树/完全二叉树的节点个数">
+                <a href="216.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 216. 组合总和 III【中等】">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="100.html" class="navigation navigation-next " aria-label="Next page: 100.相同的树【简单】">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -901,7 +895,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"257.二叉树的所有路径【简单题】","level":"1.4.12","depth":2,"next":{"title":"100.相同的树【简单】","level":"1.4.13","depth":2,"path":"dailycode/100.md","ref":"./dailycode/100.md","articles":[]},"previous":{"title":"110.222. 平衡二叉树/完全二叉树的节点个数","level":"1.4.11","depth":2,"path":"dailycode/202_110.md","ref":"./dailycode/202_110.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/257.md","mtime":"2023-01-29T01:03:12.153Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-05-27T09:28:41.659Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"17&39. 电话号码的字母组合&组合总和","level":"1.4.38","depth":2,"previous":{"title":"216. 组合总和 III【中等】","level":"1.4.37","depth":2,"path":"dailycode/216.md","ref":"./dailycode/216.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/17_39.md","mtime":"2023-05-27T09:28:32.866Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-05-27T09:28:41.659Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
