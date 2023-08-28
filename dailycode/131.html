@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>151. 反转字符串中的单词 & 剑指 Offer 58 - II. 左旋转字符串 · GitBook</title>
+        <title>131. 分割回文串【中等题】 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="459.html" />
+    <link rel="next" href="93.html" />
     
     
-    <link rel="prev" href="jzoffer_005.html" />
+    <link rel="prev" href="17_39.html" />
     
 
     </head>
@@ -687,7 +687,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.34" data-path="151_jzof58.html">
+        <li class="chapter " data-level="1.4.34" data-path="151_jzof58.html">
             
                 <a href="151_jzof58.html">
             
@@ -752,7 +752,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.39" data-path="131.html">
+        <li class="chapter active" data-level="1.4.39" data-path="131.html">
             
                 <a href="131.html">
             
@@ -813,7 +813,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >151. 反转字符串中的单词 & 剑指 Offer 58 - II. 左旋转字符串</a>
+        <a href=".." >131. 分割回文串【中等题】</a>
     </h1>
 </div>
 
@@ -828,15 +828,41 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="151-&#x53CD;&#x8F6C;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7684;&#x5355;&#x8BCD;--&#x5251;&#x6307;-offer-58---ii-&#x5DE6;&#x65CB;&#x8F6C;&#x5B57;&#x7B26;&#x4E32;">151. &#x53CD;&#x8F6C;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7684;&#x5355;&#x8BCD; &amp; &#x5251;&#x6307; Offer 58 - II. &#x5DE6;&#x65CB;&#x8F6C;&#x5B57;&#x7B26;&#x4E32;</h1>
-<p><a href="https://leetcode.cn/problems/reverse-words-in-a-string/" target="_blank">151</a></p>
-<p><a href="https://leetcode.cn/problems/zuo-xuan-zhuan-zi-fu-chuan-lcof/" target="_blank">&#x5251;&#x6307;offer58</a></p>
-<pre><code class="lang-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reverseWords</span>(<span class="hljs-params">s: <span class="hljs-built_in">string</span></span>): <span class="hljs-title">string</span> </span>{
-    <span class="hljs-keyword">return</span> s.split(<span class="hljs-string">&apos; &apos;</span>).filter(el=&gt;!!el).reverse().join(<span class="hljs-string">&apos; &apos;</span>);
+                                <h1 id="131-&#x5206;&#x5272;&#x56DE;&#x6587;&#x4E32;&#x3010;&#x4E2D;&#x7B49;&#x9898;&#x3011;">131. &#x5206;&#x5272;&#x56DE;&#x6587;&#x4E32;&#x3010;&#x4E2D;&#x7B49;&#x9898;&#x3011;</h1>
+<p><a href="https://leetcode.cn/problems/palindrome-partitioning/description/" target="_blank">&#x9898;&#x76EE;&#x94FE;&#x63A5;</a></p>
+<pre><code class="lang-typescript">const isSpecial = (s: string) =&gt; {
+    let flag = true;
+    for(let i=0,j=s.length-1;i&lt;j;i++,j--) {
+        if (s[i] !== s[j]) {
+            flag=false;
+            break;
+        }
+    }
+    return flag;
 };
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reverseLeftWords</span>(<span class="hljs-params">s: <span class="hljs-built_in">string</span>, n: <span class="hljs-built_in">number</span></span>): <span class="hljs-title">string</span> </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${s.substring(n,s.length)}</span><span class="hljs-subst">${s.substring(0, n)}</span>`</span>;
+function partition(s: string): string[][] {
+    const res: string[][] = [];
+    const splitStr = (start: number, curRes: string[], rawStr: string) =&gt; {
+        // console.log(&apos;curRes&apos;, curRes);
+        if(start&gt;=rawStr.length)  {
+            const newRes = [...curRes];
+            res.push(newRes);
+            return;
+        }
+        for(let next = start+1; next&lt;=rawStr.length;next++) {
+            const curPair = rawStr.slice(start, next);
+            if(isSpecial(curPair)) {
+                curRes.push(curPair);
+                splitStr(next, curRes, rawStr);
+                curRes.pop();
+            } else {
+                continue;
+            }
+        }
+    };
+    splitStr(0, [], s);
+    return res;
 };
 </code></pre>
 
@@ -866,12 +892,12 @@
 
             
                 
-                <a href="jzoffer_005.html" class="navigation navigation-prev " aria-label="Previous page: 剑指 Offer 05. 替换空格 ">
+                <a href="17_39.html" class="navigation navigation-prev " aria-label="Previous page: 17&39. 电话号码的字母组合&组合总和">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="459.html" class="navigation navigation-next " aria-label="Next page: 459. 重复的子字符串[kmp]">
+                <a href="93.html" class="navigation navigation-next " aria-label="Next page: 93. 复原 IP 地址【中等题】">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -882,7 +908,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"151. 反转字符串中的单词 & 剑指 Offer 58 - II. 左旋转字符串","level":"1.4.34","depth":2,"next":{"title":"459. 重复的子字符串[kmp]","level":"1.4.35","depth":2,"path":"dailycode/459.md","ref":"./dailycode/459.md","articles":[]},"previous":{"title":"剑指 Offer 05. 替换空格 ","level":"1.4.33","depth":2,"path":"dailycode/jzoffer_005.md","ref":"./dailycode/jzoffer_005.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/151_jzof58.md","mtime":"2023-02-20T01:13:21.766Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-08-28T16:04:21.967Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"131. 分割回文串【中等题】","level":"1.4.39","depth":2,"next":{"title":"93. 复原 IP 地址【中等题】","level":"1.4.40","depth":2,"path":"dailycode/93.md","ref":"./dailycode/93.md","articles":[]},"previous":{"title":"17&39. 电话号码的字母组合&组合总和","level":"1.4.38","depth":2,"path":"dailycode/17_39.md","ref":"./dailycode/17_39.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/131.md","mtime":"2023-08-24T15:53:16.200Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-08-28T16:04:21.967Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
