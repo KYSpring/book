@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>剑指 Offer 05. 替换空格  · GitBook</title>
+        <title>78. 子集【中等题】 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="151_jzof58.html" />
     
-    
-    <link rel="prev" href="541.html" />
+    <link rel="prev" href="93.html" />
     
 
     </head>
@@ -674,7 +672,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.33" data-path="jzoffer_005.html">
+        <li class="chapter " data-level="1.4.33" data-path="jzoffer_005.html">
             
                 <a href="jzoffer_005.html">
             
@@ -778,7 +776,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.41" data-path="78.html">
+        <li class="chapter active" data-level="1.4.41" data-path="78.html">
             
                 <a href="78.html">
             
@@ -826,7 +824,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >剑指 Offer 05. 替换空格 </a>
+        <a href=".." >78. 子集【中等题】</a>
     </h1>
 </div>
 
@@ -841,23 +839,26 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x5251;&#x6307;-offer-05-&#x66FF;&#x6362;&#x7A7A;&#x683C;">&#x5251;&#x6307; Offer 05. &#x66FF;&#x6362;&#x7A7A;&#x683C;</h1>
-<p><a href="https://leetcode.cn/problems/ti-huan-kong-ge-lcof/" target="_blank">&#x9898;&#x76EE;&#x94FE;&#x63A5;</a></p>
-<pre><code class="lang-typescript"><span class="hljs-comment">// &#x6B63;&#x5219;&#x5339;&#x914D;</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">replaceSpace</span>(<span class="hljs-params">s: <span class="hljs-built_in">string</span></span>): <span class="hljs-title">string</span> </span>{
-    <span class="hljs-keyword">return</span> s.replace(<span class="hljs-regexp">/\x20/g</span>, <span class="hljs-string">&apos;%20&apos;</span>);
+                                <h1 id="78-&#x5B50;&#x96C6;">78. &#x5B50;&#x96C6;</h1>
+<p><a href="https://leetcode.cn/problems/subsets/description/" target="_blank">&#x9898;&#x76EE;&#x94FE;&#x63A5;</a></p>
+<pre><code class="lang-typescript">function subsets(nums: number[]): number[][] {
+    const result: number[][] = [];
+    const backtracking = (nums: number[], curIndex: number, curPath: number[]) =&gt; {
+        if (curIndex &gt;= nums.length) {
+            result.push([...curPath]);
+            return;
+        }
+        curPath.push(nums[curIndex]);
+        backtracking(nums, curIndex+1, curPath);
+        curPath.pop();
+        backtracking(nums, curIndex+1, curPath);
+    };
+    backtracking(nums, 0, []);
+    return result;
 };
 
-<span class="hljs-comment">// &#x5B57;&#x7B26;&#x4E32;&#x64CD;&#x4F5C;</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">replaceSpace</span>(<span class="hljs-params">s: <span class="hljs-built_in">string</span></span>): <span class="hljs-title">string</span> </span>{
-    <span class="hljs-keyword">return</span> s.split(<span class="hljs-string">&apos; &apos;</span>).join(<span class="hljs-string">&apos;%20&apos;</span>);
-};
-
-<span class="hljs-comment">// &#x904D;&#x5386;</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">replaceSpace</span>(<span class="hljs-params">s: <span class="hljs-built_in">string</span></span>): <span class="hljs-title">string</span> </span>{
-    <span class="hljs-keyword">const</span> tmp = [...s];
-    <span class="hljs-keyword">return</span> tmp.map((el)=&gt;{<span class="hljs-keyword">return</span> el === <span class="hljs-string">&apos; &apos;</span>? <span class="hljs-string">&apos;%20&apos;</span>: el;}).join(<span class="hljs-string">&apos;&apos;</span>);
-};
+console.log(subsets([1,2,3]));
+console.log(subsets([0]));
 </code></pre>
 
                                 
@@ -886,14 +887,10 @@
 
             
                 
-                <a href="541.html" class="navigation navigation-prev " aria-label="Previous page: 541. 反转字符串 II【简单】">
+                <a href="93.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 93. 复原 IP 地址【中等题】">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="151_jzof58.html" class="navigation navigation-next " aria-label="Next page: 151. 反转字符串中的单词 & 剑指 Offer 58 - II. 左旋转字符串">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -902,7 +899,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"剑指 Offer 05. 替换空格 ","level":"1.4.33","depth":2,"next":{"title":"151. 反转字符串中的单词 & 剑指 Offer 58 - II. 左旋转字符串","level":"1.4.34","depth":2,"path":"dailycode/151_jzof58.md","ref":"./dailycode/151_jzof58.md","articles":[]},"previous":{"title":"541. 反转字符串 II【简单】","level":"1.4.32","depth":2,"path":"dailycode/541.md","ref":"./dailycode/541.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/jzoffer_005.md","mtime":"2023-02-19T06:33:14.831Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-08-29T14:24:05.455Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"78. 子集【中等题】","level":"1.4.41","depth":2,"previous":{"title":"93. 复原 IP 地址【中等题】","level":"1.4.40","depth":2,"path":"dailycode/93.md","ref":"./dailycode/93.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/78.md","mtime":"2023-08-29T14:21:36.320Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-08-29T14:24:05.455Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
