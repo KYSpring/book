@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>131. 分割回文串【中等题】 · GitBook</title>
+        <title>90. 子集 II【中等题】【经典】 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="93.html" />
     
-    
-    <link rel="prev" href="17_39.html" />
+    <link rel="prev" href="78.html" />
     
 
     </head>
@@ -752,7 +750,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.39" data-path="131.html">
+        <li class="chapter " data-level="1.4.39" data-path="131.html">
             
                 <a href="131.html">
             
@@ -791,7 +789,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.42" data-path="90.html">
+        <li class="chapter active" data-level="1.4.42" data-path="90.html">
             
                 <a href="90.html">
             
@@ -839,7 +837,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >131. 分割回文串【中等题】</a>
+        <a href=".." >90. 子集 II【中等题】【经典】</a>
     </h1>
 </div>
 
@@ -854,42 +852,42 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="131-&#x5206;&#x5272;&#x56DE;&#x6587;&#x4E32;&#x3010;&#x4E2D;&#x7B49;&#x9898;&#x3011;">131. &#x5206;&#x5272;&#x56DE;&#x6587;&#x4E32;&#x3010;&#x4E2D;&#x7B49;&#x9898;&#x3011;</h1>
-<p><a href="https://leetcode.cn/problems/palindrome-partitioning/description/" target="_blank">&#x9898;&#x76EE;&#x94FE;&#x63A5;</a></p>
-<pre><code class="lang-typescript">const isSpecial = (s: string) =&gt; {
-    let flag = true;
-    for(let i=0,j=s.length-1;i&lt;j;i++,j--) {
-        if (s[i] !== s[j]) {
-            flag=false;
-            break;
+                                <h1 id="90-&#x5B50;&#x96C6;-ii">90. &#x5B50;&#x96C6; II</h1>
+<p><a href="https://leetcode.cn/problems/subsets-ii/" target="_blank">&#x9898;&#x76EE;&#x94FE;&#x63A5;</a></p>
+<p>&#x9898;&#x76EE;90&#x5EFA;&#x8BAE;&#x7ED3;&#x5408;78&#x5BF9;&#x6BD4;</p>
+<p>78&#x627E;&#x5B50;&#x96C6;&#x60F3;&#x5230;&#x4E24;&#x79CD;&#x601D;&#x8DEF;&#xFF1A;</p>
+<ul>
+<li><p>1&#x3001;&#x904D;&#x5386;&#x6BCF;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x6BCF;&#x4E2A;&#x5143;&#x7D20;&#x90FD;&#x6709;&#x4E24;&#x79CD;&#x64CD;&#x4F5C;&#x65B9;&#x5F0F;&#xFF08;&#x52A0;&#x5165;&#x6700;&#x7EC8;&#x7684;&#x5B50;&#x96C6;&#x6216;&#x8005;&#x4E0D;&#x52A0;&#x5165;&#x6700;&#x7EC8;&#x7684;&#x5B50;&#x96C6;&#xFF09;&#xFF1B;
+&#x8BE5;&#x601D;&#x8DEF;&#x4E0B;&#xFF0C;&#x6BCF;&#x904D;&#x5386;&#x4E00;&#x904D;&#x6570;&#x7EC4;&#x4F1A;&#x627E;&#x5230;&#x4E00;&#x4E2A;&#x5B50;&#x96C6;&#x3002;</p>
+</li>
+<li><p>2&#x3001;&#x904D;&#x5386;&#x8FC7;&#x7A0B;&#x89C6;&#x4E3A;&#x662F;&#x201C;&#x5B50;&#x96C6;&#x5143;&#x7D20;&#x96C6;&#x5408;&#x201D;&#x548C;&#x201C;&#x5F85;&#x4F7F;&#x7528;&#x5143;&#x7D20;&#x7ED3;&#x5408;&#x201D;&#x4E4B;&#x95F4;&#x7684;&#x76F8;&#x4E92;&#x8F6C;&#x5316;&#xFF0C;&#x6BCF;&#x904D;&#x5386;&#x5230;&#x4E00;&#x4E2A;&#x5143;
+&#x7D20;&#x5373;&#x610F;&#x5473;&#x7740;&#x8BE5;&#x5143;&#x7D20;&#x5C06;&#x88AB;&#x52A0;&#x5165;&#x201C;&#x5B50;&#x96C6;&#x5143;&#x7D20;&#x96C6;&#x5408;&#x201D;&#xFF0C;&#x4E5F;&#x5373;&#x627E;&#x5230;&#x4E00;&#x4E2A;&#x5B50;&#x96C6;&#x3002;</p>
+</li>
+</ul>
+<p>&#x601D;&#x8DEF;2&#x4F18;&#x4E8E;&#x601D;&#x8DEF;1&#xFF0C;&#x5728;90&#x9898;&#x76EE;&#x4E0B;&#xFF0C;&#x601D;&#x8DEF;1&#x5F88;&#x96BE;&#x53BB;&#x91CD;&#xFF0C;&#x800C;&#x601D;&#x8DEF;2&#x53EF;&#x4EE5;&#x7075;&#x6D3B;&#x7684;&#x5B9E;&#x73B0;&#x201C;&#x6811;&#x5C42;&#x53BB;&#x91CD;&#x201D;&#x800C;&#x4E0D;&#x8FDB;&#x884C;&#x201C;&#x6811;&#x679D;&#x53BB;&#x91CD;&#x201D;&#x3002;</p>
+<pre><code class="lang-typescript">function subsetsWithDup(nums: number[]): number[][] {
+    const result: number[][] = [];
+    const used: boolean[] = [];
+    const sortedNums = nums.sort();
+    const backtracking = (startIndex: number, nums: number[], curNodes: number[]) =&gt; {
+        result.push([...curNodes]);
+        if(startIndex&gt;nums.length)return;
+        for(let i=startIndex;i&lt;nums.length;i++){
+            // &#x53BB;&#x91CD;&#x7684;&#x60C5;&#x51B5;
+            if(i&gt;0 &amp;&amp; nums[i]===nums[i-1] &amp;&amp; !used[i-1]) continue;
+            curNodes.push(nums[i]);
+            used[i] = true;
+            backtracking(i+1,nums,curNodes);
+            used[i] = false;
+            curNodes.pop();
         }
     }
-    return flag;
+    backtracking(0, sortedNums, []);
+    return result;
 };
-
-function partition(s: string): string[][] {
-    const res: string[][] = [];
-    const splitStr = (start: number, curRes: string[], rawStr: string) =&gt; {
-        // console.log(&apos;curRes&apos;, curRes);
-        if(start&gt;=rawStr.length)  {
-            const newRes = [...curRes];
-            res.push(newRes);
-            return;
-        }
-        for(let next = start+1; next&lt;=rawStr.length;next++) {
-            const curPair = rawStr.slice(start, next);
-            if(isSpecial(curPair)) {
-                curRes.push(curPair);
-                splitStr(next, curRes, rawStr);
-                curRes.pop();
-            } else {
-                continue;
-            }
-        }
-    };
-    splitStr(0, [], s);
-    return res;
-};
+console.log(subsetsWithDup([1,2,2]));
+console.log(subsetsWithDup([2,2]));
+console.log(subsetsWithDup([0]));
 </code></pre>
 
                                 
@@ -918,14 +916,10 @@ function partition(s: string): string[][] {
 
             
                 
-                <a href="17_39.html" class="navigation navigation-prev " aria-label="Previous page: 17&39. 电话号码的字母组合&组合总和">
+                <a href="78.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 78. 子集【中等题】">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="93.html" class="navigation navigation-next " aria-label="Next page: 93. 复原 IP 地址【中等题】">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -934,7 +928,7 @@ function partition(s: string): string[][] {
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"131. 分割回文串【中等题】","level":"1.4.39","depth":2,"next":{"title":"93. 复原 IP 地址【中等题】","level":"1.4.40","depth":2,"path":"dailycode/93.md","ref":"./dailycode/93.md","articles":[]},"previous":{"title":"17&39. 电话号码的字母组合&组合总和","level":"1.4.38","depth":2,"path":"dailycode/17_39.md","ref":"./dailycode/17_39.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/131.md","mtime":"2023-08-24T15:53:16.200Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-02T16:42:39.874Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"90. 子集 II【中等题】【经典】","level":"1.4.42","depth":2,"previous":{"title":"78. 子集【中等题】","level":"1.4.41","depth":2,"path":"dailycode/78.md","ref":"./dailycode/78.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/90.md","mtime":"2023-09-02T16:42:13.280Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-02T16:42:39.874Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
