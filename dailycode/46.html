@@ -1,0 +1,987 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>46. 全排列【中等】 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="491.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../archive/">
+            
+                <a href="../archive/">
+            
+                    
+                    技术博客 Blog Share
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../archive/createpersonallib.html">
+            
+                <a href="../archive/createpersonallib.html">
+            
+                    
+                    rollup搭建个人组件库
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../archive/promptengineering.html">
+            
+                <a href="../archive/promptengineering.html">
+            
+                    
+                    吴恩达提示工程公开课笔记 prompt engineering
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../readings/">
+            
+                <a href="../readings/">
+            
+                    
+                    阅读笔记 Reading
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../readings/oneweb3book.html">
+            
+                <a href="../readings/oneweb3book.html">
+            
+                    
+                    【笔记】《一本书读懂Web3.0:区块链、NFT、云宇宙和DAO》
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../readings/ftcsxf.html">
+            
+                <a href="../readings/ftcsxf.html">
+            
+                    
+                    【笔记】《冯唐成事心法》
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../readings/destiny.html">
+            
+                <a href="../readings/destiny.html">
+            
+                    
+                    【笔记】《命运》蔡崇达
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../readings/devops.html">
+            
+                <a href="../readings/devops.html">
+            
+                    
+                    【笔记】《DevOps实践指南》阅读笔记
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../readings/nawaer.html">
+            
+                <a href="../readings/nawaer.html">
+            
+                    
+                    【笔记】《纳瓦尔宝典》阅读笔记
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="../readings/lionsnack.html">
+            
+                <a href="../readings/lionsnack.html">
+            
+                    
+                    【笔记】《狮子之家的点心日》阅读笔记
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    力扣题解 Daily Code
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="144.html">
+            
+                <a href="144.html">
+            
+                    
+                    144. 二叉树的前序遍历【简单题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="145_94.html">
+            
+                <a href="145_94.html">
+            
+                    
+                    145.94 二叉树的中序&后序遍历【简单题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="102.html">
+            
+                <a href="102.html">
+            
+                    
+                    102. 二叉树的层序遍历【中等题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="199.html">
+            
+                <a href="199.html">
+            
+                    
+                    199. 二叉树的右视图【中等题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="429.html">
+            
+                <a href="429.html">
+            
+                    
+                    429. N 叉树的层序遍历【中等题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="116.html">
+            
+                <a href="116.html">
+            
+                    
+                    116. 填充每个节点的下一个右侧节点指针【中等题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="515.html">
+            
+                <a href="515.html">
+            
+                    
+                    515. 在每个树行中找最大值【中等题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="104_111.html">
+            
+                <a href="104_111.html">
+            
+                    
+                    104.111. 二叉树的最小/最大深度【简单题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="101.html">
+            
+                <a href="101.html">
+            
+                    
+                    101. 对称二叉树【简单题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10" data-path="226.html">
+            
+                <a href="226.html">
+            
+                    
+                    226. 翻转二叉树【简单题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.11" data-path="202_110.html">
+            
+                <a href="202_110.html">
+            
+                    
+                    110.222. 平衡二叉树/完全二叉树的节点个数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.12" data-path="257.html">
+            
+                <a href="257.html">
+            
+                    
+                    257.二叉树的所有路径【简单题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.13" data-path="100.html">
+            
+                <a href="100.html">
+            
+                    
+                    100.相同的树【简单】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.14" data-path="404.html">
+            
+                <a href="404.html">
+            
+                    
+                    404.左叶子之和【简单】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.15" data-path="513.html">
+            
+                <a href="513.html">
+            
+                    
+                    513. 找树左下角的值【中等】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.16" data-path="112.html">
+            
+                <a href="112.html">
+            
+                    
+                    112. 路径总和【简单】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.17" data-path="106.html">
+            
+                <a href="106.html">
+            
+                    
+                    106. 从中序与后序遍历序列构造二叉树【中等】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.18" data-path="654.html">
+            
+                <a href="654.html">
+            
+                    
+                    654. 最大二叉树【中等题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.19" data-path="617.html">
+            
+                <a href="617.html">
+            
+                    
+                    617. 合并二叉树-TS版【简单题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.20" data-path="700.html">
+            
+                <a href="700.html">
+            
+                    
+                    700. 二叉搜索树中的搜索【简单】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21" data-path="98.html">
+            
+                <a href="98.html">
+            
+                    
+                    98. 验证二叉搜索树 【中等】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.22" data-path="530.html">
+            
+                <a href="530.html">
+            
+                    
+                    530. 二叉搜索树的最小绝对差【简单】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.23" data-path="501.html">
+            
+                <a href="501.html">
+            
+                    
+                    501. 二叉搜索树中的众数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.24" data-path="236.html">
+            
+                <a href="236.html">
+            
+                    
+                    236. 【回溯】二叉树的最近公共祖先【中等】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.25" data-path="701.html">
+            
+                <a href="701.html">
+            
+                    
+                    701. 二叉搜索树中的插入操作【中等】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.26" data-path="450.html">
+            
+                <a href="450.html">
+            
+                    
+                    450. 删除二叉搜索树中的节点【中等】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.27" data-path="669.html">
+            
+                <a href="669.html">
+            
+                    
+                    669. 修剪二叉搜索树【中等】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.28" data-path="108.html">
+            
+                <a href="108.html">
+            
+                    
+                    108. 将有序数组转换为二叉搜索树【简单】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.29" data-path="538.html">
+            
+                <a href="538.html">
+            
+                    
+                    538. 把二叉搜索树转换为累加树【中等】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.30" data-path="28.html">
+            
+                <a href="28.html">
+            
+                    
+                    28. [kmp]找出字符串中第一个匹配项的下标【中等】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.31" data-path="344.html">
+            
+                <a href="344.html">
+            
+                    
+                    344. 原地反转字符串【简单】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.32" data-path="541.html">
+            
+                <a href="541.html">
+            
+                    
+                    541. 反转字符串 II【简单】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.33" data-path="jzoffer_005.html">
+            
+                <a href="jzoffer_005.html">
+            
+                    
+                    剑指 Offer 05. 替换空格 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.34" data-path="151_jzof58.html">
+            
+                <a href="151_jzof58.html">
+            
+                    
+                    151. 反转字符串中的单词 & 剑指 Offer 58 - II. 左旋转字符串
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.35" data-path="459.html">
+            
+                <a href="459.html">
+            
+                    
+                    459. 重复的子字符串[kmp]
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.36" data-path="77.html">
+            
+                <a href="77.html">
+            
+                    
+                    77. 组合【中等】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.37" data-path="216.html">
+            
+                <a href="216.html">
+            
+                    
+                    216. 组合总和 III【中等】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.38" data-path="17_39.html">
+            
+                <a href="17_39.html">
+            
+                    
+                    17&39. 电话号码的字母组合&组合总和
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.39" data-path="131.html">
+            
+                <a href="131.html">
+            
+                    
+                    131. 分割回文串【中等题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.40" data-path="93.html">
+            
+                <a href="93.html">
+            
+                    
+                    93. 复原 IP 地址【中等题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.41" data-path="78.html">
+            
+                <a href="78.html">
+            
+                    
+                    78. 子集【中等题】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.42" data-path="90.html">
+            
+                <a href="90.html">
+            
+                    
+                    90. 子集 II【中等题】【经典】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.43" data-path="491.html">
+            
+                <a href="491.html">
+            
+                    
+                    491. 递增子序列【中等题】【经典】
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.44" data-path="46.html">
+            
+                <a href="46.html">
+            
+                    
+                    46. 全排列【中等】
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >46. 全排列【中等】</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x9898;&#x76EE;46-&#x5168;&#x6392;&#x5217;">&#x9898;&#x76EE;46. &#x5168;&#x6392;&#x5217;</h1>
+<ul>
+<li><a href="https://leetcode.cn/problems/permutations/description/" target="_blank">46. &#x5168;&#x6392;&#x5217;</a></li>
+</ul>
+<pre><code class="lang-typescript">function permute(nums: number[]): number[][] {
+    const result: number[][] = [];
+    const stepFlag:any = {};
+    const backtracking = (nums: number[], curNodes: number[]) =&gt; {
+        if(curNodes.length === nums.length){
+            result.push([...curNodes]);
+        }
+        for(let i=0;i&lt;nums.length;i++){
+            if(stepFlag[i]) continue;
+            curNodes.push(nums[i]);
+            stepFlag[i] = true;
+            backtracking(nums, curNodes);
+            curNodes.pop();
+            stepFlag[i] = false;
+        }
+        return result;
+    }
+    backtracking(nums, []);
+    return result;
+};
+
+// console.log(permute([1,2,3]));
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="491.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 491. 递增子序列【中等题】【经典】">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"46. 全排列【中等】","level":"1.4.44","depth":2,"previous":{"title":"491. 递增子序列【中等题】【经典】","level":"1.4.43","depth":2,"path":"dailycode/491.md","ref":"./dailycode/491.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dailycode/46.md","mtime":"2024-02-14T04:24:23.372Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2024-02-14T04:33:16.584Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
