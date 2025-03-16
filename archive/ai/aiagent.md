@@ -1,4 +1,14 @@
 # AI Agent
+- [AI Agent](#ai-agent)
+  - [Concept](#concept)
+  - [Tech Framework](#tech-framework)
+    - [XAgent](#xagent)
+      - [1. 概况](#1-概况)
+      - [2. 团队](#2-团队)
+  - [Research](#research)
+  - [other](#other)
+  - [langchain](#langchain)
+  - [RAG](#rag)
 
 ## Concept
 - llm based agent 智能体/代理
@@ -50,6 +60,5 @@ Based Agents: A Survey](https://arxiv.org/pdf/2309.07864.pdf) from Fudan NLP Gro
 ## langchain
 
 ## RAG
-
 [RAG技术入门与实战：基于混元大模型做一个ChatPDF应用](https://km.woa.com/articles/show/592124?from=iSearch）
 [探索知识驱动LLM生成：深入解析RAG技术全流程](https://km.woa.com/articles/show/591007?from=iSearch)

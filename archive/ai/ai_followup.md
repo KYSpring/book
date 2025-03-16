@@ -1,5 +1,33 @@
+- [AI跟进](#ai跟进)
+  - [Trending:](#trending)
+  - [大模型集合](#大模型集合)
+    - [混元大模型](#混元大模型)
+    - [文心一言相关](#文心一言相关)
+      - [基本理解](#基本理解)
+  - [AI创业公司](#ai创业公司)
+  - [AI产品合集](#ai产品合集)
+    - [【法律专题】](#法律专题)
+  - [文生图：](#文生图)
+  - [其他：](#其他)
+  - [学习资料：](#学习资料)
+    - [【知乎学堂agi课程】](#知乎学堂agi课程)
+    - [b站openbmb公开课](#b站openbmb公开课)
+    - [【transformer零基础入门】不愧是顶级计算机大佬王树森主讲6h](#transformer零基础入门不愧是顶级计算机大佬王树森主讲6h)
+
+
+# AI跟进
 ## Trending:
 - [gpt store正式上线](https://openai.com/blog/introducing-the-gpt-store)
+- [sora：文生视频](https://openai.com/sora)
+  [sora科技报告](https://openai.com/research/video-generation-models-as-world-simulators)
+  * 【颠覆能力】
+    - prompt提示工程实现高保真文生视频/图生视频；
+    - 逼真模拟物理世界：Sora 能够生成具有多个角色、特定类型的运动以及主体和背景的准确细节的复杂场景。该模型不仅了解用户在提示中提出的要求，还了解这些东西在物理世界中的存在方式；
+    - 支持多分辨率多尺寸的视频素材生成；
+  * 【三大局限性】
+    - 它可能难以准确模拟复杂场景的物理原理，并且可能无法理解因果关系的具体实例。例如，一个人可能咬了一口饼干，但之后饼干可能没有咬痕。
+    - 该模型还可能会混淆提示的空间细节，例如混淆左右，并且可能难以精确描述随着时间推移发生的事件，例如遵循特定的相机轨迹。
+    - 目前仅支持至多生成1分钟视频；同时也无法自动生成背景音乐、配音；
 
 ## 大模型集合
 ### 混元大模型
@@ -13,22 +41,9 @@
 - 混元一站式平台介绍
 <img src='./static/aigc_followup_2024-01-18-14-54-45.png'/>
 
-## AI创业公司
-- [归一智能](https://portal.learn.woa.com/training/mooc/taskDetail?mooc_course_id=RcxKrVSG&task_id=83372)
-  
 
-## AI产品合集
-- kimchat： 长文本处理
-- [ai红包封面生成【开源代码】](https://github.com/all-in-aigc/aicover)
-- 
-### 【法律专题】
-- 智合大模型：
-https://mp.weixin.qq.com/s/2ak6q__JuttlU2FWFX8bvg
-- 智能法律助理解决方案
-https://qianfanmarket.baidu.com/product/detail/cafa990f-7aa4-4829-8ad2-2425eede8d62
-
-## 文心一言相关
-### 基本理解
+### 文心一言相关
+#### 基本理解
 文心一言插件vs.千帆大模型社区vs.百度飞桨星海社区
 
 > 参赛队伍须基于文心ERNIE Bot SDK或文心插件工具进行应用/插件的开发，参赛选手可获得文心ERNIE Bot SDK 100万Token的免费额度。
@@ -40,6 +55,22 @@ https://qianfanmarket.baidu.com/product/detail/cafa990f-7aa4-4829-8ad2-2425eede8
 
 2. 文心一言插件 vs. sdk：前者是对提供插件给大模型调用，本质是服务大模型；后者是在自己的产品形态里引入大模型的api能力，服务于自己的产品；
    文心一言插件开发者文档：https://yiyan.baidu.com/developer/doc#oll6a352c
+
+
+## AI创业公司
+- [归一智能](https://portal.learn.woa.com/training/mooc/taskDetail?mooc_course_id=RcxKrVSG&task_id=83372)
+  
+
+## AI产品合集
+- kimchat： 长文本处理
+- [ai红包封面生成【开源代码】](https://github.com/all-in-aigc/aicover)
+- [Rag搜索引擎 - ThinkAny](https://thinkany.ai/zh/search/nviwdclucqjuz5)
+  - [rag引擎 开源](https://github.com/thinkany-ai/rag-search)
+### 【法律专题】
+- 智合大模型：
+https://mp.weixin.qq.com/s/2ak6q__JuttlU2FWFX8bvg
+- 智能法律助理解决方案
+https://qianfanmarket.baidu.com/product/detail/cafa990f-7aa4-4829-8ad2-2425eede8d62
 
 ## 文生图：
 
@@ -65,6 +96,15 @@ https://qianfanmarket.baidu.com/product/detail/cafa990f-7aa4-4829-8ad2-2425eede8
 腾讯学堂联合内外部技术大咖精心打磨体系化学习内容【生成式AI学习系列】，持续推出三大模块课程内容: 生成式AI技术、生成式AI应用、生成式AI发展趋势，一键get所有课程，请戳【生成式AI学习专区】链接：  https://sdc.qq.com/s/sYkoua?scheme_type=homepage&page_id=483&jump_from=wxworkqun&project=aigc&source=LLM  
  
 欢迎邀请对生成式AI感兴趣的小伙伴入群，一起学习成长！
+
+- [【回看链接待更新】从入门到精通，混元Agent智能体实战演练 | AI产品学习营]()
+【混元攻略实操篇】从入门到精通，混元Agent智能体实战演练  将于下午14:30开始直播~也欢迎同学们到腾讯滨海大厦36楼3616教室参加分享，与分享嘉宾进行互动交流~[机智]
+[直播链接](https://sdc.qq.com/s/Ggougo?liveId=e6b39ba865eecbd80008b51719daa22d&isShare=true&jump_from=wxworkqun&project=aicpxxy&source=aicpfx)
+
+1、agent对于大模型补强的常见能力：
+<img src='./static/ai_followup_2024-03-14-14-39-03.png'/>
+2、rag+大模型应用构建环节
+<img src='./static/ai_followup_2024-03-14-14-50-28.png'/>
 
 ## 学习资料：
 ### 【知乎学堂agi课程】

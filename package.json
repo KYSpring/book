@@ -1,0 +1,22 @@
+{
+  "name": "daft",
+  "version": "1.0.0",
+  "description": "Hi, I'm [**OneShow (ShawnWang)**](https://github.com/KYSpring), currently a **Frontend Developer / Fullstack Developer** working in China;",
+  "main": "index.js",
+  "scripts": {
+    "serve": "gitbook serve",
+    "build": "gitbook build",
+    "deploy": "cp -r _book/* book/"
+  }, 
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KYSpring/daft.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KYSpring/daft/issues"
+  },
+  "homepage": "https://github.com/KYSpring/daft#readme"
+}
